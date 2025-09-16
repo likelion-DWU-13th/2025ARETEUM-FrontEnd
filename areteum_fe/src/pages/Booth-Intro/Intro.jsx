@@ -11,7 +11,7 @@ const Intro = () => {
         <img id="scrap" src={`${process.env.PUBLIC_URL}/images/scrap.png`} alt="scrap" />
       </I.Header>
       <I.Nav>
-        <img id="footer" src={`${process.env.PUBLIC_URL}/images/footer.png`} alt="footer" />
+        <img id="footer" src={`${process.env.PUBLIC_URL}/images/footer.png`} alt="test" />
       </I.Nav>
     </I.Container>
   );
