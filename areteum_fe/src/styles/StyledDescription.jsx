@@ -9,13 +9,20 @@ export const Container = styled.div`
   box-sizing: border-box; /* 패딩이 width에 포함되도록 설정 */
   display: flex;
   flex-direction: column;
-  background: #fff;
   width: 393px;
   flex-shrink: 0;
-  padding-bottom: 200px;
-  background-image: url("/images/detail_bg.svg");
-  background-repeat: repeat-y;
-  background-size: cover;
+  padding-bottom: 105px;
+  align-items: center;
+  /* 여기까지 공통 복붙 */
+
+  background: linear-gradient(180deg, #4f95d1 0%, #adcbf0 41.83%, #f0e6f2 95.19%);
+
+  #background {
+    width: 393px;
+    object-fit: cover;
+    position: fixed;
+    z-index: 1;
+  }
 `;
 
 export const Header = styled.div`
@@ -26,7 +33,9 @@ export const Header = styled.div`
   padding: 20px;
   align-items: center;
   justify-content: space-between;
-`;
+  position: relative;
+  z-index: 10;
+`; /* 공통 복붙 */
 
 export const Title = styled.div`
   display: flex;
@@ -39,7 +48,7 @@ export const Title = styled.div`
   font-style: normal;
   font-weight: 700;
   line-height: normal;
-`;
+`; /* 공통 복붙 */
 
 export const Icons = styled.div`
   display: flex;
@@ -57,25 +66,33 @@ export const Icons = styled.div`
     height: 18px;
     flex-shrink: 0;
   }
-`;
+`; /* 공통 복붙 */
 
 export const Nav = styled.div`
   width: 393px;
   height: 105px;
   position: fixed;
-  bottom: 0;
   display: flex;
-  justify-content: space-around;
-  align-items: center;
-  z-index: 1000;
-  padding-top: 15px;
-  padding-bottom: 13px;
+  bottom: 0;
+  z-index: 100;
 
   img {
     width: 393px;
     height: 105px;
   }
-`;
+
+  #mark {
+    color: #a74063;
+    font-family: Pyeojin Gothic;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    position: absolute;
+    bottom: 15px;
+    left: 116px;
+  }
+`; /* 공통 복붙 */
 
 export const Wrapper = styled.div`
 `
@@ -85,6 +102,8 @@ margin-top: 90px;
 display: flex;
 flex-direction: column;
 align-items: center;
+position: relative;
+z-index: 5;
 `
 
 export const BoothName = styled.div`

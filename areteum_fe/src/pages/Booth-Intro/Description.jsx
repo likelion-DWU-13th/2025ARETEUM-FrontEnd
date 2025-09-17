@@ -9,6 +9,7 @@ const Description = () => {
 
   return (
     <D.Container>
+      <img id="background" src={`${process.env.PUBLIC_URL}/images/detail_bg.png`} alt="background" />
       <D.Header>
         <img id="back" src={`${process.env.PUBLIC_URL}/images/back.png`} alt="back" />
         <D.Title>공연 상세</D.Title>
@@ -40,8 +41,9 @@ const Description = () => {
       </D.DetailWrapper>
 
       <D.Nav>
-        <img id="footer" src={`${process.env.PUBLIC_URL}/images/footer.png`} alt="test" />
-      </D.Nav>
+              <img id="footer" src={`${process.env.PUBLIC_URL}/images/footer.png`} alt="test" />
+              <div id="mark">DONGDUK WOMEN’S UNIVERSITY</div>
+            </D.Nav>
     </D.Container>
   );
 };
