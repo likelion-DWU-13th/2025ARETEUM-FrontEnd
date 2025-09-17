@@ -19,7 +19,7 @@ const GlobalStyle = createGlobalStyle`
     height: 100%;
     font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont,
       system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo',
-      'Noto Sans KR', 'Malgun Gothic', sans-serif;
+      'Noto Sans KR', 'Malgun Gothic', 'Pyeojin Gothic', sans-serif;
     font-weight: 400;
   }
 
