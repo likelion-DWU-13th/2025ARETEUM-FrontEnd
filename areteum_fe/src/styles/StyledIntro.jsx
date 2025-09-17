@@ -126,14 +126,30 @@ export const Search = styled.div`
   flex-shrink: 0;
   border-radius: 30px;
   background: rgba(255, 255, 255, 0.7);
+  margin-top: 30px;
+  margin-bottom: 20px;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
 
   input {
+    border: none;
+    background-color: transparent;
+    width: 280px;
     color: rgba(0, 0, 0, 0.3);
     font-family: Pretendard;
     font-size: 15px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+  }
+
+  input:focus {
+    outline: none;
+    border: none;
+    box-shadow: none;
   }
 
   #search {
