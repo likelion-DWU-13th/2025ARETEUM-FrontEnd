@@ -16,15 +16,15 @@ const BasicInfo = () => {
               10월 1일
             </D.InfoItem>
             <D.InfoItem>
-              <img src={`${process.env.PUBLIC_URL}/images/calendar.svg`} alt="calendar" />
+              <img src={`${process.env.PUBLIC_URL}/images/time.svg`} alt="calendar" />
               14:00~18:00
             </D.InfoItem>
             <D.InfoItem>
-              <img src={`${process.env.PUBLIC_URL}/images/calendar.svg`} alt="calendar" />
+              <img src={`${process.env.PUBLIC_URL}/images/location.svg`} alt="calendar" />
               운동장 - 1번 부스
             </D.InfoItem>
             <D.InfoItem>
-              <img src={`${process.env.PUBLIC_URL}/images/calendar.svg`} alt="calendar" />
+              <img src={`${process.env.PUBLIC_URL}/images/agency.svg`} alt="calendar" />
               동덕여자대학교 교육방송국
             </D.InfoItem>
           </D.InfoBox>
