@@ -25,7 +25,10 @@ const Intro = () => {
           <div id="text">10/2</div>
         </I.Date>
       </I.DateWrapper>
-      <I.Search></I.Search>
+      <I.Search>
+        <img src={`${process.env.PUBLIC_URL}/images/search.png`} alt="search" />
+        <input placeholder="검색어를 입력하세요."></input>
+      </I.Search>
       <I.Nav>
         <img id="footer" src={`${process.env.PUBLIC_URL}/images/footer.png`} alt="test" />
         <div id="mark">DONGDUK WOMEN’S UNIVERSITY</div>
