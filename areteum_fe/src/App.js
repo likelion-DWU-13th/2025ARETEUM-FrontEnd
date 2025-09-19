@@ -5,7 +5,7 @@ import Intro from "./pages/Booth-Intro/Intro";
 import Detail from "./pages/Booth-Intro/Description";
 import Somtalk from "./pages/Somtalk/Somtalk";
 import MainPage from "./pages/MainPage/MainPage";
-import First from "./pages/OnBoarding/first";
+import First from "./pages/OnBoarding/First";
 
 function App() {
   return (

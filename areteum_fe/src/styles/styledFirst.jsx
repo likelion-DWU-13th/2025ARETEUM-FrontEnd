@@ -67,8 +67,7 @@ font-size: 20px;
 font-style: normal;
 font-weight: 400;
 line-height: normal;
-mix-blend-mode: hard-light;
-backdrop-filter: blur(10px);
+
 `;
 
 export const Enter = styled.div`
@@ -90,4 +89,8 @@ margin-top: 670px;
 display: flex;
 align-items: center;
 justify-content: center;
+`;
+
+export const Box = styled.div`
+height: 100px;
 `;
