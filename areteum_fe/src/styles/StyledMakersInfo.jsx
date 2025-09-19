@@ -18,7 +18,7 @@ export const Container = styled.div`
   #background {
     width: 393px;
     object-fit: cover;
-    position: fixed;
+    position: absolute;
     z-index: -1;
   }
 `;
@@ -40,7 +40,7 @@ export const Header = styled.div`
 export const Title = styled.div`
   display: flex;
   align-items: center;
-  margin-left: 21px; /* 타이틀 따로 가운데 정렬하려다가(스크랩 버튼 부재) 백버튼 위치 틀어질까봐 임의로 조정했습니다! */
+  margin-left: 21px; /* 타이틀 따로 가운데 정렬하려다가(스크랩 버튼 부재때문에 가운데 정렬이 안됨) 백버튼 위치 틀어질까봐 임의로 조정했습니다! */
 
   color: #fff;
   text-align: center;
@@ -148,3 +148,121 @@ export const Nav = styled.div`
     left: 116px;
   }
 `; /* 공통 복붙 */
+
+export const Box = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+export const TabTitle = styled.div`
+  display: flex;
+  justify-content: center;
+  padding: 25px;
+  color: #fff;
+  text-shadow: 0 0 15px #e37aad;
+  font-family: "Cafe24Ohsquare";
+  font-size: 21px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+`;
+
+export const TabImage2 = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+export const TabImage3 = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 345px;
+  height: 197px;
+  flex-shrink: 0;
+
+  #tabImage3 {
+    border-radius: 15px;
+  }
+`;
+
+export const TextBox = styled.div``;
+
+export const Text1 = styled.div`
+  margin: 30px 0;
+  color: #fff;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; /* 125% */
+
+  #color-bold {
+    font-weight: 500;
+    color: var(--main, #e37aad);
+  }
+`;
+
+export const Text2 = styled.div`
+  margin: 30px 0;
+  color: #fff;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; /* 125% */
+
+  #color-bold {
+    font-weight: 500;
+    color: var(--main, #e37aad);
+  }
+`;
+
+export const Text3 = styled.div`
+  margin: 28px 0;
+  color: #fff;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; /* 125% */
+
+  #color-bold {
+    font-weight: 500;
+    color: var(--main, #e37aad);
+  }
+`;
+
+export const InstaBtn = styled.div`
+  color: #fff;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  display: inline-flex;
+  padding: 11px 26px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 20px;
+  background: #e9539c;
+  box-shadow: 0 0 5px 0 rgba(255, 255, 255, 0.7) inset;
+`;
+
+export const Title1 = styled.div`
+  color: #fff;
+  text-shadow: 0 0 20px #f356a2;
+  font-family: SeoulAlrim;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: normal;
+`;
+
+export const MakerIilustBox = styled.div``;
+
+export const MakerBox = styled.div``;
