@@ -11,6 +11,7 @@ export const Container = styled.div`
   flex-direction: column;
   width: 393px;
   flex-shrink: 0;
+  padding-top: 80px;
   padding-bottom: 105px;
   align-items: center;
   /* 여기까지 공통 복붙 */
@@ -31,12 +32,18 @@ export const Container = styled.div`
 
 export const Header = styled.div`
   height: 80px;
-  width: 100%;
+  width: 393px;
   display: flex;
   flex-direction: row;
   padding: 20px;
   align-items: center;
   justify-content: space-between;
+  z-index: 1000;
+
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
 `; /* 공통 복붙 */
 
 export const Title = styled.div`
@@ -109,6 +116,7 @@ export const Date = styled.div`
   display: flex;
   align-items: center;
   position: relative;
+  opacity: ${({ active }) => (active ? "1" : "0.6")};
 
   #text {
     position: absolute;
@@ -163,4 +171,55 @@ export const Search = styled.div`
     flex-shrink: 0;
     aspect-ratio: 1/1;
   }
+`;
+
+export const CategoryWrapper = styled.div`
+  display: flex;
+  width: 345px;
+  align-items: center;
+  gap: 15px;
+  z-index: 100;
+`;
+
+export const Category = styled.div`
+  padding: 0 12px;
+  height: 30px;
+  flex-shrink: 0;
+  border-radius: 15px;
+  border: 1px solid ${({ active }) => (active ? "#E37AAD" : "#fff")};
+  box-shadow: 0 0 2px 0 ${({ active }) => (active ? "#E37AAD" : "#fff")};
+  background: ${({ active }) => (active ? "#E37AAD" : "transparent")};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #fff;
+  font-family: Pretendard;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+`;
+
+export const Count = styled.div`
+  width: 393px;
+  height: 50px;
+  padding: 25px 20px;
+
+  color: #fff;
+  font-family: Pretendard;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+`;
+
+export const Content = styled.div`
+  width: 393px;
+  height: 100%;
+  display: grid;
+  padding: 0 20px;
+  gap: 16px;
+  grid-template-columns: repeat(2, 1fr);
+  justify-items: center;
 `;
