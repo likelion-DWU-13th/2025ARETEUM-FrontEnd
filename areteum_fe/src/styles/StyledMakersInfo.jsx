@@ -4,7 +4,7 @@ export const Container = styled.div`
   position: relative;
   margin: 0 auto;
   margin-top: 0px;
-  min-height: 100vh;
+
   padding: 0; /* 불필요한 패딩 제거 */
   box-sizing: border-box; /* 패딩이 width에 포함되도록 설정 */
   display: flex;
@@ -12,8 +12,13 @@ export const Container = styled.div`
   width: 393px;
   flex-shrink: 0;
   padding-bottom: 105px;
-  align-items: center;
+
   /* 여기까지 공통 복붙 */
+  width: 100%; /* ✅ 폭을 브라우저 기준으로 */
+  max-width: 393px;
+  height: 100vh; /* ✅ 뷰포트 높이 100%로 설정 */
+  overflow-y: auto; /* ✅ Container 내부에서만 스크롤 허용 */
+  -webkit-overflow-scrolling: touch; /* iOS Safari 부드러운 스크롤 */
 
   #background {
     width: 393px;
@@ -21,14 +26,30 @@ export const Container = styled.div`
     position: absolute;
     z-index: -1;
   }
+
+  #header-color {
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    background: linear-gradient(
+      to bottom,
+      rgba(176, 225, 255, 1) 0%,
+      rgba(176, 225, 255, 0.8) 60%,
+      rgba(176, 225, 255, 0.5) 80%,
+      rgba(176, 225, 255, 0) 100%
+    );
+  }
 `;
 
 export const Header = styled.div`
+  position: sticky;
+  z-index: 999;
+  top: 0;
   height: 80px;
   width: 100%;
   display: flex;
   flex-direction: row;
-  padding: 20px;
+  padding: 30px 18px;
   align-items: center;
   justify-content: space-between;
 
@@ -52,12 +73,15 @@ export const Title = styled.div`
 `; /* 공통 복붙 */
 
 export const TabMenu = styled.div`
+  position: sticky;
+  top: 80px;
   width: 100%;
   display: flex;
   flex-direction: row;
   padding: 0 30px;
   align-items: center;
   justify-content: space-between;
+  z-index: 998;
 `;
 
 export const Menu1 = styled.div`
@@ -364,4 +388,9 @@ gap: 10px;
 border-radius: 20px;
 background: #E9539C;
 box-shadow: 0 0 5px 0 rgba(255, 255, 255, 0.80) inset;
+`;
+
+export const LogoImage = styled.div`
+  padding: 45px 0;
+  margin-left: 35px;
 `;
