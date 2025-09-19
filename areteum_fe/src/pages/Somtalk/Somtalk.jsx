@@ -10,10 +10,20 @@ const Somtalk = () => {
   const [messages, setMessages] = useState([]);
   const stompClient = useRef(null);
   const listRef = useRef(null);
-  const myId = useRef(`client-${Date.now()}`);
+
   const goBack = () => {
     navigate(-1); // 직전페이지로 이동
   };
+
+  // 내 아이디 저장
+  const myId = useRef(
+    localStorage.getItem("myClientId") || `client-${Date.now()}`
+  );
+  useEffect(() => {
+    if (!localStorage.getItem("myClientId")) {
+      localStorage.setItem("myClientId", myId.current);
+    }
+  }, []);
 
   //시간 포맷 설정
   // 맨 위 Somtalk 안에 헬퍼 두 개 추가
@@ -101,11 +111,23 @@ const Somtalk = () => {
         if (!res.ok) throw new Error("Failed to fetch");
         const data = await res.json();
 
-        //날짜 가져오기
-        const formatted = data.map((item) => ({
-          ...item,
-          time: timeFromCreatedAt(item.createdAt) ?? "", // createdAt 없으면 빈값
-        }));
+        // 정확한 메세지 정렬을 위해 ms단위 초까지 받아오기
+        function getTimestamp(createdAt) {
+          return new Date(createdAt).getTime(); // ms 단위 숫자
+        }
+
+        // 백에서 날짜 가져오기
+        const formatted = data
+          .slice()
+          .sort(
+            (a, b) =>
+              new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+          )
+          .map((item) => ({
+            ...item,
+            time: formatTime(new Date(item.createdAt)),
+          }));
+
         setMessages(formatted);
       } catch (err) {
         console.error("채팅 내역 불러오기 실패:", err);
