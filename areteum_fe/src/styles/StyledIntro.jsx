@@ -33,6 +33,7 @@ export const Header = styled.div`
   padding: 20px;
   align-items: center;
   justify-content: space-between;
+  z-index: 1000;
 
   position: fixed;
   top: 0;
@@ -110,6 +111,7 @@ export const Date = styled.div`
   display: flex;
   align-items: center;
   position: relative;
+  opacity: ${({ active }) => (active ? "1" : "0.6")};
 
   #text {
     position: absolute;
@@ -179,9 +181,9 @@ export const Category = styled.div`
   height: 30px;
   flex-shrink: 0;
   border-radius: 15px;
-  border: 1px solid #fff;
-  box-shadow: 0 0 2px 0 #fff;
-
+  border: 1px solid ${({ active }) => (active ? "#E37AAD" : "#fff")};
+  box-shadow: 0 0 2px 0 ${({ active }) => (active ? "#E37AAD" : "#fff")};
+  background: ${({ active }) => (active ? "#E37AAD" : "transparent")};
   display: flex;
   align-items: center;
   justify-content: center;
