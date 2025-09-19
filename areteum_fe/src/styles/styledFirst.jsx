@@ -1,6 +1,16 @@
-import { styled } from "styled-components";
+import { styled,css } from "styled-components";
+
+const GangwonFont = css`
+ @font-face {
+    font-family: 'GangwonEduOTF';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFLightA.woff') format('woff');
+    font-weight: 400;
+    font-display: swap;
+}
+`;
 
 export const Container = styled.div`
+${GangwonFont}
   position: relative;
   margin: 0 auto;
   margin-top: 0px;
@@ -48,7 +58,36 @@ export const Nav = styled.div`
   }
 `; /* 공통 복붙 */
 
-export const Letter = styled.div`
-margin-top: 68px;
-margin-left: 150px;
+export const Text = styled.div`
+color: rgba(255, 255, 255, 0.80);
+text-align: center;
+text-shadow: 0 0 5px rgba(255, 255, 255, 0.80);
+font-family: "GangwonEduOTF";
+font-size: 20px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+mix-blend-mode: hard-light;
+backdrop-filter: blur(10px);
+`;
+
+export const Enter = styled.div`
+width: 85px;
+height: 40px;
+flex-shrink: 0;
+border-radius: 15px;
+background: rgba(227, 122, 173, 0.3);
+box-shadow: 0 0 5px 0 #E37AAD;
+color: #FFF;
+text-align: center;
+text-shadow: 0 0 5px rgba(255, 255, 255, 0.80);
+font-family: "GangwonEduOTF";
+font-size: 20px;
+font-style: normal;
+font-weight: 300;
+backdrop-filter: blur(10px);
+margin-top: 670px;
+display: flex;
+align-items: center;
+justify-content: center;
 `;
