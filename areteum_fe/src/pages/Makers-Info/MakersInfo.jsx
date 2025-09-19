@@ -12,13 +12,13 @@ const MakersInfo = () => {
   const backgroundImage = () => {
     switch (activeTab) {
       case "menu1":
-        return `${process.env.PUBLIC_URL}/images/maker-background2.svg`;
+        return `${process.env.PUBLIC_URL}/images/maker-background2.png`;
       case "menu2":
-        return `${process.env.PUBLIC_URL}/images/maker-background1.svg`;
+        return `${process.env.PUBLIC_URL}/images/maker-background2.png`;
       case "menu3":
-        return `${process.env.PUBLIC_URL}/images/maker-background2.svg`;
+        return `${process.env.PUBLIC_URL}/images/maker-background3.png`;
       default:
-        return `${process.env.PUBLIC_URL}/images/maker-background1.svg`;
+        return `${process.env.PUBLIC_URL}/images/maker-background2.png`;
     }
   };
 

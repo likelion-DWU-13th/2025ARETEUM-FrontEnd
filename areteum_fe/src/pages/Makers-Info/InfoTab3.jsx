@@ -4,8 +4,13 @@ import * as I from "../../styles/StyledMakersInfo";
 
 const InfoTab3 = () => {
   const [activeTab, setActiveTab] = useState("menu1");
-  const handleInstaClick = () => {
-    const instagramUrl = "https://www.instagram.com/ddwu_festival";
+  const handleBtn1Click = () => {
+    const instagramUrl = "https://www.instagram.com/likelion.univ";
+    window.location.href = instagramUrl;
+  };
+
+  const handleBtn2Click = () => {
+    const instagramUrl = "https://www.instagram.com/dongduk_likelion";
     window.location.href = instagramUrl;
   };
 
@@ -59,17 +64,363 @@ const InfoTab3 = () => {
         <I.MakerBox>
           <img
             id="somsom1"
-            src={`${process.env.PUBLIC_URL}/images/maker-somsom1.svg`}
+            src={`${process.env.PUBLIC_URL}/images/maker-somsom1.png`}
             alt="somsom1"
-            width="53px"
-            height="auto"
           />
-          전지영
-          <br />
-          <span id="subText">데이터사이언스</span>
+          <div>
+            전지영
+            <br />
+            <span id="subText">데이터사이언스</span>
+          </div>
+        </I.MakerBox>
+        <I.MakerBox>
+          <img
+            id="somsom1"
+            src={`${process.env.PUBLIC_URL}/images/maker-somsom1.png`}
+            alt="somsom1"
+          />
+          <div>
+            조정인
+            <br />
+            <span id="subText">데이터사이언스</span>
+          </div>
         </I.MakerBox>
       </I.MakerIilustBox>
-      <I.InstaBtn onClick={handleInstaClick}>축운위 인스타그램</I.InstaBtn>
+      <I.MakerIilustBox>
+        <I.MakerBox>
+          <img
+            id="somsom2"
+            src={`${process.env.PUBLIC_URL}/images/maker-somsom2.png`}
+            alt="somsom2"
+          />
+          <div>
+            이승언
+            <br />
+            <span id="subText">미디어디자인</span>
+          </div>
+        </I.MakerBox>
+        <I.MakerBox>
+          <img
+            id="somsom2"
+            src={`${process.env.PUBLIC_URL}/images/maker-somsom2.png`}
+            alt="somsom2"
+          />
+          <div>
+            이정음
+            <br />
+            <span id="subText">HCI사이언스</span>
+          </div>
+        </I.MakerBox>
+        <I.MakerBox>
+          <img
+            id="somsom2"
+            src={`${process.env.PUBLIC_URL}/images/maker-somsom2.png`}
+            alt="somsom2"
+          />
+          <div>
+            유효민
+            <br />
+            <span id="subText">디지털공예</span>
+          </div>
+        </I.MakerBox>
+        <I.MakerBox>
+          <img
+            id="somsom2"
+            src={`${process.env.PUBLIC_URL}/images/maker-somsom2.png`}
+            alt="somsom2"
+          />
+          <div>
+            장수경
+            <br />
+            <span id="subText">
+              <span>커뮤니케이션</span>
+              <span>콘텐츠</span>
+            </span>
+          </div>
+        </I.MakerBox>
+      </I.MakerIilustBox>
+      <I.Title2>Front-End</I.Title2>
+      <I.MakerIilustBox>
+        <I.MakerBox>
+          <img
+            id="somsom1"
+            src={`${process.env.PUBLIC_URL}/images/maker-somsom1.png`}
+            alt="somsom1"
+          />
+          <div>
+            김하희
+            <br />
+            <span id="subText">데이터사이언스</span>
+          </div>
+        </I.MakerBox>
+        <I.MakerBox>
+          <img
+            id="somsom1"
+            src={`${process.env.PUBLIC_URL}/images/maker-somsom1.png`}
+            alt="somsom1"
+          />
+          <div>
+            남지연
+            <br />
+            <span id="subText">컴퓨터</span>
+          </div>
+        </I.MakerBox>
+        <I.MakerBox>
+          <img
+            id="somsom1"
+            src={`${process.env.PUBLIC_URL}/images/maker-somsom1.png`}
+            alt="somsom1"
+          />
+          <div>
+            허민영
+            <br />
+            <span id="subText">컴퓨터</span>
+          </div>
+        </I.MakerBox>
+      </I.MakerIilustBox>
+      <I.MakerIilustBox>
+        <I.MakerBox>
+          <img
+            id="somsom2"
+            src={`${process.env.PUBLIC_URL}/images/maker-somsom2.png`}
+            alt="somsom2"
+          />
+          <div>
+            고예진
+            <br />
+            <span id="subText">정보통계</span>
+          </div>
+        </I.MakerBox>
+        <I.MakerBox>
+          <img
+            id="somsom2"
+            src={`${process.env.PUBLIC_URL}/images/maker-somsom2.png`}
+            alt="somsom2"
+          />
+          <div>
+            박민지
+            <br />
+            <span id="subText">국문</span>
+          </div>
+        </I.MakerBox>
+        <I.MakerBox>
+          <img
+            id="somsom2"
+            src={`${process.env.PUBLIC_URL}/images/maker-somsom2.png`}
+            alt="somsom2"
+          />
+          <div>
+            박슬기
+            <br />
+            <span id="subText">HCI사이언스</span>
+          </div>
+        </I.MakerBox>
+      </I.MakerIilustBox>
+      <I.MakerIilustBox>
+        <I.MakerBox>
+          <img
+            id="somsom3"
+            src={`${process.env.PUBLIC_URL}/images/maker-somsom3.png`}
+            alt="somsom3"
+          />
+          <div>
+            송이림
+            <br />
+            <span id="subText">HCI사이언스</span>
+          </div>
+        </I.MakerBox>
+        <I.MakerBox>
+          <img
+            id="somsom3"
+            src={`${process.env.PUBLIC_URL}/images/maker-somsom3.png`}
+            alt="somsom3"
+          />
+          <div>
+            신채영
+            <br />
+            <span id="subText">HCI사이언스</span>
+          </div>
+        </I.MakerBox>
+        <I.MakerBox>
+          <img
+            id="somsom3"
+            src={`${process.env.PUBLIC_URL}/images/maker-somsom3.png`}
+            alt="somsom3"
+          />
+          <div>
+            임하연
+            <br />
+            <span id="subText">컴퓨터</span>
+          </div>
+        </I.MakerBox>
+        <I.MakerBox>
+          <img
+            id="somsom3"
+            src={`${process.env.PUBLIC_URL}/images/maker-somsom3.png`}
+            alt="somsom3"
+          />
+          <div>
+            전지은
+            <br />
+            <span id="subText">컴퓨터</span>
+          </div>
+        </I.MakerBox>
+      </I.MakerIilustBox>
+      <I.Title3>Back-End</I.Title3>
+      <I.MakerIilustBox>
+        <I.MakerBox>
+          <img
+            id="somsom1"
+            src={`${process.env.PUBLIC_URL}/images/maker-somsom1.png`}
+            alt="somsom1"
+          />
+          <div>
+            김가현
+            <br />
+            <span id="subText">정보통계</span>
+          </div>
+        </I.MakerBox>
+        <I.MakerBox>
+          <img
+            id="somsom1"
+            src={`${process.env.PUBLIC_URL}/images/maker-somsom1.png`}
+            alt="somsom1"
+          />
+          <div>
+            김민주
+            <br />
+            <span id="subText">컴퓨터</span>
+          </div>
+        </I.MakerBox>
+        <I.MakerBox>
+          <img
+            id="somsom1"
+            src={`${process.env.PUBLIC_URL}/images/maker-somsom1.png`}
+            alt="somsom1"
+          />
+          <div>
+            이가연
+            <br />
+            <span id="subText">컴퓨터</span>
+          </div>
+        </I.MakerBox>
+        <I.MakerBox>
+          <img
+            id="somsom1"
+            src={`${process.env.PUBLIC_URL}/images/maker-somsom1.png`}
+            alt="somsom1"
+          />
+          <div>
+            장하연
+            <br />
+            <span id="subText">컴퓨터</span>
+          </div>
+        </I.MakerBox>
+      </I.MakerIilustBox>
+      <I.MakerIilustBox>
+        <I.MakerBox>
+          <img
+            id="somsom2"
+            src={`${process.env.PUBLIC_URL}/images/maker-somsom2.png`}
+            alt="somsom2"
+          />
+          <div>
+            가유빈
+            <br />
+            <span id="subText">컴퓨터</span>
+          </div>
+        </I.MakerBox>
+        <I.MakerBox>
+          <img
+            id="somsom2"
+            src={`${process.env.PUBLIC_URL}/images/maker-somsom2.png`}
+            alt="somsom2"
+          />
+          <div>
+            고소영
+            <br />
+            <span id="subText">컴퓨터</span>
+          </div>
+        </I.MakerBox>
+        <I.MakerBox>
+          <img
+            id="somsom2"
+            src={`${process.env.PUBLIC_URL}/images/maker-somsom2.png`}
+            alt="somsom2"
+          />
+          <div>
+            김민기
+            <br />
+            <span id="subText">데이터사이언스</span>
+          </div>
+        </I.MakerBox>
+        <I.MakerBox>
+          <img
+            id="somsom2"
+            src={`${process.env.PUBLIC_URL}/images/maker-somsom2.png`}
+            alt="somsom2"
+          />
+          <div>
+            김소망
+            <br />
+            <span id="subText">컴퓨터</span>
+          </div>
+        </I.MakerBox>
+      </I.MakerIilustBox>
+      <I.MakerIilustBox>
+        <I.MakerBox>
+          <img
+            id="somsom3"
+            src={`${process.env.PUBLIC_URL}/images/maker-somsom3.png`}
+            alt="somsom3"
+          />
+          <div>
+            신희진
+            <br />
+            <span id="subText">정보통계</span>
+          </div>
+        </I.MakerBox>
+        <I.MakerBox>
+          <img
+            id="somsom3"
+            src={`${process.env.PUBLIC_URL}/images/maker-somsom3.png`}
+            alt="somsom3"
+          />
+          <div>
+            이주연
+            <br />
+            <span id="subText">컴퓨터</span>
+          </div>
+        </I.MakerBox>
+        <I.MakerBox>
+          <img
+            id="somsom3"
+            src={`${process.env.PUBLIC_URL}/images/maker-somsom3.png`}
+            alt="somsom3"
+          />
+          <div>
+            전수연
+            <br />
+            <span id="subText">컴퓨터</span>
+          </div>
+        </I.MakerBox>
+        <I.MakerBox>
+          <img
+            id="somsom3"
+            src={`${process.env.PUBLIC_URL}/images/maker-somsom3.png`}
+            alt="somsom3"
+          />
+          <div>
+            최이주
+            <br />
+            <span id="subText">정보통계</span>
+          </div>
+        </I.MakerBox>
+      </I.MakerIilustBox>
+      <I.BtnBox>
+        <I.Btn1 onClick={handleBtn1Click}>멋사 대학 인스타그램</I.Btn1>
+        <I.Btn2 onClick={handleBtn2Click}>동덕 멋사 인스타그램</I.Btn2>
+      </I.BtnBox>
     </I.Box>
   );
 };

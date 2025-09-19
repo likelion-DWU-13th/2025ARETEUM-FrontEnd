@@ -194,11 +194,11 @@ export const Text1 = styled.div`
   font-family: Pretendard;
   font-size: 15px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 20px; /* 125% */
 
   #color-bold {
-    font-weight: 500;
+    font-weight: 600;
     color: var(--main, #e37aad);
   }
 `;
@@ -210,11 +210,11 @@ export const Text2 = styled.div`
   font-family: Pretendard;
   font-size: 15px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 20px; /* 125% */
 
   #color-bold {
-    font-weight: 500;
+    font-weight: 600;
     color: var(--main, #e37aad);
   }
 `;
@@ -226,11 +226,11 @@ export const Text3 = styled.div`
   font-family: Pretendard;
   font-size: 15px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 20px; /* 125% */
 
   #color-bold {
-    font-weight: 500;
+    font-weight: 600;
     color: var(--main, #e37aad);
   }
 `;
@@ -241,7 +241,7 @@ export const InstaBtn = styled.div`
   font-family: Pretendard;
   font-size: 15px;
   font-style: normal;
-  font-weight: 500;
+  font-weight: 600;
   line-height: normal;
   display: inline-flex;
   padding: 11px 26px;
@@ -254,6 +254,7 @@ export const InstaBtn = styled.div`
 `;
 
 export const Title1 = styled.div`
+  padding: 25px 0 23px 0;
   color: #fff;
   text-shadow: 0 0 20px #f356a2;
   font-family: SeoulAlrim;
@@ -263,6 +264,104 @@ export const Title1 = styled.div`
   line-height: normal;
 `;
 
-export const MakerIilustBox = styled.div``;
+export const Title2 = styled.div`
+  padding: 25px 0 23px 0;
+  color: #fff;
+  text-shadow: 0 0 20px #199eff;
+  font-family: SeoulAlrim;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: normal;
+`;
 
-export const MakerBox = styled.div``;
+export const Title3 = styled.div`
+  padding: 27px 0 23px 0;
+  color: #fff;
+  text-shadow: 0 0 20px #5337f5;
+  font-family: SeoulAlrim;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: normal;
+`;
+
+export const MakerIilustBox = styled.div`
+  display: flex;
+  align-items: flex-start;
+`;
+
+export const MakerBox = styled.div`
+  padding: 2px 5px;
+  color: #fff;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+
+  #subText {
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  #subText span {
+    display: block;
+    line-height: 1.2;
+  }
+
+  #somsom1 {
+    margin-bottom: -8px;
+  }
+
+  #somsom2 {
+    margin-bottom: -8px;
+  }
+
+  #somsom3 {
+    margin-bottom: -8px;
+  }
+`;
+
+export const BtnBox = styled.div`
+  display: flex;
+  padding: 40px 0;
+  gap: 17px;s
+`;
+
+export const Btn1 = styled.div`
+  color: #e9539c;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  display: inline-flex;
+  padding: 11px 20px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1) inset;
+`;
+
+export const Btn2 = styled.div`
+  color: #FFF;
+text-align: center;
+font-family: Pretendard;
+font-size: 15px;
+font-style: normal;
+font-weight: 600;
+line-height: normal; inset;
+display: inline-flex;
+padding: 11px 20px;
+justify-content: center;
+align-items: center;
+gap: 10px;
+border-radius: 20px;
+background: #E9539C;
+box-shadow: 0 0 5px 0 rgba(255, 255, 255, 0.80) inset;
+`;
