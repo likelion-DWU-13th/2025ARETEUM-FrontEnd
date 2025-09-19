@@ -3,16 +3,20 @@ import "./App.css";
 import GlobalStyle from "./pages/GlobalStyles";
 import Intro from "./pages/Booth-Intro/Intro";
 import Detail from "./pages/Booth-Intro/Description";
-import First from "./pages/OnBoarding/First";
+import Somtalk from "./pages/Somtalk/Somtalk";
+import MainPage from "./pages/MainPage/MainPage";
+import First from "./pages/OnBoarding/first";
 
 function App() {
   return (
     <BrowserRouter>
       <GlobalStyle />
       <Routes>
+        <Route path="/mainPage" element={<MainPage />} />
         <Route path="/booth" element={<Intro />} />
         <Route path="/booth-detail" element={<Detail />} />
         <Route path='/' element={<First/>} />
+        <Route path="/Somtalk" element={<Somtalk />} />
       </Routes>
     </BrowserRouter>
   );
