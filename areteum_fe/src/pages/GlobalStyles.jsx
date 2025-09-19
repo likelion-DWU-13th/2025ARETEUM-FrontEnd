@@ -14,10 +14,18 @@ const GlobalStyle = createGlobalStyle`
     overflow-x: hidden;
   }
 
+  @font-face {
+  font-family: 'GangwonEduAll';
+  src: url('/fonts/GangwonEduAll-Light.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  }
+
+
   body {
     background-color: #f0f0f0;
     height: 100%;
-    font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont,
+    font-family: 'GangwonEduAll', 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont,
       system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo',
       'Noto Sans KR', 'Malgun Gothic', 'Pyeojin Gothic', sans-serif;
     font-weight: 400;
@@ -26,6 +34,7 @@ const GlobalStyle = createGlobalStyle`
   #root {
     height: 100%;
   }
+
 `;
 
 export default GlobalStyle;
