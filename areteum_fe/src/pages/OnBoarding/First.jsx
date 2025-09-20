@@ -5,9 +5,9 @@ import * as F from "../../styles/styledFirst";
 const frames = [
   {src:"/images/letter1.svg",x: 215, y:60},
   {src:"/images/letter2.svg",x: 174 ,y:201},
-  {src:"/images/letter3.svg",x:35,y:302},
-  {src:"/images/letter4.svg",x:26,y:202},
-  {src:"/images/letter5.svg",x:0,y:102},
+  {src:"/images/letter3.png",x:35,y:302, w:320},
+  {src:"/images/letter4.svg",x:26,y:202, w:346},
+  {src:"/images/letter5.svg",x:12,y:142, w:349},
 ];
 const First = () => {
   const navigate = useNavigate();
@@ -16,7 +16,7 @@ const First = () => {
   const visited="0";
   useEffect(()=>{
     if(localStorage.getItem(visited)==="1"){
-      navigate("/mainPage");
+      //navigate("/mainPage");
     }
   },[]);
   useEffect(()=>{
@@ -52,6 +52,7 @@ const First = () => {
         style={{
           position: "absolute",
           left: `${current.x}px`, top: `${current.y}px`,
+          width: `${current.w}px`
         }}
         onClick={click}
       />
