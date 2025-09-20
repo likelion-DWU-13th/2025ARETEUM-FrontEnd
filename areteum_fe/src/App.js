@@ -7,6 +7,7 @@ import MakersInfo from "./pages/Makers-Info/MakersInfo";
 import Somtalk from "./pages/Somtalk/Somtalk";
 import MainPage from "./pages/MainPage/MainPage";
 import First from "./pages/OnBoarding/First";
+import TimeTable from "./pages/TimeTable/TimeTable";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path='/' element={<First/>} />
         <Route path="/Somtalk" element={<Somtalk />} />
         <Route path="/makersInfo" element={<MakersInfo />} />
+        <Route path="/timetable" element={<TimeTable/>} />
       </Routes>
     </BrowserRouter>
   );
