@@ -17,7 +17,7 @@ function App() {
         <Route path="/mainPage" element={<MainPage />} />
         <Route path="/booth" element={<Intro />} />
         <Route path="/booth-detail" element={<Detail />} />
-        <Route path='/' element={<First/>} />
+        <Route path='/' element={<First />} />
         <Route path="/Somtalk" element={<Somtalk />} />
         <Route path="/makersInfo" element={<MakersInfo />} />
         <Route path="/timetable" element={<TimeTable/>} />
