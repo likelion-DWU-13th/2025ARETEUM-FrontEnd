@@ -157,7 +157,7 @@ export const Bottom = styled.div`
     height: auto;    
     z-index: 1;
     pointer-events: none;
-    transform: translate(-1.0%,62%); 
+    transform: translate(-1%,62%); 
   }
     
   
