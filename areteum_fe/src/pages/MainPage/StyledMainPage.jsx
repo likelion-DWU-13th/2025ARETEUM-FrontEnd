@@ -43,9 +43,9 @@ export const Container = styled.div`
 
   .flyT{
   position: absolute;
-   bottom: 59%; 
+   bottom: 60%; 
    width:10%;
-   right:25%;
+   right:32%;
    z-index: 1;  
     animation: ${flyAnimation} 6s ease-in-out forwards;
     pointer-events: none;
@@ -63,8 +63,9 @@ export const Container = styled.div`
 
 export const Logo = styled.div`
   position:absolute;
+  right:3.9%;
   width:100%;
-  height:31%;
+  height:30%;
   display: flex;
 
   
@@ -72,11 +73,13 @@ export const Logo = styled.div`
     position: absolute; 
     width:auto;
     height:105%;
-    right:0;
-    top:28%;
+    top:27%;
+    right:-9%;
   }
 
   .logo {
+    width:50%;
+    height:100%;
     position: relative;
     margin-left: auto;
     z-index: 2;         
@@ -111,19 +114,19 @@ export const Middle = styled.div`
 
 const flowerSway = keyframes`
   0%, 80% {
-    transform: translateY(20px) rotate(0deg); 
+    transform: translateY(5px) rotate(0deg); 
   }
   85% {
-    transform: translateY(20px) rotate(0.5deg);
+    transform: translateY(5px) rotate(0.5deg);
   }
   90% {
-    transform: translateY(20px) rotate(-0.5deg);
+    transform: translateY(5px) rotate(-0.5deg);
   }
   95% {
-    transform: translateY(20px) rotate(0.2deg);
+    transform: translateY(5px) rotate(0.2deg);
   }
   100% {
-    transform: translateY(20px) rotate(0deg);
+    transform: translateY(5px) rotate(0deg);
   }
 `;
 
@@ -150,11 +153,11 @@ export const Bottom = styled.div`
     position: absolute;   
     bottom: 0;
     left: 0;             
-    width: 60%;         
+    width: 62%;         
     height: auto;    
     z-index: 1;
     pointer-events: none;
-    transform: translateY(62%); 
+    transform: translate(-1.0%,62%); 
   }
     
   
@@ -237,7 +240,7 @@ export const CloudsBottom = styled.div`
       position:relative;
       width:160%;
       height:auto;
-      transform: translate(-40%, 30%);
+      transform: translate(-40%, 33%);
       pointer-events: none;
     }
 
@@ -246,7 +249,7 @@ export const CloudsBottom = styled.div`
       animation: ${flyAnimation} 4s ease-in-out forwards;
       pointer-events: none;
       width:17%;
-      bottom:6%;
+      bottom:8%;
       left:69%;
     }
 
@@ -270,7 +273,7 @@ export const Castle = styled.div`
   position:absolute;
   z-index:5;
   pointer-events: none;
-  bottom:30%;
+  bottom:25%;
   width:100%;
 
   img {
