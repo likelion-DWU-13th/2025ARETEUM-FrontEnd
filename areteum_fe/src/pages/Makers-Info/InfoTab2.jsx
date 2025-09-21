@@ -52,13 +52,7 @@ const InfoTab2 = () => {
         </I.Text3>
       </I.TextBox>
       <I.InstaBtn onClick={handleInstaClick}>축운위 인스타그램</I.InstaBtn>
-      <I.LogoImage>
-        <img
-          id="logoImage"
-          src={`${process.env.PUBLIC_URL}/images/logo.png`}
-          alt="logoImage"
-        />
-      </I.LogoImage>
+      <I.LogoImage></I.LogoImage>
     </I.Box>
   );
 };

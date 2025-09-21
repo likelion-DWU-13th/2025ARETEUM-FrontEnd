@@ -9,22 +9,43 @@ const MakersInfo = () => {
   const [activeTab, setActiveTab] = useState("menu1");
 
   //탭 바 클릭 시 배경 이미지 동적 설정
-  const backgroundImage = () => {
+  const backgroundStyle = () => {
     switch (activeTab) {
       case "menu1":
-        return `${process.env.PUBLIC_URL}/images/maker-background2.png`;
       case "menu2":
-        return `${process.env.PUBLIC_URL}/images/maker-background2.png`;
+        return {
+          backgroundImage: `
+                        url(${process.env.PUBLIC_URL}/images/maker-background2.png),
+                        linear-gradient(180deg, #B0E1FF 12.11%, #C9D8FF 56.05%, #FFE2F9 100%)
+                    `,
+        };
       case "menu3":
-        return `${process.env.PUBLIC_URL}/images/maker-background3.png`;
+        return {
+          backgroundImage: `
+                        url(${process.env.PUBLIC_URL}/images/maker-background3.png),
+                        linear-gradient(180deg, #B0E1FF 12.11%, #C9D8FF 56.05%, #FFE2F9 100%)
+                    `,
+        };
       default:
-        return `${process.env.PUBLIC_URL}/images/maker-background2.png`;
+        return {
+          backgroundImage: `
+                        url(${process.env.PUBLIC_URL}/images/maker-background2.png),
+                        linear-gradient(180deg, #B0E1FF 12.11%, #C9D8FF 56.05%, #FFE2F9 100%)
+                    `,
+        };
     }
   };
 
+  //탭에서 각 메뉴 클릭시 맨 위 화면 보이게
+  const handleTabClick = (tabName) => {
+    setActiveTab(tabName);
+    window.scrollTo({
+      top: 0,
+    });
+  };
+
   return (
-    <I.Container>
-      <img id="background" src={backgroundImage()} alt="background" />
+    <I.Container id="background" style={backgroundStyle()}>
       <div id="header-color">
         <I.Header>
           <img
@@ -42,19 +63,19 @@ const MakersInfo = () => {
         <I.TabMenu>
           <I.Menu1
             isActive={activeTab === "menu1"}
-            onClick={() => setActiveTab("menu1")}
+            onClick={() => handleTabClick("menu1")}
           >
             ARETEUM
           </I.Menu1>
           <I.Menu2
             isActive={activeTab === "menu2"}
-            onClick={() => setActiveTab("menu2")}
+            onClick={() => handleTabClick("menu2")}
           >
             축운위
           </I.Menu2>
           <I.Menu3
             isActive={activeTab === "menu3"}
-            onClick={() => setActiveTab("menu3")}
+            onClick={() => handleTabClick("menu3")}
           >
             멋사 13기
           </I.Menu3>
