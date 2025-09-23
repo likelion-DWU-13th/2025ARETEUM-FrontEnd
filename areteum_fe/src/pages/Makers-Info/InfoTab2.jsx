@@ -14,7 +14,7 @@ const InfoTab2 = () => {
       <I.TabImage2>
         <img
           id="tabImage2"
-          src={`${process.env.PUBLIC_URL}/images/tabImage2.svg`}
+          src={`${process.env.PUBLIC_URL}/images/tabImage2.png`}
           alt="tabImage2"
           width="235px"
           height="auto"
