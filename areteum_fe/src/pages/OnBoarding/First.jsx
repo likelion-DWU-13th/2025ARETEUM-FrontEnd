@@ -5,7 +5,8 @@ import { motion } from "framer-motion";
 
 const frames = [
   { src: "/images/letter1.svg", x: 215, y: 60 },
-  { src: "/images/letter2.svg", x: 174, y: 201 },
+  { src: "/images/addletter.svg", x: 26, y: 180 },
+  { src: "/images/letter2.svg", x: 174, y: 230 },
   { src: "/images/letter3.png", x: 35, y: 302, w: 320 },
   { src: "/images/letter4.svg", x: 26, y: 202, w: 346 },
   { src: "/images/letter5.svg", x: 12, y: 142, w: 349 },
@@ -16,24 +17,20 @@ const First = () => {
   const [showText, setShowText] = useState(false);
   const current = frames[step];
   const prev = frames[Math.max(step - 1, 0)]; // 직전 프레임
-  const BUMP = 40;
   const baseW = 140; // w 없는 프레임 기본값
   const prevW = prev.w ?? baseW;
   const currW = current.w ?? baseW;
 
-  const isAnimated = step <= 2;
-  const animateProps =
-    step === 0
-      ? { left: current.x, top: current.y, width: currW }
-      : {
-          left: [prev.x + BUMP, current.x],
-          top: [prev.y, current.y],
-          width: [prevW, currW],
-        };
+  const isAnimated = step <= 3;
+  const animateProps = {
+    left: [prev.x, current.x],
+    top: [prev.y, current.y],
+    width: [prevW, currW],
+  };
   const visited = "0";
   useEffect(() => {
     if (localStorage.getItem(visited) === "1") {
-      //navigate("/mainPage");
+      navigate("/mainPage");
     }
   }, []);
   useEffect(() => {
@@ -44,12 +41,12 @@ const First = () => {
   }, []);
   useEffect(() => {
     setShowText(false);
-    if (step >= frames.length - 1 || step === 2) return;
+    if (step >= frames.length - 1 || step === 3) return;
     const t = setTimeout(() => setStep((s) => s + 1), 950);
     return () => clearTimeout(t);
   }, [step]);
   const click = () => {
-    if (step === 2) {
+    if (step === 3) {
       setStep((s) => s + 1);
     }
   };
@@ -71,7 +68,7 @@ const First = () => {
           style={{ position: "absolute", height: "auto" }}
           initial={
             step === 0
-              ? { left: current.x - BUMP, top: current.y, width: currW * 0.9 } // 살짝 왼쪽+조금 작게
+              ? { left: current.x, top: current.y, width: currW} // 살짝 왼쪽+조금 작게
               : false
           }
           animate={animateProps}
@@ -82,7 +79,7 @@ const First = () => {
           }}
           onClick={click}
           onAnimationComplete={() => {
-            if (step === 2) setShowText(true);
+            if (step === 3) setShowText(true);
           }}
         />
       ) : (
@@ -106,7 +103,7 @@ const First = () => {
         초대장을 열어보세요
       </F.Text>
       <F.Enter
-        style={{ display: step === 4 ? "flex" : "none" }}
+        style={{ display: step === 5 ? "flex" : "none" }}
         onClick={enter}
       >
         입장하기
