@@ -12,31 +12,33 @@ export const Container = styled.div`
   width: 393px;
   flex-shrink: 0;
   padding-bottom: 105px;
+  padding-top: 120px;
 
   /* 여기까지 공통 복붙 */
   width: 100%; /* ✅ 폭을 브라우저 기준으로 */
   max-width: 393px;
-  height: 100vh; /* ✅ 뷰포트 높이 100%로 설정 */
-  overflow-y: auto; /* ✅ Container 내부에서만 스크롤 허용 */
-  -webkit-overflow-scrolling: touch; /* iOS Safari 부드러운 스크롤 */
+  min-height: 100vh;
+  overflow: visible;
 
-  #background {
-    width: 393px;
-    object-fit: cover;
-    position: absolute;
-    z-index: -1;
-  }
+  background-size: cover;
+  background-position: center -18px;
+  background-repeat: no-repeat;
 
   #header-color {
-    position: sticky;
+    position: fixed;
+
+    width: 393px;
     top: 0;
     z-index: 999;
     background: linear-gradient(
       to bottom,
       rgba(176, 225, 255, 1) 0%,
+      rgba(176, 225, 255, 1) 20%,
+      rgba(176, 225, 255, 0.9) 40%,
       rgba(176, 225, 255, 0.8) 60%,
-      rgba(176, 225, 255, 0.5) 80%,
-      rgba(176, 225, 255, 0) 100%
+      rgba(176, 225, 255, 0.5) 90%,
+      rgba(176, 225, 255, 0.3) 95%,
+      rgba(176, 225, 255, 0) 100% /* 끝점: 완전 투명 */
     );
   }
 `;
@@ -182,7 +184,8 @@ export const Box = styled.div`
 export const TabTitle = styled.div`
   display: flex;
   justify-content: center;
-  padding: 25px;
+
+  padding: 23px 0;
   color: #fff;
   text-shadow: 0 0 15px #e37aad;
   font-family: "Cafe24Ohsquare";
@@ -190,6 +193,65 @@ export const TabTitle = styled.div`
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+
+  #font {
+    font-family: "impact";
+  }
+`;
+
+export const TabTitle1 = styled.div`
+  display: flex;
+  justify-content: center;
+
+  padding: 25px 0 0 0;
+  color: #fff;
+  text-shadow: 0 0 15px #e37aad;
+  font-family: "Cafe24Ohsquare";
+  font-size: 21px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+
+  #font {
+    font-family: "impact";
+  }
+`;
+
+export const TabSubTitle = styled.div`
+  display: flex;
+  justify-content: center;
+  padding: 9px 0;
+
+  color: #fff;
+  font-family: Impact;
+  font-size: 21px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+
+  #font2 {
+    color: #e37aad;
+    font-family: "Great Vibes";
+    font-size: 21px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-top: 3.5px;
+  }
+`;
+
+export const TabImage1 = styled.div`
+  display: flex;
+  justify-content: center;
+  z-index: 5;
+`;
+
+export const TabImage1_1 = styled.div`
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  top: 195px;
+  z-index: 10;
 `;
 
 export const TabImage2 = styled.div`
@@ -218,7 +280,23 @@ export const Text1 = styled.div`
   font-family: Pretendard;
   font-size: 15px;
   font-style: normal;
-  font-weight: 500;
+  font-weight: 550;
+  line-height: 20px; /* 125% */
+
+  #color-bold {
+    font-weight: 600;
+    color: var(--main, #e37aad);
+  }
+`;
+
+export const Text1_1 = styled.div`
+  margin: 25px 0 20px 0;
+  color: #fff;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 550;
   line-height: 20px; /* 125% */
 
   #color-bold {
@@ -234,7 +312,23 @@ export const Text2 = styled.div`
   font-family: Pretendard;
   font-size: 15px;
   font-style: normal;
-  font-weight: 500;
+  font-weight: 550;
+  line-height: 20px; /* 125% */
+
+  #color-bold {
+    font-weight: 600;
+    color: var(--main, #e37aad);
+  }
+`;
+
+export const Text2_1 = styled.div`
+  margin: 20px 0;
+  color: #fff;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 550;
   line-height: 20px; /* 125% */
 
   #color-bold {
@@ -244,13 +338,29 @@ export const Text2 = styled.div`
 `;
 
 export const Text3 = styled.div`
-  margin: 28px 0;
+  margin: 30px 0;
   color: #fff;
   text-align: center;
   font-family: Pretendard;
   font-size: 15px;
   font-style: normal;
-  font-weight: 500;
+  font-weight: 550;
+  line-height: 20px; /* 125% */
+
+  #color-bold {
+    font-weight: 600;
+    color: var(--main, #e37aad);
+  }
+`;
+
+export const Text3_1 = styled.div`
+  margin: 20px 0 25px 0;
+  color: #fff;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 550;
   line-height: 20px; /* 125% */
 
   #color-bold {
@@ -278,7 +388,7 @@ export const InstaBtn = styled.div`
 `;
 
 export const Title1 = styled.div`
-  padding: 25px 0 23px 0;
+  padding: 23px 0 23px 0;
   color: #fff;
   text-shadow: 0 0 20px #f356a2;
   font-family: SeoulAlrim;
@@ -289,7 +399,7 @@ export const Title1 = styled.div`
 `;
 
 export const Title2 = styled.div`
-  padding: 25px 0 23px 0;
+  padding: 27px 0 23px 0;
   color: #fff;
   text-shadow: 0 0 20px #199eff;
   font-family: SeoulAlrim;
@@ -337,20 +447,26 @@ export const MakerBox = styled.div`
 
   #somsom1 {
     margin-bottom: -8px;
+    width: 75px;
+    flex-shrink: 0;
   }
 
   #somsom2 {
     margin-bottom: -8px;
+    width: 75px;
+    flex-shrink: 0;
   }
 
   #somsom3 {
     margin-bottom: -8px;
+    width: 75px;
+    flex-shrink: 0;
   }
 `;
 
 export const BtnBox = styled.div`
   display: flex;
-  padding: 40px 0;
+  padding: 45px 0;
   gap: 17px;s
 `;
 
@@ -363,7 +479,7 @@ export const Btn1 = styled.div`
   font-weight: 600;
   line-height: normal;
   display: inline-flex;
-  padding: 11px 20px;
+  padding: 9px 20px;
   justify-content: center;
   align-items: center;
   gap: 10px;
@@ -381,7 +497,7 @@ font-style: normal;
 font-weight: 600;
 line-height: normal; inset;
 display: inline-flex;
-padding: 11px 20px;
+padding: 9px 20px;
 justify-content: center;
 align-items: center;
 gap: 10px;
@@ -391,6 +507,5 @@ box-shadow: 0 0 5px 0 rgba(255, 255, 255, 0.80) inset;
 `;
 
 export const LogoImage = styled.div`
-  padding: 45px 0;
-  margin-left: 35px;
+  padding: 180px 0 160px 0;
 `;

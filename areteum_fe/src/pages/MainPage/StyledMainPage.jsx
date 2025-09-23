@@ -32,37 +32,60 @@ export const Container = styled.div`
     object-fit: cover;
     position: fixed;
   }
+
   .fireworkR{
    position: absolute;
    bottom: 21%; 
-   right: 0;    
-   height: 35%;
-   z-index: 1;  
+   right: -30%;    
+   height: 38%;  
    pointer-events: none;
   }
 
-  .butterflyT{
+  .flyT{
   position: absolute;
    bottom: 60%; 
-   right:5%;
+   width:10%;
+   right:32%;
    z-index: 1;  
     animation: ${flyAnimation} 6s ease-in-out forwards;
-  pointer-events: none;
+    pointer-events: none;
+  }
+
+  .cloudT{
+    width:130%;
+    height:auto;
+    position: absolute;
+    transform: translate(-28%,-30%); 
+
   }
 `;
 
 
 export const Logo = styled.div`
+  position:absolute;
+  right:3.9%;
+  width:100%;
+  height:30%;
   display: flex;
-  justify-content: center;  
-  align-items: center;
 
-  img {
-    width:80%;
-    transform: translateX(25%);
-  pointer-events: none;   
+  
+  .fireWorkLogo {
+    position: absolute; 
+    width:auto;
+    height:105%;
+    top:27%;
+    right:-9%;
+  }
+
+  .logo {
+    width:50%;
+    height:100%;
+    position: relative;
+    margin-left: auto;
+    z-index: 2;         
   }
 `;
+
 
 export const Middle = styled.div`
   position: absolute;   
@@ -70,22 +93,20 @@ export const Middle = styled.div`
   display:flex;
   bottom: 0%;
 
-  .cloudM {
-    width: 100%;         
+  .cloudH {
+    width: 140%;         
     height: auto;        
     display: block;
-    transform: translateX(-30%);
+    transform: translate(5%,-7%);
     position: relative;
-    z-index:0;
-     pointer-events: none;
+    pointer-events: none;
 
   }
   .fireWorkL{
-    position: relative;
-    height: 70%;
-    display: block; 
-    padding-top:40%;
- }
+    position:absolute;
+    width:48%;
+    transform: translate(-35%,28%);
+    }
  
 `;
 
@@ -93,21 +114,22 @@ export const Middle = styled.div`
 
 const flowerSway = keyframes`
   0%, 80% {
-    transform: rotate(0deg); 
+    transform: translateY(5px) rotate(0deg); 
   }
   85% {
-    transform: rotate(0.5deg);
+    transform: translateY(5px) rotate(0.5deg);
   }
   90% {
-    transform: rotate(-0.5deg);
+    transform: translateY(5px) rotate(-0.5deg);
   }
   95% {
-    transform: rotate(0.2deg);
+    transform: translateY(5px) rotate(0.2deg);
   }
   100% {
-    transform: rotate(0deg);
+    transform: translateY(5px) rotate(0deg);
   }
 `;
+
 
 export const Bottom = styled.div`
   width: 393px;
@@ -115,6 +137,7 @@ export const Bottom = styled.div`
   position: fixed;
   display: flex;
   bottom: 0;
+  transform: translateY(20px); 
 
   .flower {
     width: 100%;
@@ -122,9 +145,7 @@ export const Bottom = styled.div`
     position: relative;
     z-index: 99;
     display: block; 
- pointer-events: none;
-
-    /* 애니메이션 적용 */
+    pointer-events: none;
     animation: ${flowerSway} 5s ease-in-out infinite; 
   }
 
@@ -132,11 +153,11 @@ export const Bottom = styled.div`
     position: absolute;   
     bottom: 0;
     left: 0;             
-    width: auto;         
+    width: 62%;         
     height: auto;    
     z-index: 1;
-     pointer-events: none;
-
+    pointer-events: none;
+    transform: translate(-1%,62%); 
   }
     
   
@@ -145,23 +166,23 @@ export const Bottom = styled.div`
 
 export const Wheel = styled.div`
   position: absolute;   
-  bottom: 0;
+  bottom: 15%;
   left: 0;
   z-index: 2;
 
   .wheelBase {
     position: relative;
     z-index: 1;
-    width:85%;
+    width:43%;
   }
 
   .wheelButtons {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 60%;
     height: 100%;
-    z-index: 2; 
+    z-index: 1000; 
   }
 `
 
@@ -169,7 +190,7 @@ export const NavSom = styled.div`
   position: absolute;   
   bottom: 0; 
   left: 0;
-  width: 65%;        
+  width: 60%;        
   height: 100%;
 
   img {
@@ -188,68 +209,79 @@ export const NavSom = styled.div`
   }
   .boothInfo {
     bottom: 62%;
-    left: 65%;
+    left: 60%;
   }
   .boothArray {
     bottom: 42%;
-    left: 87%;
+    left: 80%;
+    z-index:1000;
   }
   .somTalk {
-    bottom: 21%;
-    left: 68%;
+    bottom: 22%;
+    left: 55%;
   }
   .makers {
-    bottom: 10%;
-    left: 1%;
+    bottom: 8%;
+    left: -3%;
   }
 `
 
 
 
 export const CloudsBottom = styled.div`
-  position:absolute;
-  width:auto;
-  height:auto;
-  display: flex;
-  bottom:0;
+    position:absolute;
+    width:auto;
+    height:auto;
+    display: flex;
+    bottom:0;
+    overflow:hidden;
 
-  .cloudB{
-    position:relative;
-    z-index:1;
-     pointer-events: none;
-  }
+    .cloudB{
+      position:relative;
+      width:160%;
+      height:auto;
+      transform: translate(-40%, 33%);
+      pointer-events: none;
+    }
 
-  .flyB{
-    position: absolute;   
-    bottom:3%;
-    animation: ${flyAnimation} 4s ease-in-out forwards;
-  pointer-events: none;
-  }
+    .flyB{
+      position: absolute;   
+      animation: ${flyAnimation} 4s ease-in-out forwards;
+      pointer-events: none;
+      width:17%;
+      bottom:8%;
+      left:69%;
+    }
 
-  .flyM{
-   position: absolute;   
-    z-index0;
-    bottom:42%;
-    left:10%;
-     pointer-events: none;
+    .flyM{
+      position: absolute;   
+      width:10%;
+      bottom:33.5%;
+      left:15%;
+      pointer-events: none;
 
-  }
-`;
+    }
+  `;
 
 const castlesway = keyframes`
   0%   { transform: translateY(0%); }
-  50%  { transform: translateY(5px); }
+  50%  { transform: translateY(10px); }
   100% { transform: translateY(0%); }
 `;
 
 export const Castle = styled.div`
   position:absolute;
-  bottom:26%;
-  padding-left:50%;
-  width:auto;
-  height:auto;
   z-index:5;
   pointer-events: none;
+  bottom:25%;
+  width:100%;
 
+  img {
+      width:30%;
+      height:auto;
+      position:relative;
+      left:55%;
+    }
+  
   animation: ${castlesway} 3s ease-in-out infinite; 
 `;

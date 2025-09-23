@@ -421,13 +421,7 @@ const InfoTab3 = () => {
         <I.Btn1 onClick={handleBtn1Click}>멋사 대학 인스타그램</I.Btn1>
         <I.Btn2 onClick={handleBtn2Click}>동덕 멋사 인스타그램</I.Btn2>
       </I.BtnBox>
-      <I.LogoImage>
-        <img
-          id="logoImage"
-          src={`${process.env.PUBLIC_URL}/images/logo.png`}
-          alt="logoImage"
-        />
-      </I.LogoImage>
+      <I.LogoImage></I.LogoImage>
     </I.Box>
   );
 };

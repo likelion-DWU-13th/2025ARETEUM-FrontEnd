@@ -14,7 +14,7 @@ const InfoTab2 = () => {
       <I.TabImage2>
         <img
           id="tabImage2"
-          src={`${process.env.PUBLIC_URL}/images/tabImage2.svg`}
+          src={`${process.env.PUBLIC_URL}/images/tabImage2.png`}
           alt="tabImage2"
           width="235px"
           height="auto"
@@ -52,13 +52,7 @@ const InfoTab2 = () => {
         </I.Text3>
       </I.TextBox>
       <I.InstaBtn onClick={handleInstaClick}>축운위 인스타그램</I.InstaBtn>
-      <I.LogoImage>
-        <img
-          id="logoImage"
-          src={`${process.env.PUBLIC_URL}/images/logo.png`}
-          alt="logoImage"
-        />
-      </I.LogoImage>
+      <I.LogoImage></I.LogoImage>
     </I.Box>
   );
 };
