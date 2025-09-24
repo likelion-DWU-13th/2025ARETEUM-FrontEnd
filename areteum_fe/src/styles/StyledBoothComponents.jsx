@@ -7,6 +7,7 @@ export const Components = styled.div`
   flex-shrink: 0;
   padding: 10px;
   position: relative;
+  margin: 7px;
 
   border-radius: 15px;
   border: 1px dashed rgba(230, 205, 138, 0.5);

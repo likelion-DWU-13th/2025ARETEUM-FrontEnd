@@ -4,24 +4,21 @@ export const Container = styled.div`
   position: relative;
   margin: 0 auto;
   margin-top: 0px;
-  min-height: 100vh;
+  height: 100vh;
   padding: 0; /* 불필요한 패딩 제거 */
   box-sizing: border-box; /* 패딩이 width에 포함되도록 설정 */
   display: flex;
   flex-direction: column;
-  width: 393px;
+  width: 100%; /* 화면 크기에 맞추기 */
+  max-width: 393px;
+  min-width: 320px;
   flex-shrink: 0;
   padding-top: 80px;
-  padding-bottom: 105px;
+
   align-items: center;
   /* 여기까지 공통 복붙 */
 
-  background: linear-gradient(
-    180deg,
-    #4f95d1 0%,
-    #adcbf0 41.83%,
-    #f0e6f2 95.19%
-  );
+  background: linear-gradient(180deg, #4f95d1 0%, #adcbf0 41.83%, #f0e6f2 95.19%);
 
   #background {
     width: 393px;
@@ -80,13 +77,15 @@ export const Icons = styled.div`
 export const Nav = styled.div`
   width: 393px;
   height: 105px;
-  position: fixed;
   display: flex;
-  bottom: 0;
+  position: relative;
   z-index: 100;
+  margin-top: 53px;
+  align-items: center;
+  justify-content: center;
 
   img {
-    width: 393px;
+    width: 100%;
     height: 105px;
   }
 
@@ -106,7 +105,7 @@ export const Nav = styled.div`
 export const DateWrapper = styled.div`
   display: flex;
   position: relative;
-  width: 393px;
+
   justify-content: center;
   align-items: center;
   gap: 40px;
@@ -202,8 +201,8 @@ export const Category = styled.div`
 `;
 
 export const Count = styled.div`
-  width: 393px;
   height: 50px;
+  width: 100%;
   padding: 25px 20px;
 
   color: #fff;
@@ -214,12 +213,24 @@ export const Count = styled.div`
   line-height: normal;
 `;
 
-export const Content = styled.div`
-  width: 393px;
-  height: 100%;
+export const Content_B = styled.div`
+  width: 100%;
+  flex: 1 1 auto;
   display: grid;
-  padding: 0 20px;
-  gap: 16px;
+  padding: 10px;
+  padding-top: 0;
   grid-template-columns: repeat(2, 1fr);
   justify-items: center;
+`;
+
+export const Content = styled.div`
+  overflow-y: auto;
+  position: relative;
+  flex: 1;
+
+  -ms-overflow-style: none; /* IE/Edge 스크롤바 제거 */
+  scrollbar-width: none; /* Firefox 스크롤바 제거 */
+  &::-webkit-scrollbar {
+    display: none; /* 크롬/사파리 스크롤바 제거 */
+  }
 `;
