@@ -4,7 +4,7 @@ import * as I from "../../styles/StyledIntro";
 import Components from "./BoothComponents";
 
 const Intro = () => {
-  const category = ["전체", "공연", "부스", "체험", "마켓", "주점", "버스킹"];
+  const category = ["전체", "공연", "부스", "체험", "마켓", "주점", "푸드트럭"];
   const [selectedCategory, setSelectedCategory] = useState(0);
   const [selectedDate, setSelectedDate] = useState(0);
 

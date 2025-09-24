@@ -177,6 +177,12 @@ export const CategoryWrapper = styled.div`
   width: 345px;
   align-items: center;
   gap: 15px;
+  overflow-x: auto; /* 가로 스크롤 허용 */
+  -webkit-overflow-scrolling: touch; /* 모바일 터치 스크롤 부드럽게 */
+  scrollbar-width: none; /* 파이어폭스 스크롤바 숨기기 */
+  &::-webkit-scrollbar {
+    display: none; /* 크롬 등 웹킷 스크롤바 숨기기 */
+  }
   z-index: 100;
 `;
 
