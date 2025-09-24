@@ -33,9 +33,12 @@ export const Container = styled.div`
     background: linear-gradient(
       to bottom,
       rgba(176, 225, 255, 1) 0%,
+      rgba(176, 225, 255, 1) 20%,
+      rgba(176, 225, 255, 0.9) 40%,
       rgba(176, 225, 255, 0.8) 60%,
-      rgba(176, 225, 255, 0.5) 80%,
-      rgba(176, 225, 255, 0) 100%
+      rgba(176, 225, 255, 0.5) 90%,
+      rgba(176, 225, 255, 0.3) 95%,
+      rgba(176, 225, 255, 0) 100% /* 끝점: 완전 투명 */
     );
   }
 `;
@@ -182,7 +185,7 @@ export const TabTitle = styled.div`
   display: flex;
   justify-content: center;
 
-  padding: 25px;
+  padding: 23px 0;
   color: #fff;
   text-shadow: 0 0 15px #e37aad;
   font-family: "Cafe24Ohsquare";
@@ -190,6 +193,65 @@ export const TabTitle = styled.div`
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+
+  #font {
+    font-family: "impact";
+  }
+`;
+
+export const TabTitle1 = styled.div`
+  display: flex;
+  justify-content: center;
+
+  padding: 25px 0 0 0;
+  color: #fff;
+  text-shadow: 0 0 15px #e37aad;
+  font-family: "Cafe24Ohsquare";
+  font-size: 21px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+
+  #font {
+    font-family: "impact";
+  }
+`;
+
+export const TabSubTitle = styled.div`
+  display: flex;
+  justify-content: center;
+  padding: 9px 0;
+
+  color: #fff;
+  font-family: Impact;
+  font-size: 21px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+
+  #font2 {
+    color: #e37aad;
+    font-family: "Great Vibes";
+    font-size: 21px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-top: 3.5px;
+  }
+`;
+
+export const TabImage1 = styled.div`
+  display: flex;
+  justify-content: center;
+  z-index: 5;
+`;
+
+export const TabImage1_1 = styled.div`
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  top: 195px;
+  z-index: 10;
 `;
 
 export const TabImage2 = styled.div`
@@ -218,7 +280,23 @@ export const Text1 = styled.div`
   font-family: Pretendard;
   font-size: 15px;
   font-style: normal;
-  font-weight: 500;
+  font-weight: 550;
+  line-height: 20px; /* 125% */
+
+  #color-bold {
+    font-weight: 600;
+    color: var(--main, #e37aad);
+  }
+`;
+
+export const Text1_1 = styled.div`
+  margin: 25px 0 20px 0;
+  color: #fff;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 550;
   line-height: 20px; /* 125% */
 
   #color-bold {
@@ -234,7 +312,23 @@ export const Text2 = styled.div`
   font-family: Pretendard;
   font-size: 15px;
   font-style: normal;
-  font-weight: 500;
+  font-weight: 550;
+  line-height: 20px; /* 125% */
+
+  #color-bold {
+    font-weight: 600;
+    color: var(--main, #e37aad);
+  }
+`;
+
+export const Text2_1 = styled.div`
+  margin: 20px 0;
+  color: #fff;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 550;
   line-height: 20px; /* 125% */
 
   #color-bold {
@@ -250,7 +344,23 @@ export const Text3 = styled.div`
   font-family: Pretendard;
   font-size: 15px;
   font-style: normal;
-  font-weight: 500;
+  font-weight: 550;
+  line-height: 20px; /* 125% */
+
+  #color-bold {
+    font-weight: 600;
+    color: var(--main, #e37aad);
+  }
+`;
+
+export const Text3_1 = styled.div`
+  margin: 20px 0 25px 0;
+  color: #fff;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 550;
   line-height: 20px; /* 125% */
 
   #color-bold {
@@ -397,5 +507,5 @@ box-shadow: 0 0 5px 0 rgba(255, 255, 255, 0.80) inset;
 `;
 
 export const LogoImage = styled.div`
-  padding: 180px 0;
+  padding: 180px 0 160px 0;
 `;
