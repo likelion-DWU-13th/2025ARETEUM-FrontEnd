@@ -1,44 +1,59 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as F from "../../styles/styledFirst";
+import { motion } from "framer-motion";
 
 const frames = [
-  {src:"/images/letter1.svg",x: 215, y:60},
-  {src:"/images/letter2.svg",x: 174 ,y:201},
-  {src:"/images/letter3.svg",x:35,y:302},
-  {src:"/images/letter4.svg",x:26,y:202},
-  {src:"/images/letter5.svg",x:0,y:102},
+  { src: "/images/letter1.svg", x: 215, y: 60 },
+  { src: "/images/addletter.svg", x: 26, y: 180 },
+  { src: "/images/letter2.svg", x: 174, y: 230 },
+  { src: "/images/letter3.png", x: 35, y: 302, w: 320 },
+  { src: "/images/letter4.svg", x: 26, y: 202, w: 346 },
+  { src: "/images/letter5.svg", x: 12, y: 142, w: 349 },
 ];
 const First = () => {
   const navigate = useNavigate();
-  const [step,setStep] = useState(0);
+  const [step, setStep] = useState(0);
+  const [showText, setShowText] = useState(false);
   const current = frames[step];
-  const visited="0";
-  useEffect(()=>{
-    if(localStorage.getItem(visited)==="1"){
+  const prev = frames[Math.max(step - 1, 0)]; // 직전 프레임
+  const baseW = 140; // w 없는 프레임 기본값
+  const prevW = prev.w ?? baseW;
+  const currW = current.w ?? baseW;
+
+  const isAnimated = step <= 3;
+  const animateProps = {
+    left: [prev.x, current.x],
+    top: [prev.y, current.y],
+    width: [prevW, currW],
+  };
+  const visited = "0";
+  useEffect(() => {
+    if (localStorage.getItem(visited) === "1") {
       navigate("/mainPage");
     }
-  },[]);
-  useEffect(()=>{
-    frames.forEach(f=>{
+  }, []);
+  useEffect(() => {
+    frames.forEach((f) => {
       const img = new Image();
-      img.src = process.env.PUBLIC_URL+f.src;
+      img.src = process.env.PUBLIC_URL + f.src;
     });
-  },[]);
-  useEffect(()=> {
-    if(step>=frames.length-1||step===2) return;
-    const t = setTimeout(()=>setStep(s=>s+1),900);
-    return()=>clearTimeout(t);
-  },[step]);
-  const click = () =>{
-    if(step===2){
-      setStep(s=>s+1);
+  }, []);
+  useEffect(() => {
+    setShowText(false);
+    if (step >= frames.length - 1 || step === 3) return;
+    const t = setTimeout(() => setStep((s) => s + 1), 950);
+    return () => clearTimeout(t);
+  }, [step]);
+  const click = () => {
+    if (step === 3) {
+      setStep((s) => s + 1);
     }
   };
-  const enter = () =>{
-    localStorage.setItem(visited,"1");
-    navigate("/mainPage")
-  }
+  const enter = () => {
+    localStorage.setItem(visited, "1");
+    navigate("/mainPage");
+  };
   return (
     <F.Container>
       <img
@@ -46,20 +61,51 @@ const First = () => {
         src={`${process.env.PUBLIC_URL}/images/background.png`}
         alt="background"
       />
-      <img
-        src={process.env.PUBLIC_URL+current.src}
-        alt="letter"
-        style={{
-          position: "absolute",
-          left: `${current.x}px`, top: `${current.y}px`,
-        }}
-        onClick={click}
-      />
-      <F.Text style={{  display: step===2 ?"block": "none", marginTop:"216px"}}>
+      {isAnimated ? (
+        <motion.img
+          src={process.env.PUBLIC_URL + current.src}
+          alt="letter"
+          style={{ position: "absolute", height: "auto" }}
+          initial={
+            step === 0
+              ? { left: current.x, top: current.y, width: currW} // 살짝 왼쪽+조금 작게
+              : false
+          }
+          animate={animateProps}
+          transition={{
+            duration: 0.9,
+            ease: "easeInOut",
+            times: step === 0 ? undefined : [0, 1],
+          }}
+          onClick={click}
+          onAnimationComplete={() => {
+            if (step === 3) setShowText(true);
+          }}
+        />
+      ) : (
+        <img
+          src={process.env.PUBLIC_URL + current.src}
+          alt="letter"
+          style={{
+            position: "absolute",
+            left: current.x,
+            top: current.y,
+            width: current.w ?? baseW,
+            height: "auto",
+          }}
+        />
+      )}
+
+      <F.Text
+        style={{ display: showText ? "block" : "none", marginTop: "216px" }}
+      >
         가운데 버튼을 눌러<br></br>
         초대장을 열어보세요
       </F.Text>
-      <F.Enter style={{ display: step===4 ? "flex" : "none"}} onClick={enter}>
+      <F.Enter
+        style={{ display: step === 5 ? "flex" : "none" }}
+        onClick={enter}
+      >
         입장하기
       </F.Enter>
       <F.Box></F.Box>
