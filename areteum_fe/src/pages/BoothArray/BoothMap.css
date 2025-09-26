@@ -1,0 +1,14 @@
+/* 동그라미들*/
+
+.swiper-pagination-bullet {
+    background: rgba(255, 255, 255, 0.4);
+    opacity: 1;
+}
+
+.swiper-pagination-bullet-active {
+    background: #ffffff;
+}
+
+.custom-swiper .swiper-pagination {
+    bottom: 0% !important;
+}
