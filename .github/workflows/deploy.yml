@@ -1,0 +1,29 @@
+name: Deploy Frontend (develop)
+on: { push: { branches: [ "develop" ] } }
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - run: npm ci
+      - run: npm run build
+      - uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          source: "build/*"
+          target: "/srv/2025ARETEUM-Production-Deployment/frontend/"
+          strip_components: 1
+          overwrite: true
+      - uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd /srv/2025ARETEUM-Production-Deployment
+            docker-compose exec -T nginx nginx -t
+            docker-compose exec -T nginx nginx -s reload || docker-compose restart nginx
