@@ -32,7 +32,7 @@ const MainPage = () => {
                     <img src={`${process.env.PUBLIC_URL}/images/MainPage/MainElement/MainFlyM.png`} className="flyM" />
                 </M.CloudsBottom>
                 <M.Wheel>
-                    <img src={`${process.env.PUBLIC_URL}/images/MainPage/Mainwheel/MainWheel.png`} className="wheelBase" />
+                    <img src={`${process.env.PUBLIC_URL}/images//MainPage/Mainwheel/MainWheel.png`} className="wheelBase" />
 
                     <div className="wheelButtons">
                         <M.NavSom>
