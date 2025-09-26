@@ -14,11 +14,15 @@ export const Container = styled.div`
   padding-top: 80px;
   padding-bottom: 105px;
   align-items: center;
-  /* 여기까지 공통 복붙 */
+/* 여기까지 공통 복붙 */
+
+  width: 100%; /* ✅ 폭을 브라우저 기준으로 */
+  max-width: 393px;
+  min-height: 100vh;
+  overflow: visible;
 
   background: linear-gradient(180deg, #4F95D1 20%, #ADCBF0 52%, #F0E6F2 95%);
 
- 
 `;
 
 export const Header = styled.div`
