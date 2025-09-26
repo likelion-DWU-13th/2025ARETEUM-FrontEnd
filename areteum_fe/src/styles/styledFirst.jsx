@@ -41,13 +41,15 @@ font-family: "GangwonEduOTF";
 export const Nav = styled.div`
   width: 393px;
   height: 105px;
-  position: fixed;
   display: flex;
-  bottom: 0;
+  position: relative;
   z-index: 100;
+  margin-top: auto;
+  align-items: center;
+  justify-content: center;
 
   img {
-    width: 393px;
+    width: 100%;
     height: 105px;
   }
 

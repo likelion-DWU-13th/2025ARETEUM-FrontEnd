@@ -12,7 +12,6 @@ export const Container = styled.div`
   width: 393px;
   flex-shrink: 0;
   padding-top: 80px;
-  padding-bottom: 105px;
   align-items: center;
   /* 여기까지 공통 복붙 */
 
@@ -67,13 +66,15 @@ export const Title = styled.div`
 export const Nav = styled.div`
   width: 393px;
   height: 105px;
-  position: fixed;
   display: flex;
-  bottom: 0;
+  position: relative;
   z-index: 100;
+  margin-top: 33px;
+  align-items: center;
+  justify-content: center;
 
   img {
-    width: 393px;
+    width: 100%;
     height: 105px;
   }
 
