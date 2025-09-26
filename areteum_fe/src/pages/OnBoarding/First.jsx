@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import {useNavigate } from "react-router-dom";
 import * as F from "../../styles/styledFirst";
 import { motion } from "framer-motion";
 
@@ -13,6 +13,12 @@ const frames = [
 ];
 const First = () => {
   const navigate = useNavigate();
+  useEffect(() => {
+    if(localStorage.getItem(visited)==="1")
+    {
+      navigate("/mainPage",{replace: true});
+    } 
+  },[navigate]);
   const [step, setStep] = useState(0);
   const [showText, setShowText] = useState(false);
   const current = frames[step];
@@ -28,11 +34,6 @@ const First = () => {
     width: [prevW, currW],
   };
   const visited = "0";
-  useEffect(() => {
-    if (localStorage.getItem(visited) === "1") {
-      //navigate("/mainPage");
-    }
-  }, []);
   useEffect(() => {
     frames.forEach((f) => {
       const img = new Image();

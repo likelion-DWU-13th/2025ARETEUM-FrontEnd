@@ -11,6 +11,7 @@ const GangwonFont = css`
 
 export const Container = styled.div`
 ${GangwonFont}
+font-family: "GangwonEduOTF";
   position: relative;
   margin: 0 auto;
   margin-top: 0px;
@@ -67,7 +68,6 @@ export const Text = styled.div`
 color: rgba(255, 255, 255, 0.80);
 text-align: center;
 text-shadow: 0 0 5px rgba(255, 255, 255, 0.80);
-font-family: "GangwonEduOTF";
 font-size: 20px;
 font-style: normal;
 font-weight: 400;
