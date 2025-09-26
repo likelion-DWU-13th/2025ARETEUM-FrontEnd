@@ -36,10 +36,10 @@ const MainPage = () => {
 
                     <div className="wheelButtons">
                         <M.NavSom>
-                            <img src={`${process.env.PUBLIC_URL}/images/MainPage/MainWheel/MainTimetable.png`} className="timeTable" onClick={() => navigate("/timeTable")} />
-                            <img src={`${process.env.PUBLIC_URL}/images/MainPage/MainWheel/MainBoothinfo.png`} className="boothInfo" onClick={() => navigate("/booth")} />
+                            <img src={`${process.env.PUBLIC_URL}/images/MainPage/MainWheel/MainTimeTable.png`} className="timeTable" onClick={() => navigate("/timeTable")} />
+                            <img src={`${process.env.PUBLIC_URL}/images/MainPage/MainWheel/MainBoothInfo.png`} className="boothInfo" onClick={() => navigate("/booth")} />
                             <img src={`${process.env.PUBLIC_URL}/images/MainPage/MainWheel/MainBoothArr.png`} className="boothArray" onClick={() => navigate("/BoothArray")} />
-                            <img src={`${process.env.PUBLIC_URL}/images/MainPage/MainWheel/MainSomtalk.png`} className="somTalk" onClick={() => navigate("/somTalk")} />
+                            <img src={`${process.env.PUBLIC_URL}/images/MainPage/MainWheel/MainSomTalk.png`} className="somTalk" onClick={() => navigate("/somTalk")} />
                             <img src={`${process.env.PUBLIC_URL}/images/MainPage/MainWheel/MainMakers.png`} className="makers" onClick={() => navigate("/makersInfo")} />
                         </M.NavSom>
                     </div>
