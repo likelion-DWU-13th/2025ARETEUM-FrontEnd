@@ -14,18 +14,23 @@ ${GangwonFont}
   position: relative;
   margin: 0 auto;
   margin-top: 0px;
-  min-height: 100vh;
+  height: 100vh;
   padding: 0; /* 불필요한 패딩 제거 */
   box-sizing: border-box; /* 패딩이 width에 포함되도록 설정 */
   display: flex;
   flex-direction: column;
-  width: 393px;
+  width: 100%; /* 화면 크기에 맞추기 */
+  max-width: 393px;
+  min-width: 320px;
   flex-shrink: 0;
-  padding-bottom: 105px;
+  padding-top: 80px;
+
   align-items: center;
   /* 여기까지 공통 복붙 */
-  background: linear-gradient(180deg, #4F95D1 0%, #ADCBF0 41.83%, #F0E6F2 95.19%);
-   #background {
+
+  background: linear-gradient(180deg, #4f95d1 0%, #adcbf0 41.83%, #f0e6f2 95.19%);
+
+  #background {
     width: 393px;
     object-fit: cover;
     position: fixed;
@@ -85,7 +90,7 @@ font-size: 20px;
 font-style: normal;
 font-weight: 300;
 backdrop-filter: blur(10px);
-margin-top: 670px;
+margin-top: 480px;
 display: flex;
 align-items: center;
 justify-content: center;

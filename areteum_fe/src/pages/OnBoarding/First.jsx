@@ -7,9 +7,9 @@ const frames = [
   { src: "/images/letter1.svg", x: 215, y: 60 },
   { src: "/images/addletter.svg", x: 26, y: 180 },
   { src: "/images/letter2.svg", x: 174, y: 230 },
-  { src: "/images/letter3.png", x: 35, y: 302, w: 320 },
+  { src: "/images/letter3.png", x: 35, y: 320, w: 320 },
   { src: "/images/letter4.svg", x: 26, y: 202, w: 346 },
-  { src: "/images/letter5.svg", x: 12, y: 142, w: 349 },
+  { src: "/images/letter5.svg", x: 12, y: 30, w: 349 },
 ];
 const First = () => {
   const navigate = useNavigate();
@@ -30,7 +30,7 @@ const First = () => {
   const visited = "0";
   useEffect(() => {
     if (localStorage.getItem(visited) === "1") {
-      navigate("/mainPage");
+      //navigate("/mainPage");
     }
   }, []);
   useEffect(() => {
@@ -58,7 +58,7 @@ const First = () => {
     <F.Container>
       <img
         id="background"
-        src={`${process.env.PUBLIC_URL}/images/background.png`}
+        src={`${process.env.PUBLIC_URL}/images/background.PNG`}
         alt="background"
       />
       {isAnimated ? (
@@ -97,7 +97,7 @@ const First = () => {
       )}
 
       <F.Text
-        style={{ display: showText ? "block" : "none", marginTop: "216px" }}
+        style={{ display: showText ? "block" : "none", marginTop: "136px" }}
       >
         가운데 버튼을 눌러<br></br>
         초대장을 열어보세요
