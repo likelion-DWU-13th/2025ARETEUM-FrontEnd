@@ -32,11 +32,11 @@ const MainPage = () => {
                     <img src={`${process.env.PUBLIC_URL}/images/MainPage/MainElement/MainFlyM.png`} className="flyM" />
                 </M.CloudsBottom>
                 <M.Wheel>
-                    <img src={`${process.env.PUBLIC_URL}/images//MainPage/Mainwheel/MainWheel.png`} className="wheelBase" />
+                    <img src={`${process.env.PUBLIC_URL}/images/MainPage/MainWheel/MainWheel.png`} className="wheelBase" />
 
                     <div className="wheelButtons">
                         <M.NavSom>
-                            <img src={`${process.env.PUBLIC_URL}/images/MainPage/Mainwheel/MainTimetable.png`} className="timeTable" onClick={() => navigate("/timeTable")} />
+                            <img src={`${process.env.PUBLIC_URL}/images/MainPage/MainWheel/MainTimetable.png`} className="timeTable" onClick={() => navigate("/timeTable")} />
                             <img src={`${process.env.PUBLIC_URL}/images/MainPage/MainWheel/MainBoothinfo.png`} className="boothInfo" onClick={() => navigate("/booth")} />
                             <img src={`${process.env.PUBLIC_URL}/images/MainPage/MainWheel/MainBoothArr.png`} className="boothArray" onClick={() => navigate("/BoothArray")} />
                             <img src={`${process.env.PUBLIC_URL}/images/MainPage/MainWheel/MainSomtalk.png`} className="somTalk" onClick={() => navigate("/somTalk")} />
