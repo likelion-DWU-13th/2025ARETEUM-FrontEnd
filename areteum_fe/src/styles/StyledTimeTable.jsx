@@ -15,6 +15,11 @@ export const Container = styled.div`
   align-items: center;
   /* 여기까지 공통 복붙 */
 
+  width: 100%; /* ✅ 폭을 브라우저 기준으로 */
+  max-width: 393px;
+  min-height: 100vh;
+  overflow: visible;
+
   background: linear-gradient(
     180deg, #6FB7EA 10.26%, #FFE8FA 99.99%
   );
@@ -143,7 +148,6 @@ margin-top: 46px;
 
 export const TableWrapper = styled.div`
 position: absolute;
-left: 27px;
 top: 187px;
 z-index: 1;
 `;
