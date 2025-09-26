@@ -182,3 +182,20 @@ font-weight: 600;
 margin-top: 10px;
 padding: 12px 0;
 `;
+
+export const AlarmText = styled.div`
+border-radius: 15px;
+background: rgba(227, 122, 173, 0.1);
+width: 324px;
+height: auto;
+color: #FFF;
+text-align: center;
+font-family: Pretendard;
+font-size: 14px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+padding: 12px 0;
+margin-top: 10px;
+
+`;
