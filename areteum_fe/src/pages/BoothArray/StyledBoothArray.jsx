@@ -88,7 +88,7 @@ export const Date = styled.div`
   display: flex;
   align-items: center;
   position: relative;
-  opacity: ${({ active }) => (active ? "1" : "0.6")};
+  opacity: ${({ $active }) => ($active ? "1" : "0.6")};
 
   #text {
     position: absolute;
