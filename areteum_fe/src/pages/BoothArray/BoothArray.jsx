@@ -12,69 +12,69 @@ const BoothArray = () => {
     const imageData = {
         "10/1": {
             전체: [
-                `${process.env.PUBLIC_URL}/images/BoothArray/10.01/all/first.png`,
-                `${process.env.PUBLIC_URL}/images/BoothArray/10.01/second.png`,
+                `${process.env.PUBLIC_URL}/images/BoothArray/all/first.png`,
+                `${process.env.PUBLIC_URL}/images/BoothArray/second.png`,
             ],
             측운위: [
-                `${process.env.PUBLIC_URL}/images/BoothArray/10.01/festivalClub/first.png`,
-                `${process.env.PUBLIC_URL}/images/BoothArray/10.01/second.png`,
+                `${process.env.PUBLIC_URL}/images/BoothArray/festivalClub/first.png`,
+                `${process.env.PUBLIC_URL}/images/BoothArray/second.png`,
 
             ],
             일반부스: [
-                `${process.env.PUBLIC_URL}/images/BoothArray/10.01/originBooth/first.png`,
-                `${process.env.PUBLIC_URL}/images/BoothArray/10.01/second.png`,
+                `${process.env.PUBLIC_URL}/images/BoothArray/originBooth/first.png`,
+                `${process.env.PUBLIC_URL}/images/BoothArray/second.png`,
 
             ],
             플리마켓: [
-                `${process.env.PUBLIC_URL}/images/BoothArray/10.01/marcket/first.png`,
-                `${process.env.PUBLIC_URL}/images/BoothArray/10.01/second.png`,
+                `${process.env.PUBLIC_URL}/images/BoothArray/marcket/first.png`,
+                `${process.env.PUBLIC_URL}/images/BoothArray/second.png`,
 
             ],
             주점: [
-                `${process.env.PUBLIC_URL}/images/BoothArray/10.01/tavern/first.png`,
-                `${process.env.PUBLIC_URL}/images/BoothArray/10.01/second.png`,
+                `${process.env.PUBLIC_URL}/images/BoothArray/tavern/first.png`,
+                `${process.env.PUBLIC_URL}/images/BoothArray/second.png`,
             ],
             제휴: [
-                `${process.env.PUBLIC_URL}/images/BoothArray/10.01/coalition/first.png`,
-                `${process.env.PUBLIC_URL}/images/BoothArray/10.01/coalition/second.png`,
+                `${process.env.PUBLIC_URL}/images/BoothArray/coalition/first.png`,
+                `${process.env.PUBLIC_URL}/images/BoothArray/coalition/second.png`,
             ],
             푸드트럭: [
-                `${process.env.PUBLIC_URL}/images/BoothArray/10.01/all/first.png`,
-                `${process.env.PUBLIC_URL}/images/BoothArray/10.01/foodtruck/second.png`,
+                `${process.env.PUBLIC_URL}/images/BoothArray/all/first.png`,
+                `${process.env.PUBLIC_URL}/images/BoothArray/foodtruck/second.png`,
             ],
 
         },
         "10/2": {
             전체: [
-                `${process.env.PUBLIC_URL}/images/BoothArray/10.01/all/first.png`,
-                `${process.env.PUBLIC_URL}/images/BoothArray/10.01/second.png`,
+                `${process.env.PUBLIC_URL}/images/BoothArray/all/first.png`,
+                `${process.env.PUBLIC_URL}/images/BoothArray/second.png`,
             ],
             측운위: [
-                `${process.env.PUBLIC_URL}/images/BoothArray/10.01/festivalClub/first.png`,
-                `${process.env.PUBLIC_URL}/images/BoothArray/10.01/second.png`,
+                `${process.env.PUBLIC_URL}/images/BoothArray/festivalClub/first.png`,
+                `${process.env.PUBLIC_URL}/images/BoothArray/second.png`,
 
             ],
             일반부스: [
-                `${process.env.PUBLIC_URL}/images/BoothArray/10.01/originBooth/first.png`,
-                `${process.env.PUBLIC_URL}/images/BoothArray/10.01/second.png`,
+                `${process.env.PUBLIC_URL}/images/BoothArray/originBooth/first.png`,
+                `${process.env.PUBLIC_URL}/images/BoothArray/second.png`,
 
             ],
             플리마켓: [
-                `${process.env.PUBLIC_URL}/images/BoothArray/10.01/marcket/first.png`,
-                `${process.env.PUBLIC_URL}/images/BoothArray/10.01/second.png`,
+                `${process.env.PUBLIC_URL}/images/BoothArray/marcket/first.png`,
+                `${process.env.PUBLIC_URL}/images/BoothArray/second.png`,
 
             ],
             주점: [
-                `${process.env.PUBLIC_URL}/images/BoothArray/10.01/tavern/first.png`,
-                `${process.env.PUBLIC_URL}/images/BoothArray/10.01/second.png`,
+                `${process.env.PUBLIC_URL}/images/BoothArray/tavern/first.png`,
+                `${process.env.PUBLIC_URL}/images/BoothArray/second.png`,
             ],
             제휴: [
-                `${process.env.PUBLIC_URL}/images/BoothArray/10.01/coalition/first.png`,
-                `${process.env.PUBLIC_URL}/images/BoothArray/10.01/coalition/second.png`,
+                `${process.env.PUBLIC_URL}/images/BoothArray/coalition/first.png`,
+                `${process.env.PUBLIC_URL}/images/BoothArray/coalition/second.png`,
             ],
             푸드트럭: [
-                `${process.env.PUBLIC_URL}/images/BoothArray/10.01/all/first.png`,
-                `${process.env.PUBLIC_URL}/images/BoothArray/10.01/foodtruck/second.png`,
+                `${process.env.PUBLIC_URL}/images/BoothArray/all/first.png`,
+                `${process.env.PUBLIC_URL}/images/BoothArray/foodtruck/second.png`,
             ],
         }
     };
