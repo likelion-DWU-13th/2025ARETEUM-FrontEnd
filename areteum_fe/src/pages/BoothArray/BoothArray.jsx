@@ -98,11 +98,16 @@ const BoothArray = () => {
         }
     }
     useEffect(() => {
-        Object.values(imageData).flat().forEach((p) => {
-            const i = new Image();
-            i.src = p;
+        Object.values(imageData).forEach((dateObj) => {
+            Object.values(dateObj).forEach((imgArr) => {
+                imgArr.forEach((p) => {
+                    const i = new Image();
+                    i.src = p;
+                });
+            });
         });
     }, []);
+
 
     return (
         <B.Container>
@@ -121,7 +126,7 @@ const BoothArray = () => {
                 {["10/1", "10/2"].map((date) => (
                     <B.Date
                         key={date}
-                        active={selectedDate === date}
+                        $active={selectedDate === date}
                         onClick={() => setSelectedDate(date)}
                     >
                         <img src={`${process.env.PUBLIC_URL}/images/dateMark.png`} alt="mark" />
