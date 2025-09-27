@@ -4,14 +4,11 @@ export const Container = styled.div`
   position: relative;
   margin: 0 auto;
   margin-top: 0px;
-
   padding: 0; /* 불필요한 패딩 제거 */
   box-sizing: border-box; /* 패딩이 width에 포함되도록 설정 */
   display: flex;
   flex-direction: column;
-  width: 393px;
   flex-shrink: 0;
-  padding-bottom: 105px;
   padding-top: 120px;
 
   /* 여기까지 공통 복붙 */
@@ -19,14 +16,13 @@ export const Container = styled.div`
   max-width: 393px;
   min-height: 100vh;
   overflow: visible;
-
+  background-attachment: fixed;
   background-size: cover;
   background-position: center -18px;
   background-repeat: no-repeat;
 
   #header-color {
     position: fixed;
-
     width: 393px;
     top: 0;
     z-index: 999;
@@ -63,7 +59,7 @@ export const Header = styled.div`
 export const Title = styled.div`
   display: flex;
   align-items: center;
-  margin-left: 21px; /* 타이틀 따로 가운데 정렬하려다가(스크랩 버튼 부재때문에 가운데 정렬이 안됨) 백버튼 위치 틀어질까봐 임의로 조정했습니다! */
+  margin-left: 27px; /* 타이틀 따로 가운데 정렬하려다가(스크랩 버튼 부재때문에 가운데 정렬이 안됨) 백버튼 위치 틀어질까봐 임의로 조정했습니다! */
 
   color: #fff;
   text-align: center;
@@ -90,7 +86,7 @@ export const Menu1 = styled.div`
   display: flex;
   align-items: center;
   border-bottom: ${(props) => (props.isActive ? "2px solid #e37aad" : "none")};
-  padding: 0 12px 6px;
+  padding: 0 10px 6px;
 
   color: ${(props) => (props.isActive ? "#E37AAD" : "#fff")};
   text-align: center;
@@ -152,7 +148,6 @@ export const Icons = styled.div`
 export const Nav = styled.div`
   width: 393px;
   height: 105px;
-  position: fixed;
   display: flex;
   bottom: 0;
   z-index: 100;
