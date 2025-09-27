@@ -1,12 +1,43 @@
-import React, { use, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import * as I from "../../styles/StyledIntro";
 import Components from "./BoothComponents";
 
 const Intro = () => {
-  const category = ["전체", "공연", "부스", "체험", "마켓", "주점", "푸드트럭"];
+  const categories = ["전체", "공연", "부스", "체험", "마켓", "주점", "푸드트럭"];
+  const apiCategories = {
+    전체: "",
+    공연: "PERFORMANCE",
+    부스: "BOOTH",
+    체험: "EXPERIENCE",
+    마켓: "MARKET",
+    주점: "PUB",
+    푸드트럭: "FOOD_TRUCK",
+  };
+  const dates = ["2025-09-30", "2025-10-01", "2025-10-02"];
+
   const [selectedCategory, setSelectedCategory] = useState(0);
   const [selectedDate, setSelectedDate] = useState(0);
+  const [searchKeyword, setSearchKeyword] = useState("");
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("/api/booth-cards", {
+          params: {
+            date: dates[selectedDate],
+            category: apiCategories[categories[selectedCategory]],
+            q: searchKeyword,
+          },
+        });
+        setData(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchData();
+  }, [selectedCategory, selectedDate, searchKeyword]);
 
   return (
     <I.Container>
@@ -26,27 +57,27 @@ const Intro = () => {
           </I.Date>
         ))}
       </I.DateWrapper>
+
       <I.Search>
         <img src={`${process.env.PUBLIC_URL}/images/search.png`} alt="search" />
-        <input placeholder="검색어를 입력하세요."></input>
+        <input placeholder="검색어를 입력하세요." value={searchKeyword} onChange={(e) => setSearchKeyword(e.target.value)} />
       </I.Search>
+
       <I.CategoryWrapper>
-        {category &&
-          category.map((item, index) => (
-            <I.Category key={index} id={index} active={selectedCategory === index} onClick={() => setSelectedCategory(index)}>
-              {item}
-            </I.Category>
-          ))}
+        {categories.map((item, index) => (
+          <I.Category key={index} active={selectedCategory === index} onClick={() => setSelectedCategory(index)}>
+            {item}
+          </I.Category>
+        ))}
       </I.CategoryWrapper>
-      <I.Count>총 1건의 항목</I.Count>
+
+      <I.Count>총 {data.length}건의 항목</I.Count>
+
       <I.Content>
         <I.Content_B>
-          <Components></Components>
-          <Components></Components>
-          <Components></Components>
-          <Components></Components>
-          <Components></Components>
-          <Components></Components>
+          {data.map((item, index) => (
+            <Components key={index} item={item} />
+          ))}
         </I.Content_B>
         <I.Nav>
           <img id="footer" src={`${process.env.PUBLIC_URL}/images/footer.png`} alt="test" />

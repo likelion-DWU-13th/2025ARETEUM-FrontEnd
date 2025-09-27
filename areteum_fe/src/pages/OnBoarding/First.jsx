@@ -9,7 +9,7 @@ const frames = [
   { src: "/images/letter2.svg", x: 174, y: 230 },
   { src: "/images/letter3.png", x: 35, y: 320, w: 320 },
   { src: "/images/letter4.svg", x: 26, y: 202, w: 346 },
-  { src: "/images/letter5.svg", x: 12, y: 30, w: 349 },
+  { src: "/images/letter5.svg", x: 12, y: 20, w: 349 },
 ];
 const First = () => {
   const navigate = useNavigate();

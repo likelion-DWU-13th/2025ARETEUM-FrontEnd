@@ -12,7 +12,6 @@ export const Container = styled.div`
   width: 393px;
   flex-shrink: 0;
   padding-top: 80px;
-  padding-bottom: 105px;
   align-items: center;
   /* 여기까지 공통 복붙 */
 
@@ -72,13 +71,15 @@ export const Title = styled.div`
 export const Nav = styled.div`
   width: 393px;
   height: 105px;
-  position: fixed;
   display: flex;
-  bottom: 0;
+  position: relative;
   z-index: 100;
+  margin-top: 33px;
+  align-items: center;
+  justify-content: center;
 
   img {
-    width: 393px;
+    width: 100%;
     height: 105px;
   }
 
@@ -180,4 +181,21 @@ font-style: normal;
 font-weight: 600;
 margin-top: 10px;
 padding: 12px 0;
+`;
+
+export const AlarmText = styled.div`
+border-radius: 15px;
+background: rgba(227, 122, 173, 0.1);
+width: 324px;
+height: auto;
+color: #FFF;
+text-align: center;
+font-family: Pretendard;
+font-size: 14px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+padding: 12px 0;
+margin-top: 10px;
+
 `;
