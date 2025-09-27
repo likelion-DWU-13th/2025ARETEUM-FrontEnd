@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import * as I from "../../styles/StyledIntro";
 import Components from "./BoothComponents";
+import { useNavigate } from "react-router-dom";
 
 const Intro = () => {
   const categories = ["전체", "공연", "부스", "체험", "마켓", "주점", "푸드트럭"];
@@ -20,11 +21,12 @@ const Intro = () => {
   const [selectedDate, setSelectedDate] = useState(0);
   const [searchKeyword, setSearchKeyword] = useState("");
   const [data, setData] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("/api/booth-cards", {
+        const response = await axios.get("http://3.39.80.38:8081/api/booth-cards", {
           params: {
             date: dates[selectedDate],
             category: apiCategories[categories[selectedCategory]],
@@ -44,7 +46,7 @@ const Intro = () => {
       <img id="background" src={`${process.env.PUBLIC_URL}/images/background.png`} alt="background" />
 
       <I.Header>
-        <img id="back" src={`${process.env.PUBLIC_URL}/images/back.png`} alt="back" />
+        <img id="back" src={`${process.env.PUBLIC_URL}/images/back.png`} alt="back" onClick={() => navigate("/MainPage")} />
         <I.Title>즐겨보솜</I.Title>
         <img id="scrap" src={`${process.env.PUBLIC_URL}/images/scrap.png`} alt="scrap" />
       </I.Header>
