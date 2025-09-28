@@ -22,24 +22,25 @@ const Intro = () => {
   const [searchKeyword, setSearchKeyword] = useState("");
   const [data, setData] = useState([]);
   const navigate = useNavigate();
+  const API_BASE = "https://dwu-festival2025.com";
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://3.39.80.38:8081/api/booth-cards", {
+        const response = await axios.get(`${API_BASE}/api/booth-cards`, {
           params: {
             date: dates[selectedDate],
             category: apiCategories[categories[selectedCategory]],
-            q: searchKeyword,
           },
         });
         setData(response.data);
+        console.log("API response:", JSON.stringify(response.data, null, 2));
       } catch (error) {
         console.error(error);
       }
     };
     fetchData();
-  }, [selectedCategory, selectedDate, searchKeyword]);
+  }, [selectedCategory, selectedDate]);
 
   return (
     <I.Container>
