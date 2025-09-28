@@ -22,7 +22,7 @@ const Intro = () => {
   const [searchKeyword, setSearchKeyword] = useState("");
   const [data, setData] = useState([]);
   const navigate = useNavigate();
-  const API_BASE = "https://dwu-festival2025.com";
+  const API_BASE = "http://dev.dwu-festival2025.com:8081";
 
   useEffect(() => {
     const fetchData = async () => {
