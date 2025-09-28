@@ -11,21 +11,27 @@ const GangwonFont = css`
 
 export const Container = styled.div`
 ${GangwonFont}
+font-family: "GangwonEduOTF";
   position: relative;
   margin: 0 auto;
   margin-top: 0px;
-  min-height: 100vh;
+  height: 100vh;
   padding: 0; /* 불필요한 패딩 제거 */
   box-sizing: border-box; /* 패딩이 width에 포함되도록 설정 */
   display: flex;
   flex-direction: column;
-  width: 393px;
+  width: 100%; /* 화면 크기에 맞추기 */
+  max-width: 393px;
+  min-width: 320px;
   flex-shrink: 0;
-  padding-bottom: 105px;
+  padding-top: 80px;
+
   align-items: center;
   /* 여기까지 공통 복붙 */
-  background: linear-gradient(180deg, #4F95D1 0%, #ADCBF0 41.83%, #F0E6F2 95.19%);
-   #background {
+
+  background: linear-gradient(180deg, #4f95d1 0%, #adcbf0 41.83%, #f0e6f2 95.19%);
+
+  #background {
     width: 393px;
     object-fit: cover;
     position: fixed;
@@ -35,13 +41,15 @@ ${GangwonFont}
 export const Nav = styled.div`
   width: 393px;
   height: 105px;
-  position: fixed;
   display: flex;
-  bottom: 0;
+  position: relative;
   z-index: 100;
+  margin-top: auto;
+  align-items: center;
+  justify-content: center;
 
   img {
-    width: 393px;
+    width: 100%;
     height: 105px;
   }
 
@@ -62,7 +70,6 @@ export const Text = styled.div`
 color: rgba(255, 255, 255, 0.80);
 text-align: center;
 text-shadow: 0 0 5px rgba(255, 255, 255, 0.80);
-font-family: "GangwonEduOTF";
 font-size: 20px;
 font-style: normal;
 font-weight: 400;
@@ -85,7 +92,7 @@ font-size: 20px;
 font-style: normal;
 font-weight: 300;
 backdrop-filter: blur(10px);
-margin-top: 670px;
+margin-top: 480px;
 display: flex;
 align-items: center;
 justify-content: center;

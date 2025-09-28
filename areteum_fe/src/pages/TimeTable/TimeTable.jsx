@@ -50,7 +50,7 @@ const TimeTable = () => {
         <img
             src={`${process.env.PUBLIC_URL}/images/${selectedDate === 0 ? 'train.png' : 'train2.png'}`}
             alt="train"
-            width={selectedDate===0 ? "342px" : "344px"}
+            width={selectedDate===0 ? "343px" : "344px"}
         />
       </T.TableWrapper>
       <T.Alarm>
@@ -60,9 +60,13 @@ const TimeTable = () => {
         <span style={{color:" #E37AAD", lineHeight:"2"}}>12:00 - 22:00 운영</span><br></br>
         <span style={{lineHeight:"2.8"}}>푸드트럭</span><br></br>
         축제운영위원회 프로그램<br></br>
-        <span style={{fontWeight:"400"}}>&lt;솜샷원킬&gt; &lt;솜띵샵&gt; &lt;폼폼솜솜&gt;<br></br></span>
+        <span style={{fontWeight:"400"}}>&lt;솜꾸존&gt; &lt;솜띵샵&gt; &lt;폼폼솜솜&gt;<br></br></span>
         <span style={{fontWeight:"400"}}>&lt;개구리 공주의 저주를 풀어라!&gt;</span>
       </T.AlarmFood>
+      <T.AlarmText>
+        기재된 시간은 부스 필수 운영 시간이며,<br></br> 
+        조기 오픈하거나 연장 운영될 수 있습니다.
+      </T.AlarmText>
       <T.Firework>
         <img
             src={`${process.env.PUBLIC_URL}/images/timetableFirework.png`}

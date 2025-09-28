@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import * as M from "../MainPage/StyledMainPage";
 
 const MainPage = () => {
+    const navigate = useNavigate();
 
     return (
         <M.Container>
@@ -31,15 +32,15 @@ const MainPage = () => {
                     <img src={`${process.env.PUBLIC_URL}/images/MainPage/MainElement/MainFlyM.png`} className="flyM" />
                 </M.CloudsBottom>
                 <M.Wheel>
-                    <img src={`${process.env.PUBLIC_URL}/images//MainPage/Mainwheel/MainWheel.png`} className="wheelBase" />
+                    <img src={`${process.env.PUBLIC_URL}/images/MainPage/MainWheel/MainWheel.png`} className="wheelBase" />
 
                     <div className="wheelButtons">
                         <M.NavSom>
-                            <img src={`${process.env.PUBLIC_URL}/images/MainPage/Mainwheel/MainTimetable.png`} className="timeTable" />
-                            <img src={`${process.env.PUBLIC_URL}/images/MainPage/MainWheel/MainBoothinfo.png`} className="boothInfo" />
-                            <img src={`${process.env.PUBLIC_URL}/images/MainPage/MainWheel/MainBoothArr.png`} className="boothArray" />
-                            <img src={`${process.env.PUBLIC_URL}/images/MainPage/MainWheel/MainSomtalk.png`} className="somTalk" />
-                            <img src={`${process.env.PUBLIC_URL}/images/MainPage/MainWheel/MainMakers.png`} className="makers" />
+                            <img src={`${process.env.PUBLIC_URL}/images/MainPage/MainWheel/MainTimeTable.png`} className="timeTable" onClick={() => navigate("/timeTable")} />
+                            <img src={`${process.env.PUBLIC_URL}/images/MainPage/MainWheel/MainBoothInfo.png`} className="boothInfo" onClick={() => navigate("/booth")} />
+                            <img src={`${process.env.PUBLIC_URL}/images/MainPage/MainWheel/MainBoothArr.png`} className="boothArray" onClick={() => navigate("/BoothArray")} />
+                            <img src={`${process.env.PUBLIC_URL}/images/MainPage/MainWheel/MainSomTalk.png`} className="somTalk" onClick={() => navigate("/somTalk")} />
+                            <img src={`${process.env.PUBLIC_URL}/images/MainPage/MainWheel/MainMakers.png`} className="makers" onClick={() => navigate("/makersInfo")} />
                         </M.NavSom>
                     </div>
                 </M.Wheel>

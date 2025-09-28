@@ -8,10 +8,18 @@ import * as I from "../../styles/StyledMakersInfo";
 const MakersInfo = () => {
   const [activeTab, setActiveTab] = useState("menu1");
 
+  const navigate = useNavigate();
+
   //탭 바 클릭 시 배경 이미지 동적 설정
   const backgroundStyle = () => {
     switch (activeTab) {
       case "menu1":
+        return {
+          backgroundImage: `
+                        url(${process.env.PUBLIC_URL}/images/maker-background1.png),
+                        linear-gradient(180deg, #B0E1FF 12.11%, #C9D8FF 56.05%, #FFE2F9 100%)
+                    `,
+        };
       case "menu2":
         return {
           backgroundImage: `
@@ -52,6 +60,7 @@ const MakersInfo = () => {
             id="back"
             src={`${process.env.PUBLIC_URL}/images/back.png`}
             alt="back"
+            onClick={() => navigate("/mainPage")}
           />
           <I.Title>만든이들</I.Title>
           <img

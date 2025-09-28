@@ -35,6 +35,11 @@ const GlobalStyle = createGlobalStyle`
       font-weight: normal;
   }
 
+    @font-face {
+      font-family: 'Great Vibes';
+      src: url('/fonts/GreatVibes-Regular.ttf') format('truetype');
+      font-weight: normal;
+  }
 
   body {
     background-color: #f0f0f0;
