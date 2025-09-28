@@ -14,6 +14,10 @@ const GlobalStyle = createGlobalStyle`
     overflow-x: hidden;
   }
 
+  body::-webkit-scrollbar {
+  display: none;               /* Chrome/Safari/Webkit */
+}
+
   @font-face {
     font-family: 'GangwonEduOTF';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFLightA.woff') format('woff');
