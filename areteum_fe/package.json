@@ -43,5 +43,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://dev.dwu-festival2025.com:8081"
+  "proxy": "https://dev.dwu-festival2025.com:8443"
 }

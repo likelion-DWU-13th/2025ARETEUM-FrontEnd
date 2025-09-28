@@ -1,23 +1,64 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import * as C from "../../styles/StyledBoothComponents";
 
-const Components = () => {
+const STORAGE_KEY = "scrapBooths";
+
+const BoothComponent = ({ item }) => {
+  const [isScrapped, setIsScrapped] = useState(false);
+
+  useEffect(() => {
+    if (!item) return;
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) {
+      const scrappedList = JSON.parse(saved);
+      setIsScrapped(scrappedList.includes(item.boothId));
+    }
+  }, [item]);
+
+  if (!item) return null;
+
+  const { boothId, name, location, startTime, endTime, category } = item;
+  const displayTitle = name.length > 22 ? name.slice(0, 24) + "..." : name;
+
+  const toggleScrap = () => {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    let scrappedList = saved ? JSON.parse(saved) : [];
+
+    if (scrappedList.includes(boothId)) {
+      scrappedList = scrappedList.filter((scrapId) => scrapId !== boothId);
+      setIsScrapped(false);
+      console.log("스크랩 해제 완료 - id removed:", boothId);
+    } else {
+      scrappedList.push(boothId);
+      setIsScrapped(true);
+      console.log("스크랩 완료 - id added:", boothId);
+    }
+
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(scrappedList));
+    console.log("After toggle, saved list:", JSON.stringify(scrappedList));
+  };
+
   return (
     <C.Components>
-      <img id="scrap" src={`${process.env.PUBLIC_URL}/images/boothScrap.svg`} alt="scrap" />
-      <C.Category>플리마켓</C.Category>
-      <C.Title>!déal</C.Title>
+      <img
+        id="scrap"
+        src={isScrapped ? `${process.env.PUBLIC_URL}/images/boothScrap.svg` : `${process.env.PUBLIC_URL}/images/boothScrap_w.png`}
+        alt="scrap"
+        onClick={toggleScrap}
+        style={{ cursor: "pointer" }}
+      />
+      <C.Category>{category}</C.Category>
+      <C.Title>{displayTitle}</C.Title>
       <C.Bar>
         <img src={`${process.env.PUBLIC_URL}/images/location.svg`} alt="location" />
-        <C.Text>운동장</C.Text>
+        <C.Text>{location}</C.Text>
       </C.Bar>
       <C.Bar>
         <img src={`${process.env.PUBLIC_URL}/images/time.svg`} alt="time" />
-        <C.Text>12:00~22:00</C.Text>
+        <C.Text>{startTime && endTime ? `${startTime}~${endTime}` : "시간 미정"}</C.Text>
       </C.Bar>
     </C.Components>
   );
 };
 
-export default Components;
+export default BoothComponent;

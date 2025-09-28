@@ -42,17 +42,24 @@ export const Category = styled.div`
 `;
 
 export const Title = styled.div`
-  margin: 10px 0;
+  margin: 8px 0;
   color: #000;
   font-family: Pretendard;
   font-size: 15px;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
+
+  display: -webkit-box; /* Flexbox가 아니라 text 클램프용 박스 */
+  -webkit-line-clamp: 3; /* 최대 3줄 */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-word; /* 단어가 길면 줄바꿈 */
 `;
 
 export const Bar = styled.div`
-  height: 25px;
+  height: 21px;
   width: 165px;
   display: flex;
   align-items: center;
