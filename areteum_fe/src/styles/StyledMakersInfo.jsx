@@ -16,7 +16,7 @@ export const Container = styled.div`
   max-width: 393px;
   min-height: 100vh;
   overflow: visible;
-  background-attachment: fixed;
+  background-attachment: scroll;
   background-size: cover;
   background-position: center -18px;
   background-repeat: no-repeat;
