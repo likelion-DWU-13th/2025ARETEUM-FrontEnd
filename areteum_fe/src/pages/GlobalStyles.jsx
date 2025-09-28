@@ -15,6 +15,13 @@ const GlobalStyle = createGlobalStyle`
   }
 
   @font-face {
+    font-family: 'GangwonEduOTF';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFLightA.woff') format('woff');
+    font-weight: 400;
+    font-display: swap;
+  }
+
+  @font-face {
   font-family: 'GangwonEduAll';
   src: url('/fonts/GangwonEduAll-Light.ttf') format('truetype');
   font-weight: 400;
@@ -46,7 +53,7 @@ const GlobalStyle = createGlobalStyle`
     height: 100%;
     font-family: 'GangwonEduAll', 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont,
       system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo',
-      'Noto Sans KR', 'Malgun Gothic', 'Pyeojin Gothic','Cafe24Ohsquare', 'SeoulAlrim',sans-serif;
+      'Noto Sans KR', 'Malgun Gothic', 'Pyeojin Gothic','Cafe24Ohsquare', 'SeoulAlrim',sans-serif,'GangwonEduOTF';
     font-weight: 400;
   }
 

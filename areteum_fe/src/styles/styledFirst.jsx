@@ -1,16 +1,6 @@
 import { styled,css } from "styled-components";
 
-const GangwonFont = css`
- @font-face {
-    font-family: 'GangwonEduOTF';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFLightA.woff') format('woff');
-    font-weight: 400;
-    font-display: swap;
-}
-`;
-
 export const Container = styled.div`
-${GangwonFont}
 font-family: "GangwonEduOTF";
   position: relative;
   margin: 0 auto;
