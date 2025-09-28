@@ -41,6 +41,11 @@ export const Header = styled.div`
   top: 0;
   left: 50%;
   transform: translateX(-50%);
+
+  #scrap {
+    width: 21px;
+    height: 20px;
+  }
 `; /* 공통 복붙 */
 
 export const Title = styled.div`
@@ -222,7 +227,7 @@ export const Count = styled.div`
 export const Content_B = styled.div`
   width: 100%;
   flex: 1 1 auto;
-  display: grid;
+  display: ${({ isEmpty }) => (isEmpty ? "block" : "grid")};
   padding: 10px;
   padding-top: 0;
   grid-template-columns: repeat(2, 1fr);
@@ -239,4 +244,20 @@ export const Content = styled.div`
   &::-webkit-scrollbar {
     display: none; /* 크롬/사파리 스크롤바 제거 */
   }
+`;
+
+export const Explan = styled.div`
+  height: 100px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: rgba(0, 0, 0, 0.8);
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 `;

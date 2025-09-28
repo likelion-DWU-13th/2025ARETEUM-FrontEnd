@@ -20,9 +20,13 @@ const Intro = () => {
   const [selectedCategory, setSelectedCategory] = useState(0);
   const [selectedDate, setSelectedDate] = useState(0);
   const [searchKeyword, setSearchKeyword] = useState("");
-  const [data, setData] = useState([]);
+  const [booths, setBooths] = useState([]);
+  const [totalCount, setTotalCount] = useState(0);
+  const [isShowScrapOnly, setIsShowScrapOnly] = useState(false); // 스크랩 필터링 상태
+  const [scrapList, setScrapList] = useState([]); // 스크랩된 부스 ID 목록
+
   const navigate = useNavigate();
-  const API_BASE = "http://dev.dwu-festival2025.com:8081";
+  const API_BASE = "https://dev.dwu-festival2025.com:8443";
 
   useEffect(() => {
     const fetchData = async () => {
@@ -31,16 +35,45 @@ const Intro = () => {
           params: {
             date: dates[selectedDate],
             category: apiCategories[categories[selectedCategory]],
+            q: searchKeyword || undefined,
           },
         });
-        setData(response.data);
+
+        setBooths(response.data.booths ?? []);
+        setTotalCount(response.data.totalCount ?? 0);
         console.log("API response:", JSON.stringify(response.data, null, 2));
       } catch (error) {
         console.error(error);
       }
     };
+
     fetchData();
-  }, [selectedCategory, selectedDate]);
+  }, [selectedCategory, selectedDate, searchKeyword]);
+
+  useEffect(() => {
+    // 로컬 스토리지에서 스크랩 ID 리스트 불러오기
+    const saved = localStorage.getItem("scrapBooths");
+    if (saved) {
+      setScrapList(JSON.parse(saved));
+    } else {
+      setScrapList([]);
+    }
+  }, []);
+
+  const toggleShowScrapOnly = () => {
+    // 필터 상태 토글
+    setIsShowScrapOnly(!isShowScrapOnly);
+    // 최신 스크랩 리스트도 재로드 (필요시)
+    const saved = localStorage.getItem("scrapBooths");
+    if (saved) {
+      setScrapList(JSON.parse(saved));
+    } else {
+      setScrapList([]);
+    }
+  };
+
+  // 필터링 적용된 부스 목록
+  const displayedBooths = isShowScrapOnly ? booths.filter((item) => scrapList.includes(item.boothId)) : booths;
 
   return (
     <I.Container>
@@ -49,7 +82,13 @@ const Intro = () => {
       <I.Header>
         <img id="back" src={`${process.env.PUBLIC_URL}/images/back.png`} alt="back" onClick={() => navigate("/MainPage")} />
         <I.Title>즐겨보솜</I.Title>
-        <img id="scrap" src={`${process.env.PUBLIC_URL}/images/scrap.png`} alt="scrap" />
+        <img
+          id="scrap"
+          src={isShowScrapOnly ? `${process.env.PUBLIC_URL}/images/boothScrap.svg` : `${process.env.PUBLIC_URL}/images/scrap.png`}
+          alt="scrap"
+          onClick={toggleShowScrapOnly}
+          style={{ cursor: "pointer" }}
+        />
       </I.Header>
 
       <I.DateWrapper>
@@ -74,16 +113,15 @@ const Intro = () => {
         ))}
       </I.CategoryWrapper>
 
-      <I.Count>총 {data.length}건의 항목</I.Count>
+      <I.Count>총 {displayedBooths.length}건의 항목</I.Count>
 
       <I.Content>
-        <I.Content_B>
-          {data.map((item, index) => (
-            <Components key={index} item={item} />
-          ))}
+        <I.Content_B isEmpty={displayedBooths.length === 0}>
+          {displayedBooths.length === 0 ? <I.Explan>검색 결과가 없습니다.</I.Explan> : displayedBooths.map((item) => <Components key={item.boothId} item={item} />)}
         </I.Content_B>
+
         <I.Nav>
-          <img id="footer" src={`${process.env.PUBLIC_URL}/images/footer.png`} alt="test" />
+          <img id="footer" src={`${process.env.PUBLIC_URL}/images/footer.png`} alt="footer" />
           <div id="mark">DONGDUK WOMEN’S UNIVERSITY</div>
         </I.Nav>
       </I.Content>
