@@ -14,6 +14,10 @@ const GlobalStyle = createGlobalStyle`
     overflow-x: hidden;
   }
 
+  body::-webkit-scrollbar {
+  display: none;               /* Chrome/Safari/Webkit */
+}
+
   @font-face {
   font-family: 'GangwonEduAll';
   src: url('/fonts/GangwonEduAll-Light.ttf') format('truetype');
