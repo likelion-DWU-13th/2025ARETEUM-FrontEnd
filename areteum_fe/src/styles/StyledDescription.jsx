@@ -124,6 +124,7 @@ font-style: normal;
 font-weight: 600;
 line-height: normal;
 width: 313px;
+margin-top: 50px;
 `
 
 export const CategoryName = styled.div`
