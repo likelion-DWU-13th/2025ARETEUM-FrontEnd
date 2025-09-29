@@ -53,7 +53,7 @@ const Somtalk = () => {
 
   useEffect(() => {
     const client = new Client({
-      webSocketFactory: () => new SockJS(`${API_BASE}/ws`), // ✅ SockJS로 연결
+      webSocketFactory: () => new SockJS(`${API_BASE}/ws`), // SockJS로 연결
       reconnectDelay: 5000,
       onConnect: () => {
         client.subscribe("/topic/chat", (msg) => {
@@ -154,7 +154,7 @@ const Somtalk = () => {
     <S.Container>
       <img
         id="background"
-        src={`${process.env.PUBLIC_URL}/images/background.PNG`}
+        src={`${process.env.PUBLIC_URL}/images/background.png`}
         alt="background"
       />
       <S.Header>
