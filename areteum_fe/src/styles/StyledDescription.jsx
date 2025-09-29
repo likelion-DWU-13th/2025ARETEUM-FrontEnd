@@ -16,6 +16,11 @@ export const Container = styled.div`
   align-items: center;
   /* 여기까지 공통 복붙 */
 
+  width: 100%; 
+  max-width: 393px;
+  min-height: 100vh;
+  overflow: visible;
+  
   background: linear-gradient(
     180deg,
     #4f95d1 0%,
@@ -178,17 +183,17 @@ export const Tab1Bg = styled.div`
  position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%); /* 글자 정중앙에 배치 */
-  width: 110%; /* 글자보다 살짝 크게 */
+  transform: translate(-50%, -50%); 
+  width: 110%; 
   height: 120%;
-  border-radius: 6px;
+  border-radius: 9999px;
   background: radial-gradient(
     50% 50% at 50% 50%,
     rgba(227, 122, 173, 0.35) 0%,
     rgba(227, 122, 173, 0.2) 100%
   );
-  filter: drop-shadow(0 0 10px rgba(227, 122, 173, 0.3)) blur(2.5px);
-  z-index: -1; /* 글자 뒤로 */
+  filter: drop-shadow(0 0 10px rgba(227, 122, 173, 0.3)) blur(5.5px);
+  z-index: -1;
 `
 
 export const Tab2 = styled.div`
