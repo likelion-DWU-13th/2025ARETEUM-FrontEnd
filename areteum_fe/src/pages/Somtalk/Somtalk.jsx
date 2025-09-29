@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Client } from "@stomp/stompjs";
-// import SockJS from "sockjs-client";
+import SockJS from "sockjs-client";
 import * as S from "../../styles/StyledSomtalk";
 
 const Somtalk = () => {
@@ -50,10 +50,11 @@ const Somtalk = () => {
   };
 
   //톡 서버 연결
+
   useEffect(() => {
     const client = new Client({
-      brokerURL: `${API_BASE}/ws`, //배포 수정
-      reconnectDelay: 5000, // 자동 재연결
+      webSocketFactory: () => new SockJS(`${API_BASE}/ws`), // ✅ SockJS로 연결
+      reconnectDelay: 5000,
       onConnect: () => {
         client.subscribe("/topic/chat", (msg) => {
           const body = JSON.parse(msg.body);
@@ -62,35 +63,30 @@ const Somtalk = () => {
           setMessages((prev) => [...prev, { ...body, time }]);
         });
       },
-      debug: (str) => {
-        console.log("STOMP DEBUG:", str);
-      },
+      debug: (str) => console.log("STOMP DEBUG:", str),
     });
 
     client.activate();
     stompClient.current = client;
-
     return () => client.deactivate();
   }, []);
 
   // 메세지 전송
-  const send = async () => {
+  const send = () => {
     const text = input.trim();
     if (!text) return;
 
     if (!stompClient.current || !stompClient.current.connected) {
-      console.warn("아직 서버랑 연결 안 됨!");
+      console.warn("아직 서버와 연결되지 않았습니다.");
       return;
     }
 
-    const message = {
-      clientId: myId.current,
-      content: text,
-    };
-
     stompClient.current.publish({
       destination: "/app/chat",
-      body: JSON.stringify(message),
+      body: JSON.stringify({
+        clientId: myId.current,
+        content: text,
+      }),
     });
 
     setInput("");
