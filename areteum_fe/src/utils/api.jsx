@@ -17,6 +17,7 @@ export const getBoothData = async (boothId) => {
         }
 
         const data = await res.json();
+        console.log("api: ", data)
         return data;
 
     } catch (error) {
