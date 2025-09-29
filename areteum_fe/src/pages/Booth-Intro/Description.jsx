@@ -53,7 +53,7 @@ const Description = () => {
 
   return (
     <D.Container>
-      <img id="background" src={`${process.env.PUBLIC_URL}/images/detail_bg.png`} alt="background" />
+      <img id="background" src={`${process.env.PUBLIC_URL}/images/detail_background.png`} alt="background" />
       <D.Header>
         <img id="back" src={`${process.env.PUBLIC_URL}/images/back.png`} alt="back" />
         <D.Title>{finalBoothData.category} 상세</D.Title>
