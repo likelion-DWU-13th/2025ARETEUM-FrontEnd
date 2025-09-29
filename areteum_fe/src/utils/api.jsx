@@ -1,8 +1,6 @@
 // src/utils/api.js
 
 /**
- * 부스 ID를 기준으로 백엔드 API에서 기본 정보를 가져오는 함수
- * 하드코딩된 세부 정보 로직은 Description.jsx에서 처리합니다.
  * @param {string} boothId - 찾을 부스
  * @returns {Promise<object | null} 부스 객체 or null
  */

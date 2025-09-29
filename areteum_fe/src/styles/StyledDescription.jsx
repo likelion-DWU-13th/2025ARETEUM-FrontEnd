@@ -123,7 +123,7 @@ font-size: 25px;
 font-style: normal;
 font-weight: 600;
 line-height: normal;
-width: 303px;
+width: 313px;
 `
 
 export const CategoryName = styled.div`
@@ -225,16 +225,20 @@ font-weight: 400;
 line-height: normal;
 `
 
-// src/styles/StyledDescription.js 에 추가 (InfoItem 아래에 추가하는 것을 권장)
+export const Dote = styled.div`
+width: 5px;
+height: 5px;
+flex-shrink: 0;
+aspect-ratio: 1/1;
+color: #E37AAD;
+margin-right: 3px;
+display: flex;
+`
 
-// 메뉴 항목 전체를 감싸는 Flex 컨테이너
 export const MenuItem = styled.div`
     display: flex;
     justify-content: space-between; /* 양 끝 정렬 */
     align-items: center;
-    gap: 10px; /* 이름, 대시, 가격 사이의 기본 간격 */
-    
-    /* 폰트 스타일 (InfoItem과 유사하게 설정) */
     color: #000;
     font-family: Pretendard;
     font-size: 10px;
@@ -242,26 +246,71 @@ export const MenuItem = styled.div`
     line-height: normal;
 `;
 
-// 메뉴 이름 (왼쪽)
+export const MenuSubTitle = styled.div`
+color: #E37AAD;
+font-family: Pretendard;
+font-size: 15px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+margin-bottom: 10px;
+`
+
+export const SetName = styled.div`
+color: #000;
+font-family: Pretendard;
+font-size: 10px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+display: flex;
+`
+
+export const SetMenuName = styled.div`
+color: #000;
+font-family: Pretendard;
+font-size: 10px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+margin-left: 8px;
+`
+
 export const MenuName = styled.span`
-    /* 점 아이콘이 있다면 이 스타일을 적용할 수 있습니다. */
-    /* 현재는 D.InfoItem 내부에서 직접 점 아이콘을 넣는 것이 더 간단합니다. */
-    flex-shrink: 0; /* 내용이 길어도 줄어들지 않도록 설정 */
-    display: flex;
-    gap: 5px;
+color: #000;
+font-family: Pretendard;
+font-size: 10px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+display: flex;
 `;
 
-// 대시를 채우는 컴포넌트 (가운데)
+// 대시
 export const MenuDash = styled.span`
-    flex-grow: 1; /* 남은 공간을 모두 채움 */
-    border-bottom: 1px dashed rgba(0, 0, 0, 0.3); /* 점선 대시 */
-    margin: 0 5px; /* 대시 양쪽 여백 */
-    height: 1px; /* 점선을 위한 높이 확보 */
+    flex-grow: 1; 
+    border-bottom: 1px dashed rgba(0, 0, 0, 0.3); 
+    margin: 0 10px; 
+    height: 1px;
 `;
 
 // 가격 (오른쪽)
 export const MenuPrice = styled.span`
-    flex-shrink: 0; /* 줄어들지 않도록 설정 */
-    font-weight: 600; /* 가격 강조 */
-    white-space: nowrap; /* 가격이 줄바꿈 되지 않도록 방지 */
+color: #000;
+text-align: right;
+font-family: Pretendard;
+font-size: 10px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
 `;
+
+export const Note = styled.div`
+color: #E37AAD;
+font-family: Pretendard;
+font-size: 10px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+margin-left: 8px;
+`

@@ -33,6 +33,14 @@ const Description = () => {
     if (hardcodedDetail) {
       finalBoothData = { ...finalBoothData, ...hardcodedDetail };
     }
+
+    if (!finalBoothData.organizer) {
+      finalBoothData.organizer = "개인"
+    }
+
+    if (finalBoothData.subCategory === "없음"){
+      finalBoothData.subCategory = finalBoothData.category
+    }
   }
 
   if (isLoading) {
@@ -76,19 +84,21 @@ const Description = () => {
             organizer={finalBoothData.organizer}
             mapImageUrl={finalBoothData.mapImageUrl}
             description={finalBoothData.description}
+            timeNote={finalBoothData.timeNote}
           />
         ) : <DetailInfo 
-        category={finalBoothData.category}
-        timeline={finalBoothData.timeline} 
-        menus={finalBoothData.menus} 
-        products={finalBoothData.products} 
-        notes={finalBoothData.notes}
-        participation={finalBoothData.participation}
-        event={finalBoothData.event}
-        description={finalBoothData.description}
-        mapImageUrl={finalBoothData.mapImageUrl}
-        program={finalBoothData.program}
-        // 기타 세부 정보 필드를 finalBoothData에서 전달합니다.
+            category={finalBoothData.category}
+            timeline={finalBoothData.timeline} 
+            menus={finalBoothData.menus} 
+            setMenus={finalBoothData.setMenus}
+            products={finalBoothData.products} 
+            notes={finalBoothData.notes}
+            participation={finalBoothData.participation}
+            event={finalBoothData.event}
+            description={finalBoothData.description}
+            mapImageUrl={finalBoothData.mapImageUrl}
+            program={finalBoothData.program}
+            wating={finalBoothData.wating}
     />}
           
       </D.DetailWrapper>

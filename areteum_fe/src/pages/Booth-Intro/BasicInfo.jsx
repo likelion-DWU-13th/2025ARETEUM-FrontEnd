@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as D from "../../styles/StyledDescription";
+import { time } from "framer-motion";
 
-const BasicInfo = ({ schedules, detailLocation, organizer, mapImageUrl, description }) => {
+const BasicInfo = ({ schedules, detailLocation, organizer, mapImageUrl, description, timeNote }) => {
     
     const formatTime = (time) => {
       if (!time || typeof time.hour === 'undefined' || typeof time.minute === 'undefined') {
@@ -24,7 +25,7 @@ const BasicInfo = ({ schedules, detailLocation, organizer, mapImageUrl, descript
   // 2. 시간 포맷
   const mergedTimes = schedules && schedules.length > 0
       ? schedules.map(schedule => 
-          `${formatTime(schedule.start)}~${formatTime(schedule.end)}`
+          `${schedule.start}~${schedule.end}`
         ).join(' / ')
       : '시간 정보 없음'; 
 
@@ -38,14 +39,18 @@ const BasicInfo = ({ schedules, detailLocation, organizer, mapImageUrl, descript
                     <D.InfoItem>
                         <img src={`${process.env.PUBLIC_URL}/images/calendar.svg`} alt="calendar" />
                         {mergedDates}
+                        
                     </D.InfoItem>
                     
                     {/* 시간 */}
                     <D.InfoItem>
                         <img src={`${process.env.PUBLIC_URL}/images/time.svg`} alt="time" />
                         {mergedTimes}
+                        
                     </D.InfoItem>
-                    
+                    <D.Note style={{ marginLeft: "18px", marginTop: "-10px" }}>
+                        {timeNote}
+                    </D.Note>
                     {/* 위치 */}
                     <D.InfoItem>
                         <img src={`${process.env.PUBLIC_URL}/images/location.svg`} alt="location" />
@@ -67,7 +72,6 @@ const BasicInfo = ({ schedules, detailLocation, organizer, mapImageUrl, descript
           <D.InfoWrapper>
               <D.SubTitle>
                 위치 상세
-                
             </D.SubTitle>
               <D.InfoBox style={{ display: "flex", alignItems: "center", justifyContent: "center", padding: "0"}}>
                 <img src={mapImageUrl} style={{ width: "305px", height: "230px" }}/>
