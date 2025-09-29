@@ -4,24 +4,22 @@ export const Container = styled.div`
   position: relative;
   margin: 0 auto;
   margin-top: 0px;
-  // min-height: 100vh;
   height: 100vh;
   padding: 0; /* 불필요한 패딩 제거 */
   box-sizing: border-box; /* 패딩이 width에 포함되도록 설정 */
   display: flex;
   flex-direction: column;
-  width: 393px;
+  width: 100%; /* 화면 크기에 맞추기 */
+  max-width: 393px;
+  min-width: 320px;
   flex-shrink: 0;
-  padding-bottom: 105px;
+  padding-top: 80px;
+  overflow: visible;
+
   align-items: center;
   /* 여기까지 공통 복붙 */
 
-  background: linear-gradient(
-    180deg,
-    #4f95d1 0%,
-    #adcbf0 41.83%,
-    #f0e6f2 95.19%
-  );
+  background: linear-gradient(180deg, #4f95d1 0%, #adcbf0 41.83%, #f0e6f2 95.19%);
 
   #background {
     width: 393px;
@@ -33,14 +31,18 @@ export const Container = styled.div`
 
 export const Header = styled.div`
   height: 80px;
-  width: 100%;
+  width: 393px;
   display: flex;
   flex-direction: row;
   padding: 20px;
   align-items: center;
-  position: relative;
-  z-index: 10;
-  /* 공통 복붙 */
+  justify-content: space-between;
+  z-index: 1000;
+
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
 
   img {
     cursor: pointer;
@@ -50,12 +52,13 @@ export const Header = styled.div`
 export const Title = styled.div`
   display: flex;
   align-items: center;
+
   color: #fff;
   text-align: center;
   font-family: Pretendard;
   font-size: 20px;
   font-style: normal;
-  font-weight: 500;
+  font-weight: 700;
   line-height: normal;
   /* 공통 복붙 */
   padding: 37%;
@@ -63,20 +66,22 @@ export const Title = styled.div`
 
 export const Nav = styled.div`
   width: 393px;
-  height: 15px;
-  position: fixed;
+  height: 105px;
   display: flex;
-  bottom: 0;
+  position: relative;
   z-index: 100;
+  margin-top: 53px;
+  align-items: center;
+  justify-content: center;
 
   img {
-    width: 393px;
+    width: 100%;
     height: 105px;
   }
 
   #mark {
     color: #a74063;
-    font-family: Pyeojin Gothic;
+    font-family: Pretendard;
     font-size: 10px;
     font-style: normal;
     font-weight: 700;

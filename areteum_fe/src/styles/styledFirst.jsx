@@ -1,4 +1,4 @@
-import { styled,css } from "styled-components";
+import { styled, css } from "styled-components";
 
 export const Container = styled.div`
 font-family: "GangwonEduOTF";
@@ -18,7 +18,11 @@ font-family: "GangwonEduOTF";
 
   align-items: center;
   /* 여기까지 공통 복붙 */
-
+width: 100%; 
+  max-width: 393px;
+  min-height: 100vh;
+  overflow: visible;
+  
   background: linear-gradient(180deg, #4f95d1 0%, #adcbf0 41.83%, #f0e6f2 95.19%);
 
   #background {
