@@ -26,7 +26,7 @@ const GlobalStyle = createGlobalStyle`
 
   @font-face {
   font-family: 'GangwonEduAll';
-  src: url('/fonts/GangwonEduAll-Light.v2.woff2') format('woff2');
+  src: url('/fonts/GangwonEduAll-Light.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
   }
