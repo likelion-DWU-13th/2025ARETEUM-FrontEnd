@@ -85,7 +85,7 @@ export const Nav = styled.div`
 
   #mark {
     color: #a74063;
-    font-family: Pyeojin Gothic;
+    font-family: Pretendard;
     font-size: 10px;
     font-style: normal;
     font-weight: 700;
