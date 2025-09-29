@@ -5,8 +5,11 @@
  * @returns {Promise<object | null} 부스 객체 or null
  */
 export const getBoothData = async (boothId) => {
+
+    const API_BASE = "https://dev.dwu-festival2025.com:8443"
+
     try {
-        const res = await fetch(`/api/booths/${boothId}`);
+        const res = await fetch(`${API_BASE}/api/booths/${boothId}`);
         
         if (!res.ok) {
             console.warn(`API 응답 오류: ${res.status} - ID: ${boothId}`);
