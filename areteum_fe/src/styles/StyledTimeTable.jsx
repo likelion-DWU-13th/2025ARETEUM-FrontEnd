@@ -84,6 +84,7 @@ export const Nav = styled.div`
   }
 
   #mark {
+  
     color: #a74063;
     font-family: Pretendard;
     font-size: 10px;
