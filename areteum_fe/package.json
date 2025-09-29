@@ -43,5 +43,9 @@
       "last 1 safari version"
     ]
   },
+<<<<<<< HEAD
+  "proxy": "http://localhost:9090"
+=======
   "proxy": "https://dev.dwu-festival2025.com:8443"
+>>>>>>> f98631abccc70ea20bbe94b8a9adc4320bd0b266
 }
