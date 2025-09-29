@@ -11,30 +11,39 @@ export const Container = styled.div`
   flex-direction: column;
   width: 393px;
   flex-shrink: 0;
+  padding-top: 80px;
   padding-bottom: 105px;
   align-items: center;
   /* 여기까지 공통 복붙 */
 
-  background: linear-gradient(180deg, #4f95d1 0%, #adcbf0 41.83%, #f0e6f2 95.19%);
+  background: linear-gradient(
+    180deg,
+    #4f95d1 0%,
+    #adcbf0 41.83%,
+    #f0e6f2 95.19%
+  );
 
   #background {
     width: 393px;
     object-fit: cover;
     position: fixed;
-    z-index: 1;
   }
 `;
 
 export const Header = styled.div`
   height: 80px;
-  width: 100%;
+  width: 393px;
   display: flex;
   flex-direction: row;
   padding: 20px;
   align-items: center;
   justify-content: space-between;
-  position: relative;
-  z-index: 10;
+  z-index: 1000;
+
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
 `; /* 공통 복붙 */
 
 export const Title = styled.div`
@@ -98,7 +107,7 @@ export const Wrapper = styled.div`
 `
 
 export const DetailWrapper = styled.div`
-margin-top: 90px;
+margin-top: 30px;
 display: flex;
 flex-direction: column;
 align-items: center;
@@ -114,10 +123,13 @@ font-size: 25px;
 font-style: normal;
 font-weight: 600;
 line-height: normal;
+width: 313px;
+margin-top: 50px;
 `
 
 export const CategoryName = styled.div`
-width: 35px;
+padding: 5px;
+display: flex;
 height: 20px;
 flex-shrink: 0;
 border-radius: 15px;
@@ -154,11 +166,29 @@ font-style: normal;
 font-weight: 600;
 line-height: normal;
 cursor: pointer;
+ 
+span {
+    position: relative; 
+    display: inline-block;
+    z-index: 1; 
+  }
 `
 
 export const Tab1Bg = styled.div`
-fill: radial-gradient(50% 50% at 50% 50%, rgba(227, 122, 173, 0.35) 0%, rgba(227, 122, 173, 0.20) 100%);
-filter: drop-shadow(0 0 10px rgba(227, 122, 173, 0.30)) blur(2.5px);
+ position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* 글자 정중앙에 배치 */
+  width: 110%; /* 글자보다 살짝 크게 */
+  height: 120%;
+  border-radius: 6px;
+  background: radial-gradient(
+    50% 50% at 50% 50%,
+    rgba(227, 122, 173, 0.35) 0%,
+    rgba(227, 122, 173, 0.2) 100%
+  );
+  filter: drop-shadow(0 0 10px rgba(227, 122, 173, 0.3)) blur(2.5px);
+  z-index: -1; /* 글자 뒤로 */
 `
 
 export const Tab2 = styled.div`
@@ -173,6 +203,11 @@ font-style: normal;
 font-weight: 600;
 line-height: normal;
 cursor: pointer;
+span {
+    position: relative; 
+    display: inline-block;
+    z-index: 1; 
+  }
 `
 export const InfoWrapper = styled.div`
 display: flex;
@@ -212,4 +247,94 @@ font-size: 10px;
 font-style: normal;
 font-weight: 400;
 line-height: normal;
+`
+
+export const Dote = styled.div`
+width: 5px;
+height: 5px;
+flex-shrink: 0;
+aspect-ratio: 1/1;
+color: #E37AAD;
+margin-right: 3px;
+display: flex;
+`
+
+export const MenuItem = styled.div`
+    display: flex;
+    justify-content: space-between; /* 양 끝 정렬 */
+    align-items: center;
+    color: #000;
+    font-family: Pretendard;
+    font-size: 10px;
+    font-weight: 400;
+    line-height: normal;
+`;
+
+export const MenuSubTitle = styled.div`
+color: #E37AAD;
+font-family: Pretendard;
+font-size: 15px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+margin-bottom: 10px;
+`
+
+export const SetName = styled.div`
+color: #000;
+font-family: Pretendard;
+font-size: 10px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+display: flex;
+`
+
+export const SetMenuName = styled.div`
+color: #000;
+font-family: Pretendard;
+font-size: 10px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+margin-left: 8px;
+`
+
+export const MenuName = styled.span`
+color: #000;
+font-family: Pretendard;
+font-size: 10px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+display: flex;
+`;
+
+// 대시
+export const MenuDash = styled.span`
+    flex-grow: 1; 
+    border-bottom: 1px dashed rgba(0, 0, 0, 0.3); 
+    margin: 0 10px; 
+    height: 1px;
+`;
+
+// 가격 (오른쪽)
+export const MenuPrice = styled.span`
+color: #000;
+text-align: right;
+font-family: Pretendard;
+font-size: 10px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+`;
+
+export const Note = styled.div`
+color: #E37AAD;
+font-family: Pretendard;
+font-size: 10px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+margin-left: 8px;
 `

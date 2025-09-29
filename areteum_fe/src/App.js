@@ -8,6 +8,7 @@ import Somtalk from "./pages/Somtalk/Somtalk";
 import MainPage from "./pages/MainPage/MainPage";
 import First from "./pages/OnBoarding/First";
 import TimeTable from "./pages/TimeTable/TimeTable";
+import Description from "./pages/Booth-Intro/Description";
 import BoothArray from "./pages/BoothArray/BoothArray";
 
 function App() {
@@ -17,7 +18,7 @@ function App() {
       <Routes>
         <Route path="/mainPage" element={<MainPage />} />
         <Route path="/booth" element={<Intro />} />
-        <Route path="/booth-detail" element={<Detail />} />
+        <Route path="/booth-detail/:boothId" element={<Description />} />
         <Route path='/' element={<First />} />
         <Route path="/Somtalk" element={<Somtalk />} />
         <Route path="/makersInfo" element={<MakersInfo />} />

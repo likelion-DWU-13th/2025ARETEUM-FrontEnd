@@ -15,6 +15,8 @@ const Somtalk = () => {
     navigate(-1); // 직전페이지로 이동
   };
 
+  const API_BASE = "https://dev.dwu-festival2025.com:8443";
+
   // 내 아이디 저장
   const myId = useRef(
     localStorage.getItem("myClientId") || `client-${Date.now()}`
@@ -48,43 +50,43 @@ const Somtalk = () => {
   };
 
   //톡 서버 연결
+
   useEffect(() => {
     const client = new Client({
-      // brokerURL: "ws://localhost:8080/ws",
-      webSocketFactory: () => new SockJS("http://localhost:8080/ws"),
+      webSocketFactory: () => new SockJS(`${API_BASE}/ws`), // SockJS로 연결
+      reconnectDelay: 5000,
       onConnect: () => {
         client.subscribe("/topic/chat", (msg) => {
           const body = JSON.parse(msg.body);
-
-          // 서버가 createdAt 주면 파싱, 없으면 현재 시각
           const time =
             timeFromCreatedAt(body.createdAt) ?? formatTime(new Date());
-
           setMessages((prev) => [...prev, { ...body, time }]);
         });
       },
+      debug: (str) => console.log("STOMP DEBUG:", str),
     });
 
     client.activate();
     stompClient.current = client;
-
     return () => client.deactivate();
   }, []);
 
   // 메세지 전송
-  const send = async () => {
+  const send = () => {
     const text = input.trim();
     if (!text) return;
 
-    const message = {
-      clientId: myId.current,
-      content: text,
-    };
+    if (!stompClient.current || !stompClient.current.connected) {
+      console.warn("아직 서버와 연결되지 않았습니다.");
+      return;
+    }
 
-    // 서버로 메시지 전송
     stompClient.current.publish({
       destination: "/app/chat",
-      body: JSON.stringify(message),
+      body: JSON.stringify({
+        clientId: myId.current,
+        content: text,
+      }),
     });
 
     setInput("");
@@ -106,7 +108,7 @@ const Somtalk = () => {
   useEffect(() => {
     const fetchHistory = async () => {
       try {
-        const res = await fetch("/chat/history");
+        const res = await fetch(`${API_BASE}/chat/history`);
 
         if (!res.ok) throw new Error("Failed to fetch");
         const data = await res.json();

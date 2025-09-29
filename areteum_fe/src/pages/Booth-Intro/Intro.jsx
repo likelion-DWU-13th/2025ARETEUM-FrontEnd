@@ -93,10 +93,10 @@ const Intro = () => {
 
       <I.DateWrapper>
         {["9/30", "10/1", "10/2"].map((text, idx) => (
-          <I.Date key={idx} active={selectedDate === idx} onClick={() => setSelectedDate(idx)}>
+          <I.DateItem key={idx} active={selectedDate === idx} onClick={() => setSelectedDate(idx)}>
             <img src={`${process.env.PUBLIC_URL}/images/dateMark.png`} alt="mark" />
-            <div id="text">{text}</div>
-          </I.Date>
+            <div className="date-text">{text}</div>
+          </I.DateItem>
         ))}
       </I.DateWrapper>
 

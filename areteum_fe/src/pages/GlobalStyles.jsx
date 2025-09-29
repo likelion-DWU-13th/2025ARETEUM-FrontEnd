@@ -1,4 +1,3 @@
-// /mnt/data/GlobalStyles.jsx
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
@@ -46,10 +45,17 @@ const GlobalStyle = createGlobalStyle`
       font-weight: normal;
   }
 
-    @font-face {
+  @font-face {
       font-family: 'Great Vibes';
       src: url('/fonts/GreatVibes-Regular.ttf') format('truetype');
       font-weight: normal;
+  }
+
+  @font-face {
+    font-family: 'Pretendard';
+    src: url('/fonts/Pretendard-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
   }
 
   body {
