@@ -16,6 +16,11 @@ export const Container = styled.div`
   align-items: center;
   /* 여기까지 공통 복붙 */
 
+  width: 100%; 
+  max-width: 393px;
+  min-height: 100vh;
+  overflow: visible;
+  
   background: linear-gradient(
     180deg,
     #4f95d1 0%,
@@ -124,6 +129,7 @@ font-style: normal;
 font-weight: 600;
 line-height: normal;
 width: 313px;
+margin-top: 50px;
 `
 
 export const CategoryName = styled.div`
@@ -165,11 +171,29 @@ font-style: normal;
 font-weight: 600;
 line-height: normal;
 cursor: pointer;
+ 
+span {
+    position: relative; 
+    display: inline-block;
+    z-index: 1; 
+  }
 `
 
 export const Tab1Bg = styled.div`
-fill: radial-gradient(50% 50% at 50% 50%, rgba(227, 122, 173, 0.35) 0%, rgba(227, 122, 173, 0.20) 100%);
-filter: drop-shadow(0 0 10px rgba(227, 122, 173, 0.30)) blur(2.5px);
+ position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); 
+  width: 110%; 
+  height: 120%;
+  border-radius: 9999px;
+  background: radial-gradient(
+    50% 50% at 50% 50%,
+    rgba(227, 122, 173, 0.35) 0%,
+    rgba(227, 122, 173, 0.2) 100%
+  );
+  filter: drop-shadow(0 0 10px rgba(227, 122, 173, 0.3)) blur(5.5px);
+  z-index: -1;
 `
 
 export const Tab2 = styled.div`
@@ -184,6 +208,11 @@ font-style: normal;
 font-weight: 600;
 line-height: normal;
 cursor: pointer;
+span {
+    position: relative; 
+    display: inline-block;
+    z-index: 1; 
+  }
 `
 export const InfoWrapper = styled.div`
 display: flex;

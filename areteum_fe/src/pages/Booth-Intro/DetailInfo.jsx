@@ -125,7 +125,7 @@ const DetailInfo = ({
               {/* 1. 메뉴 섹션 (카테고리별 그룹화) */}
               {title === '메뉴' && hasData(data) && (
   Object.entries(data.reduce((acc, item) => {
-      const cat = item.category || '기타';
+      const cat = item.category || '';
       if (!acc[cat]) acc[cat] = [];
       acc[cat].push(item);
       return acc;

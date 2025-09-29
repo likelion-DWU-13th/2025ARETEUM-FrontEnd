@@ -16,7 +16,7 @@ export const Container = styled.div`
   align-items: center;
 /* 여기까지 공통 복붙 */
 
-  width: 100%; /* ✅ 폭을 브라우저 기준으로 */
+  width: 100%; 
   max-width: 393px;
   min-height: 100vh;
   overflow: visible;
@@ -74,7 +74,7 @@ export const Nav = styled.div`
   
   #mark {
     color: #a74063;
-    font-family: Pyeojin Gothic;
+    font-family: Pretendard;
     font-size: 10px;
     font-style: normal;
     font-weight: 700;

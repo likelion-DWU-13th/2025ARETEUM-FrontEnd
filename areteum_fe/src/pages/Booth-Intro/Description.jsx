@@ -13,15 +13,14 @@ const Description = () => {
   const [boothData, setBoothData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     getBoothData(boothId)
       .then(data => {
         setBoothData(data);
         setIsLoading(false);
       })
-      .catch(() => {
-        setIsLoading(false);
-      });
   }, [boothId]);
 
   // 1. 데이터 통합
@@ -38,7 +37,7 @@ const Description = () => {
       finalBoothData.organizer = "개인"
     }
 
-    if (finalBoothData.subCategory === "없음"){
+    if (finalBoothData.subCategory === "없음") {
       finalBoothData.subCategory = finalBoothData.category
     }
   }
@@ -53,9 +52,9 @@ const Description = () => {
 
   return (
     <D.Container>
-      <img id="background" src={`${process.env.PUBLIC_URL}/images/detail_background.png`} alt="background" />
+      <img id="background" src={`${process.env.PUBLIC_URL}/images/detail_background.png`} alt="background" style={{ marginTop: "-100px" }} />
       <D.Header>
-        <img id="back" src={`${process.env.PUBLIC_URL}/images/back.png`} alt="back" />
+        <img id="back" src={`${process.env.PUBLIC_URL}/images/back.png`} alt="back" onClick={() => navigate("/booth")} />
         <D.Title>{finalBoothData.category} 상세</D.Title>
         <img id="scrap" src={`${process.env.PUBLIC_URL}/images/scrap.png`} alt="scrap" />
       </D.Header>
@@ -67,13 +66,20 @@ const Description = () => {
             isActive={activeTab === "basic-info"}
             onClick={() => setActiveTab("basic-info")}
           >
-            <span>기본 정보</span>
+            <span>
+              {activeTab === "basic-info" && <D.Tab1Bg />}
+              기본 정보
+            </span>
           </D.Tab1>
+
           <D.Tab2
             isActive={activeTab === "detail-info"}
             onClick={() => setActiveTab("detail-info")}
           >
-            세부 정보
+            <span>
+              {activeTab === "detail-info" && <D.Tab1Bg />}
+              세부 정보
+            </span>
           </D.Tab2>
         </D.Tab>
 
@@ -86,26 +92,26 @@ const Description = () => {
             description={finalBoothData.description}
             timeNote={finalBoothData.timeNote}
           />
-        ) : <DetailInfo 
-            category={finalBoothData.category}
-            timeline={finalBoothData.timeline} 
-            menus={finalBoothData.menus} 
-            setMenus={finalBoothData.setMenus}
-            products={finalBoothData.products} 
-            notes={finalBoothData.notes}
-            participation={finalBoothData.participation}
-            event={finalBoothData.event}
-            description={finalBoothData.description}
-            mapImageUrl={finalBoothData.mapImageUrl}
-            program={finalBoothData.program}
-            wating={finalBoothData.wating}
-    />}
-          
+        ) : <DetailInfo
+          category={finalBoothData.category}
+          timeline={finalBoothData.timeline}
+          menus={finalBoothData.menus}
+          setMenus={finalBoothData.setMenus}
+          products={finalBoothData.products}
+          notes={finalBoothData.notes}
+          participation={finalBoothData.participation}
+          event={finalBoothData.event}
+          description={finalBoothData.description}
+          mapImageUrl={finalBoothData.mapImageUrl}
+          program={finalBoothData.program}
+          wating={finalBoothData.wating}
+        />}
+
       </D.DetailWrapper>
 
       <D.Nav>
-              <div id="mark">DONGDUK WOMEN’S UNIVERSITY</div>
-            </D.Nav>
+        <div id="mark">DONGDUK WOMEN’S UNIVERSITY</div>
+      </D.Nav>
     </D.Container>
   );
 };
