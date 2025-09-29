@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Client } from "@stomp/stompjs";
-import SockJS from "sockjs-client";
+// import SockJS from "sockjs-client";
 import * as S from "../../styles/StyledSomtalk";
 
 const Somtalk = () => {
@@ -52,18 +52,18 @@ const Somtalk = () => {
   //톡 서버 연결
   useEffect(() => {
     const client = new Client({
-      // brokerURL: "ws://localhost:8080/ws",
-      webSocketFactory: () => new SockJS(`${API_BASE}/ws`),
+      brokerURL: `${API_BASE}/ws`, //배포 수정
+      reconnectDelay: 5000, // 자동 재연결
       onConnect: () => {
         client.subscribe("/topic/chat", (msg) => {
           const body = JSON.parse(msg.body);
-
-          // 서버가 createdAt 주면 파싱, 없으면 현재 시각
           const time =
             timeFromCreatedAt(body.createdAt) ?? formatTime(new Date());
-
           setMessages((prev) => [...prev, { ...body, time }]);
         });
+      },
+      debug: (str) => {
+        console.log("STOMP DEBUG:", str);
       },
     });
 
@@ -78,12 +78,16 @@ const Somtalk = () => {
     const text = input.trim();
     if (!text) return;
 
+    if (!stompClient.current || !stompClient.current.connected) {
+      console.warn("아직 서버랑 연결 안 됨!");
+      return;
+    }
+
     const message = {
       clientId: myId.current,
       content: text,
     };
 
-    // 서버로 메시지 전송
     stompClient.current.publish({
       destination: "/app/chat",
       body: JSON.stringify(message),
