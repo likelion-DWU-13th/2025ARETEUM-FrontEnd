@@ -19,7 +19,12 @@ export const Container = styled.div`
   align-items: center;
   /* 여기까지 공통 복붙 */
 
-  background: linear-gradient(180deg, #4f95d1 0%, #adcbf0 41.83%, #f0e6f2 95.19%);
+  background: linear-gradient(
+    180deg,
+    #4f95d1 0%,
+    #adcbf0 41.83%,
+    #f0e6f2 95.19%
+  );
 
   #background {
     width: 393px;
@@ -226,7 +231,7 @@ export const MsgInputWrap = styled.div`
   padding: 0 12px;
   position: fixed;
   bottom: 50px;
-  z-index: 10;
+  z-index: 9999;
 `;
 export const MessgeBar = styled.input`
   flex: 1;
