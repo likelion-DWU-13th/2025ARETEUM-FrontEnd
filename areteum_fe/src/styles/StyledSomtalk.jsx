@@ -239,7 +239,7 @@ export const MessgeBar = styled.input`
   color: #000;
   background-color: transparent;
   font-family: "GangwonEduAll";
-  font-size: 15px;
+  font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
