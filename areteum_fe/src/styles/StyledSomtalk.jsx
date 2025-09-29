@@ -75,7 +75,7 @@ export const Nav = styled.div`
   display: flex;
   position: relative;
   z-index: 100;
-  margin-top: 53px;
+  margin-top: 10px;
   align-items: center;
   justify-content: center;
 
