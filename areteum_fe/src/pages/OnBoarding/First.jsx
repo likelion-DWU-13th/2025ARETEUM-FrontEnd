@@ -58,7 +58,7 @@ const First = () => {
     <F.Container>
       <img
         id="background"
-        src={`${process.env.PUBLIC_URL}/images/background.PNG`}
+        src={`${process.env.PUBLIC_URL}/images/background.png`}
         alt="background"
       />
       {isAnimated ? (
