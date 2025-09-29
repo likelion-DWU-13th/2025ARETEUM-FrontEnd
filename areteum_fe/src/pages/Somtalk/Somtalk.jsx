@@ -60,7 +60,8 @@ const Somtalk = () => {
           const body = JSON.parse(msg.body);
           const time =
             timeFromCreatedAt(body.createdAt) ?? formatTime(new Date());
-          setMessages((prev) => [...prev, { ...body, time }]);
+          // setMessages((prev) => [...prev, { ...body, time }]);
+          setMessages((prev) => [...prev, { ...body, time }].slice(-100));
         });
       },
       debug: (str) => console.log("STOMP DEBUG:", str),
@@ -108,7 +109,8 @@ const Somtalk = () => {
   useEffect(() => {
     const fetchHistory = async () => {
       try {
-        const res = await fetch(`${API_BASE}/chat/history`);
+        // const res = await fetch(`${API_BASE}/chat/history`);
+        const res = await fetch(`${API_BASE}/chat`);
 
         if (!res.ok) throw new Error("Failed to fetch");
         const data = await res.json();
@@ -130,7 +132,8 @@ const Somtalk = () => {
             time: formatTime(new Date(item.createdAt)),
           }));
 
-        setMessages(formatted);
+        // setMessages(formatted);
+        setMessages(formatted.slice(-100));
       } catch (err) {
         console.error("채팅 내역 불러오기 실패:", err);
       }
