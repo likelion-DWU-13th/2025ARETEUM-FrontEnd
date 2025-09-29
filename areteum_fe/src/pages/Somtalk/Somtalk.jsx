@@ -15,6 +15,8 @@ const Somtalk = () => {
     navigate(-1); // 직전페이지로 이동
   };
 
+  const API_BASE = "https://dev.dwu-festival2025.com:8443";
+
   // 내 아이디 저장
   const myId = useRef(
     localStorage.getItem("myClientId") || `client-${Date.now()}`
@@ -51,7 +53,7 @@ const Somtalk = () => {
   useEffect(() => {
     const client = new Client({
       // brokerURL: "ws://localhost:8080/ws",
-      webSocketFactory: () => new SockJS("http://localhost:8080/ws"),
+      webSocketFactory: () => new SockJS(`${API_BASE}/ws`),
       onConnect: () => {
         client.subscribe("/topic/chat", (msg) => {
           const body = JSON.parse(msg.body);
@@ -106,7 +108,7 @@ const Somtalk = () => {
   useEffect(() => {
     const fetchHistory = async () => {
       try {
-        const res = await fetch("/chat/history");
+        const res = await fetch(`${API_BASE}/chat/history`);
 
         if (!res.ok) throw new Error("Failed to fetch");
         const data = await res.json();
@@ -152,7 +154,7 @@ const Somtalk = () => {
     <S.Container>
       <img
         id="background"
-        src={`${process.env.PUBLIC_URL}/images/background.png`}
+        src={`${process.env.PUBLIC_URL}/images/background.PNG`}
         alt="background"
       />
       <S.Header>
