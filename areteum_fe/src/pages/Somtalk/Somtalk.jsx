@@ -60,7 +60,13 @@ const Somtalk = () => {
           const body = JSON.parse(msg.body);
           const time =
             timeFromCreatedAt(body.createdAt) ?? formatTime(new Date());
-          setMessages((prev) => [...prev, { ...body, time }]);
+          setMessages((prev) => {
+            const updated = [...prev, { ...body, time }];
+            if (updated.length > 100) {
+              return updated.slice(updated.length - 100); // 뒤에서 100개만 유지
+            }
+            return updated;
+          });
         });
       },
       debug: (str) => console.log("STOMP DEBUG:", str),
@@ -113,32 +119,14 @@ const Somtalk = () => {
         if (!res.ok) throw new Error("Failed to fetch");
         const data = await res.json();
 
-        // 정확한 메세지 정렬을 위해 ms단위 초까지 받아오기
-        function getTimestamp(createdAt) {
-          return new Date(createdAt).getTime(); // ms 단위 숫자
-        }
-
-        // // 백에서 날짜 가져오기
-        // const formatted = data
-        //   .slice()
-        //   .sort(
-        //     (a, b) =>
-        //       new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
-        //   )
-        //   .map((item) => ({
-        //     ...item,
-        //     time: formatTime(new Date(item.createdAt)),
-        //   }));
-
-        // 백에서 가져온 데이터
         const formatted = data
-          .slice() // 원본 복사
+          .slice() // 복사
           .sort(
             (a, b) =>
               new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime() // 최신순 정렬
           )
           .slice(0, 100) // 최신 100개만 추출
-          .reverse() // 다시 올드 → 뉴 순으로 보여주려면 뒤집기
+          .reverse()
           .map((item) => ({
             ...item,
             time: formatTime(new Date(item.createdAt)),
