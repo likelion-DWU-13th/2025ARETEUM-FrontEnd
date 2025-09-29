@@ -60,8 +60,7 @@ const Somtalk = () => {
           const body = JSON.parse(msg.body);
           const time =
             timeFromCreatedAt(body.createdAt) ?? formatTime(new Date());
-          // setMessages((prev) => [...prev, { ...body, time }]);
-          setMessages((prev) => [...prev, { ...body, time }].slice(-100));
+          setMessages((prev) => [...prev, { ...body, time }]);
         });
       },
       debug: (str) => console.log("STOMP DEBUG:", str),
@@ -109,8 +108,7 @@ const Somtalk = () => {
   useEffect(() => {
     const fetchHistory = async () => {
       try {
-        // const res = await fetch(`${API_BASE}/chat/history`);
-        const res = await fetch(`${API_BASE}/chat`);
+        const res = await fetch(`${API_BASE}/chat/history`);
 
         if (!res.ok) throw new Error("Failed to fetch");
         const data = await res.json();
@@ -120,20 +118,33 @@ const Somtalk = () => {
           return new Date(createdAt).getTime(); // ms 단위 숫자
         }
 
-        // 백에서 날짜 가져오기
+        // // 백에서 날짜 가져오기
+        // const formatted = data
+        //   .slice()
+        //   .sort(
+        //     (a, b) =>
+        //       new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+        //   )
+        //   .map((item) => ({
+        //     ...item,
+        //     time: formatTime(new Date(item.createdAt)),
+        //   }));
+
+        // 백에서 가져온 데이터
         const formatted = data
-          .slice()
+          .slice() // 원본 복사
           .sort(
             (a, b) =>
-              new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+              new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime() // 최신순 정렬
           )
+          .slice(0, 100) // 최신 100개만 추출
+          .reverse() // 다시 올드 → 뉴 순으로 보여주려면 뒤집기
           .map((item) => ({
             ...item,
             time: formatTime(new Date(item.createdAt)),
           }));
 
-        // setMessages(formatted);
-        setMessages(formatted.slice(-100));
+        setMessages(formatted);
       } catch (err) {
         console.error("채팅 내역 불러오기 실패:", err);
       }
