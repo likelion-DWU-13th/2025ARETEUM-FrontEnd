@@ -165,11 +165,29 @@ font-style: normal;
 font-weight: 600;
 line-height: normal;
 cursor: pointer;
+ 
+span {
+    position: relative; 
+    display: inline-block;
+    z-index: 1; 
+  }
 `
 
 export const Tab1Bg = styled.div`
-fill: radial-gradient(50% 50% at 50% 50%, rgba(227, 122, 173, 0.35) 0%, rgba(227, 122, 173, 0.20) 100%);
-filter: drop-shadow(0 0 10px rgba(227, 122, 173, 0.30)) blur(2.5px);
+ position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* 글자 정중앙에 배치 */
+  width: 110%; /* 글자보다 살짝 크게 */
+  height: 120%;
+  border-radius: 6px;
+  background: radial-gradient(
+    50% 50% at 50% 50%,
+    rgba(227, 122, 173, 0.35) 0%,
+    rgba(227, 122, 173, 0.2) 100%
+  );
+  filter: drop-shadow(0 0 10px rgba(227, 122, 173, 0.3)) blur(2.5px);
+  z-index: -1; /* 글자 뒤로 */
 `
 
 export const Tab2 = styled.div`
@@ -184,6 +202,11 @@ font-style: normal;
 font-weight: 600;
 line-height: normal;
 cursor: pointer;
+span {
+    position: relative; 
+    display: inline-block;
+    z-index: 1; 
+  }
 `
 export const InfoWrapper = styled.div`
 display: flex;
