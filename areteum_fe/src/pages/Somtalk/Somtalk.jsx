@@ -108,7 +108,7 @@ const Somtalk = () => {
   useEffect(() => {
     const fetchHistory = async () => {
       try {
-        const res = await fetch(`${API_BASE}/chat/history`);
+        const res = await fetch(`${API_BASE}/chat`);
 
         if (!res.ok) throw new Error("Failed to fetch");
         const data = await res.json();
