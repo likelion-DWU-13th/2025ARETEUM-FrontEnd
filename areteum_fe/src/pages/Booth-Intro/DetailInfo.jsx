@@ -71,7 +71,7 @@ const DetailInfo = ({
               {/* 유의사항 섹션 렌더링 */}
               {title === '유의사항' && hasData(data) && (
                   data.map((note, index) => (
-                      <D.InfoItem key={index} style={{ alignItems: 'flex-start', display: "flex" }}>
+                      <D.InfoItem key={index} style={{ alignItems: 'flex-start', display: "flex", gap: "0" }}>
                           <D.Dote>•</D.Dote>
                           {note}
                       </D.InfoItem>
@@ -96,10 +96,8 @@ const DetailInfo = ({
                         style={{ alignItems: 'flex-start', flexDirection: 'column'  }}>
                         {event.split('\n').map((line, lineIndex) => {
                             const trimmedLine = line.trim();
-                            const showDot = !isCategory('공연') && trimmedLine.startsWith('•');
+                            const showDot = trimmedLine.startsWith('•');
                             const isDetailLine = trimmedLine.startsWith('•'); 
-                            const isTitleOrNumber = lineIndex === 0 && !isDetailLine;
-                            // 텍스트 내용: 점을 제거할지 여부 결정
                             const content = isDetailLine ? trimmedLine.substring(1).trim() : trimmedLine;
 
                             return (
