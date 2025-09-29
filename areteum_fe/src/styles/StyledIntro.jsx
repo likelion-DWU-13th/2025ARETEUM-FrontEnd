@@ -109,31 +109,37 @@ export const Nav = styled.div`
 
 export const DateWrapper = styled.div`
   display: flex;
-  position: relative;
-
   justify-content: center;
   align-items: center;
   gap: 40px;
+  width: 100%;
 `;
 
-export const Date = styled.div`
-  display: flex;
-  align-items: center;
+export const DateItem = styled.div`
   position: relative;
+  display: flex;
   opacity: ${({ active }) => (active ? "1" : "0.6")};
+  align-items: center;
+  justify-content: center;
+  width: 77px;
+  height: 93px;
+  flex-shrink: 0;
+  aspect-ratio: 77/93;
 
-  #text {
+  img {
+    display: block;
+  }
+
+  .date-text {
     position: absolute;
-    top: 25px;
-    left: 24px;
-
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     color: #e37aad;
-    text-align: center;
-    font-family: Pretendard;
     font-size: 20px;
-    font-style: normal;
+    font-family: Pretendard;
     font-weight: 600;
-    line-height: normal;
+    pointer-events: none;
   }
 `;
 
@@ -255,7 +261,7 @@ export const Explan = styled.div`
 
   color: rgba(0, 0, 0, 0.8);
   text-align: center;
-  font-family: Pretendard;
+  font-family: "Pretendard";
   font-size: 15px;
   font-style: normal;
   font-weight: 400;

@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import * as C from "../../styles/StyledBoothComponents";
+import { useNavigate } from "react-router-dom";
 
 const STORAGE_KEY = "scrapBooths";
 
 const BoothComponent = ({ item }) => {
   const [isScrapped, setIsScrapped] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!item) return;
@@ -20,26 +22,28 @@ const BoothComponent = ({ item }) => {
   const { boothId, name, location, startTime, endTime, category } = item;
   const displayTitle = name.length > 22 ? name.slice(0, 24) + "..." : name;
 
-  const toggleScrap = () => {
+  const toggleScrap = (e) => {
+    e.stopPropagation(); // 스크랩 클릭 시 이동 막기
     const saved = localStorage.getItem(STORAGE_KEY);
     let scrappedList = saved ? JSON.parse(saved) : [];
 
     if (scrappedList.includes(boothId)) {
       scrappedList = scrappedList.filter((scrapId) => scrapId !== boothId);
       setIsScrapped(false);
-      console.log("스크랩 해제 완료 - id removed:", boothId);
     } else {
       scrappedList.push(boothId);
       setIsScrapped(true);
-      console.log("스크랩 완료 - id added:", boothId);
     }
 
     localStorage.setItem(STORAGE_KEY, JSON.stringify(scrappedList));
-    console.log("After toggle, saved list:", JSON.stringify(scrappedList));
+  };
+
+  const onClickHandler = () => {
+    navigate(`/booth-detail/${boothId}`);
   };
 
   return (
-    <C.Components>
+    <C.Components onClick={onClickHandler} style={{ cursor: "pointer" }}>
       <img
         id="scrap"
         src={isScrapped ? `${process.env.PUBLIC_URL}/images/boothScrap.svg` : `${process.env.PUBLIC_URL}/images/boothScrap_w.png`}

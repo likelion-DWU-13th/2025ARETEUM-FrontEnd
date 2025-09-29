@@ -12,7 +12,7 @@ export const Container = styled.div`
   width: 393px;
   flex-shrink: 0;
   padding-top: 80px;
-  padding-bottom: 105px;
+  padding-bottom: 50px;
   align-items: center;
 /* 여기까지 공통 복붙 */
 
@@ -24,6 +24,8 @@ export const Container = styled.div`
   background: linear-gradient(180deg, #4F95D1 20%, #ADCBF0 52%, #F0E6F2 95%);
 
 `;
+
+
 
 export const Header = styled.div`
 height: 80px;
@@ -38,6 +40,15 @@ height: 80px;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
+
+  background: linear-gradient(
+    180deg,
+  #4F95D1 0%,  
+    transparent 100% 
+  );
+
+
+
 `; /* 공통 복붙 */
 
 export const Title = styled.div`
