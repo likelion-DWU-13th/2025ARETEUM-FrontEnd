@@ -19,9 +19,6 @@ const Description = () => {
         setBoothData(data);
         setIsLoading(false);
       })
-      .catch(() => {
-        setIsLoading(false);
-      });
   }, [boothId]);
 
   // 1. 데이터 통합
@@ -53,7 +50,7 @@ const Description = () => {
 
   return (
     <D.Container>
-      <img id="background" src={`${process.env.PUBLIC_URL}/images/detail_background.png`} alt="background" />
+      <img id="background" src={`${process.env.PUBLIC_URL}/images/detail_background.png`} alt="background" style={{ marginTop: "-100px" }} />
       <D.Header>
         <img id="back" src={`${process.env.PUBLIC_URL}/images/back.png`} alt="back" />
         <D.Title>{finalBoothData.category} 상세</D.Title>
