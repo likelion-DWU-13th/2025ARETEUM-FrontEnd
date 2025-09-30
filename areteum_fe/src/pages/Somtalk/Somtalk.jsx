@@ -28,13 +28,20 @@ const Somtalk = () => {
   }, []);
 
   //시간 포맷 설정
-  // 맨 위 Somtalk 안에 헬퍼 두 개 추가
-  const formatTime = (d) =>
-    d.toLocaleTimeString([], {
+  // 맨 위 Somtalk시간 편환
+  const formatTime = (utcString) => {
+    if (!utcString) return "";
+
+    const dt = new Date(utcString);
+
+    const fakeKST = new Date(dt.getTime() - 9 * 60 * 60 * 1000);
+
+    return fakeKST.toLocaleTimeString("ko-KR", {
       hour: "numeric",
       minute: "2-digit",
       hour12: true,
     });
+  };
 
   const timeFromCreatedAt = (createdAt) => {
     if (!createdAt) return null;
@@ -113,6 +120,8 @@ const Somtalk = () => {
         if (!res.ok) throw new Error("Failed to fetch");
         const data = await res.json();
 
+        // data.forEach((msg) => console.log("createdAt 원본:", msg.createdAt));
+
         const formatted = data
           .sort(
             (a, b) =>
@@ -120,7 +129,7 @@ const Somtalk = () => {
           )
           .map((item) => ({
             ...item,
-            time: formatTime(new Date(item.createdAt)),
+            time: formatTime(item.createdAt),
           }));
 
         setMessages(formatted);
