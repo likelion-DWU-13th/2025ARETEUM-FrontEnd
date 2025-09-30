@@ -18,11 +18,12 @@ export const Container = styled.div`
   box-sizing: border-box; /* 패딩이 width에 포함되도록 설정 */
   display: flex;
   flex-direction: column;
-  width: 393px;
   flex-shrink: 0;
   align-items: center;
-  overflow: hidden; 
-
+  width: 100%; 
+  max-width: 393px;
+  min-height: 100vh;
+  overflow:hidden; 
   /* 여기까지 공통 복붙 */
 
   background: linear-gradient(180deg, #379AE0 0%, #D3D6FA 50%, #FFDFF8 100%);
