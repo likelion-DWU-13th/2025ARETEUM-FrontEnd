@@ -86,12 +86,13 @@ font-size: 20px;
 font-style: normal;
 font-weight: 300;
 backdrop-filter: blur(10px);
-margin-top: 480px;
+margin-top: 440px;
 display: flex;
 align-items: center;
 justify-content: center;
 `;
 
 export const Box = styled.div`
-height: 100px;
+display: block;
+height: 120px;
 `;
