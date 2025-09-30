@@ -7,31 +7,58 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout frontend repo
+      - name: Checkout frontend source repo
         uses: actions/checkout@v4
 
-      - name: Setup Node
+      - name: Show tree (debug)
+        run: |
+          pwd
+          ls -al
+          ls -al areteum_fe || true
+          ls -al areteum_fe/package*.json || true
+
+      - name: Setup Node (with npm cache)
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
-          cache-dependency-path: package-lock.json
+          # lockfile이 areteum_fe/에 있으므로 경로 지정 (존재하므로 캐시 에러 안 남)
+          cache-dependency-path: areteum_fe/package-lock.json
 
       - name: Install deps
-        run: |
-          if [ -f package-lock.json ]; then npm ci; else npm install; fi
+        working-directory: ./areteum_fe
+        run: npm ci
 
       - name: Build
+        working-directory: ./areteum_fe
         run: npm run build
 
-      - name: Ensure target dir on EC2
+      # 브랜치에 따라 대상 디렉터리/컴포즈 폴더 분기
+      - name: Set deploy target by branch
+        id: setvars
+        run: |
+          if [ "${GITHUB_REF_NAME}" = "main" ]; then
+            echo "TARGET_DIR=/srv/2025ARETEUM-Production-Deployment/frontend" >> $GITHUB_ENV
+            echo "COMPOSE_DIR=/srv/2025ARETEUM-Production-Deployment" >> $GITHUB_ENV
+          else
+            # develop 브랜치는 스테이징으로 배포한다고 가정
+            echo "TARGET_DIR=/srv/staging-deployment/frontend" >> $GITHUB_ENV
+            echo "COMPOSE_DIR=/srv/staging-deployment" >> $GITHUB_ENV
+          fi
+          echo "Branch=${GITHUB_REF_NAME}"
+          echo "TARGET_DIR set to ${TARGET_DIR}"
+          echo "COMPOSE_DIR set to ${COMPOSE_DIR}"
+
+      - name: Ensure target dir exists on EC2
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ec2-user
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: mkdir -p /srv/2025ARETEUM-Production-Deployment/frontend
+          script: |
+            mkdir -p "${TARGET_DIR}"
 
       - name: Upload build to EC2
         uses: appleboy/scp-action@v0.1.7
@@ -39,18 +66,19 @@ jobs:
           host: ${{ secrets.EC2_HOST }}
           username: ec2-user
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: "build/*"           # Vite면 dist/* 로 바꾸기
-          target: "/srv/2025ARETEUM-Production-Deployment/frontend/"
-          strip_components: 1
+          # areteum_fe/build/* 를 업로드하고, 경로 두 단계(areteum_fe/build)를 제거
+          source: "areteum_fe/build/*"
+          target: "${{ env.TARGET_DIR }}/"
+          strip_components: 2
           overwrite: true
 
-      - name: Reload Nginx (in container)
+      - name: Test & Reload Nginx (in container)
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ec2-user
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            cd /srv/2025ARETEUM-Production-Deployment
+            cd "${COMPOSE_DIR}"
             docker-compose exec -T nginx nginx -t
             docker-compose exec -T nginx nginx -s reload || docker-compose restart nginx
