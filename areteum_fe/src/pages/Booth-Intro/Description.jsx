@@ -90,6 +90,7 @@ const Description = () => {
             mapImageUrl={finalBoothData.mapImageUrl}
             description={finalBoothData.description}
             timeNote={finalBoothData.timeNote}
+            menus={finalBoothData.menus}
           />
         ) : <DetailInfo
           category={finalBoothData.category}
