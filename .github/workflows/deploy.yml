@@ -7,65 +7,44 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout
+      - name: Checkout frontend repo
         uses: actions/checkout@v4
 
-      - name: Use Node 20
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
-          # lockfile이 frontend/에 있을 때 캐시도 그쪽을 바라보도록
-          cache-dependency-path: frontend/package-lock.json
+          cache-dependency-path: package-lock.json
 
-      - name: Install deps (prefer npm ci)
-        working-directory: ./frontend
+      - name: Install deps
         run: |
-          if [ -f package-lock.json ]; then
-            echo "lockfile 발견 -> npm ci"
-            npm ci
-          else
-            echo "lockfile 없음 -> 임시로 npm install (추후 lockfile 커밋 권장)"
-            npm install
-          fi
+          if [ -f package-lock.json ]; then npm ci; else npm install; fi
 
       - name: Build
-        working-directory: ./frontend
         run: npm run build
 
-      - name: Detect build output dir
-        # CRA면 build/, Vite면 dist/ — 자동 감지해서 OUT_DIR 설정
-        run: |
-          if [ -d "frontend/dist" ]; then
-            echo "OUT_DIR=frontend/dist" >> $GITHUB_ENV
-          else
-            echo "OUT_DIR=frontend/build" >> $GITHUB_ENV
-          fi
-          echo "Using OUT_DIR=$OUT_DIR"
-
-      - name: Ensure target dir exists on EC2
+      - name: Ensure target dir on EC2
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ec2-user
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            mkdir -p /srv/2025ARETEUM-Production-Deployment/frontend
+          script: mkdir -p /srv/2025ARETEUM-Production-Deployment/frontend
 
-      - name: Upload static files
+      - name: Upload build to EC2
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ec2-user
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: "${{ env.OUT_DIR }}/*"
+          source: "build/*"           # Vite면 dist/* 로 바꾸기
           target: "/srv/2025ARETEUM-Production-Deployment/frontend/"
           strip_components: 1
           overwrite: true
 
-      - name: Test & Reload Nginx in container
+      - name: Reload Nginx (in container)
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.EC2_HOST }}
