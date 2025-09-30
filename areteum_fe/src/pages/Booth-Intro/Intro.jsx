@@ -5,7 +5,15 @@ import Components from "./BoothComponents";
 import { useNavigate } from "react-router-dom";
 
 const Intro = () => {
-  const categories = ["전체", "공연", "부스", "체험", "마켓", "주점", "푸드트럭"];
+  const categories = [
+    "전체",
+    "공연",
+    "부스",
+    "체험",
+    "마켓",
+    "주점",
+    "푸드트럭",
+  ];
   const apiCategories = {
     전체: "",
     공연: "PERFORMANCE",
@@ -73,18 +81,33 @@ const Intro = () => {
   };
 
   // 필터링 적용된 부스 목록
-  const displayedBooths = isShowScrapOnly ? booths.filter((item) => scrapList.includes(item.boothId)) : booths;
+  const displayedBooths = isShowScrapOnly
+    ? booths.filter((item) => scrapList.includes(item.boothId))
+    : booths;
 
   return (
     <I.Container>
-      <img id="background" src={`${process.env.PUBLIC_URL}/images/background.png`} alt="background" />
+      <img
+        id="background"
+        src={`${process.env.PUBLIC_URL}/images/background.png`}
+        alt="background"
+      />
 
       <I.Header>
-        <img id="back" src={`${process.env.PUBLIC_URL}/images/back.png`} alt="back" onClick={() => navigate("/MainPage")} />
+        <img
+          id="back"
+          src={`${process.env.PUBLIC_URL}/images/back.png`}
+          alt="back"
+          onClick={() => navigate("/MainPage")}
+        />
         <I.Title>즐겨보솜</I.Title>
         <img
           id="scrap"
-          src={isShowScrapOnly ? `${process.env.PUBLIC_URL}/images/boothScrap.svg` : `${process.env.PUBLIC_URL}/images/scrap.png`}
+          src={
+            isShowScrapOnly
+              ? `${process.env.PUBLIC_URL}/images/boothScrap.svg`
+              : `${process.env.PUBLIC_URL}/images/scrap.png`
+          }
           alt="scrap"
           onClick={toggleShowScrapOnly}
           style={{ cursor: "pointer" }}
@@ -93,8 +116,15 @@ const Intro = () => {
 
       <I.DateWrapper>
         {["9/30", "10/1", "10/2"].map((text, idx) => (
-          <I.DateItem key={idx} active={selectedDate === idx} onClick={() => setSelectedDate(idx)}>
-            <img src={`${process.env.PUBLIC_URL}/images/dateMark.png`} alt="mark" />
+          <I.DateItem
+            key={idx}
+            active={selectedDate === idx}
+            onClick={() => setSelectedDate(idx)}
+          >
+            <img
+              src={`${process.env.PUBLIC_URL}/images/dateMark.png`}
+              alt="mark"
+            />
             <div className="date-text">{text}</div>
           </I.DateItem>
         ))}
@@ -102,12 +132,20 @@ const Intro = () => {
 
       <I.Search>
         <img src={`${process.env.PUBLIC_URL}/images/search.png`} alt="search" />
-        <input placeholder="검색어를 입력하세요." value={searchKeyword} onChange={(e) => setSearchKeyword(e.target.value)} />
+        <input
+          placeholder="검색어를 입력하세요."
+          value={searchKeyword}
+          onChange={(e) => setSearchKeyword(e.target.value)}
+        />
       </I.Search>
 
       <I.CategoryWrapper>
         {categories.map((item, index) => (
-          <I.Category key={index} active={selectedCategory === index} onClick={() => setSelectedCategory(index)}>
+          <I.Category
+            key={index}
+            active={selectedCategory === index}
+            onClick={() => setSelectedCategory(index)}
+          >
             {item}
           </I.Category>
         ))}
@@ -117,14 +155,23 @@ const Intro = () => {
 
       <I.Content>
         <I.Content_B isEmpty={displayedBooths.length === 0}>
-          {displayedBooths.length === 0 ? <I.Explan>검색 결과가 없습니다.</I.Explan> : displayedBooths.map((item) => <Components key={item.boothId} item={item} />)}
+          {displayedBooths.length === 0 ? (
+            <I.Explan>검색 결과가 없습니다.</I.Explan>
+          ) : (
+            displayedBooths.map((item) => (
+              <Components key={item.boothId} item={item} />
+            ))
+          )}
         </I.Content_B>
-
-        <I.Nav>
-          <img id="footer" src={`${process.env.PUBLIC_URL}/images/footer.png`} alt="footer" />
-          <div id="mark">DONGDUK WOMEN’S UNIVERSITY</div>
-        </I.Nav>
       </I.Content>
+      <I.Nav>
+        <img
+          id="footer"
+          src={`${process.env.PUBLIC_URL}/images/footer.png`}
+          alt="footer"
+        />
+        <div id="mark">DONGDUK WOMEN’S UNIVERSITY</div>
+      </I.Nav>
     </I.Container>
   );
 };

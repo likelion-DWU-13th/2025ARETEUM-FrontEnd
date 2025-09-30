@@ -60,13 +60,7 @@ const Somtalk = () => {
           const body = JSON.parse(msg.body);
           const time =
             timeFromCreatedAt(body.createdAt) ?? formatTime(new Date());
-          setMessages((prev) => {
-            const updated = [...prev, { ...body, time }];
-            if (updated.length > 100) {
-              return updated.slice(updated.length - 100); // 뒤에서 100개만 유지
-            }
-            return updated;
-          });
+          setMessages((prev) => [...prev, { ...body, time }]);
         });
       },
       debug: (str) => console.log("STOMP DEBUG:", str),

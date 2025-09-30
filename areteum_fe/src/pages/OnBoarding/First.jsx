@@ -9,21 +9,31 @@ const frames = [
   { src: "/images/letter2.svg", x: 174, y: 230 },
   { src: "/images/letter3.png", x: 35, y: 320, w: 320 },
   { src: "/images/letter4.svg", x: 26, y: 202, w: 346 },
-  { src: "/images/letter5.svg", x: 12, y: 20, w: 349 },
+  { src: "/images/letter5new.svg", x: -19, y: 25, w: 320 },
 ];
+
 const First = () => {
   const navigate = useNavigate();
   const [step, setStep] = useState(0);
   const [showText, setShowText] = useState(false);
+  const CENTERED_STEPS = new Set([3, 4, 5]);
+  const DESIGN_W = 393;
+  const centerLeft = (w) => (DESIGN_W - w) / 2;
+
   const current = frames[step];
   const prev = frames[Math.max(step - 1, 0)]; // 직전 프레임
   const baseW = 140; // w 없는 프레임 기본값
   const prevW = prev.w ?? baseW;
   const currW = current.w ?? baseW;
+  const isCenter = CENTERED_STEPS.has(step);
 
   const isAnimated = step <= 3;
+  const prevLeft = CENTERED_STEPS.has(Math.max(step - 1, 0))
+    ? centerLeft(prevW)
+    : prev.x;
+  const currLeft = isCenter ? centerLeft(currW) : current.x;
   const animateProps = {
-    left: [prev.x, current.x],
+    left: [prevLeft, currLeft],
     top: [prev.y, current.y],
     width: [prevW, currW],
   };
@@ -38,6 +48,10 @@ const First = () => {
       const img = new Image();
       img.src = process.env.PUBLIC_URL + f.src;
     });
+    ["letter5new.svg","ribbon.svg"].forEach((name)=>{
+      const img = new Image();
+      img.src =`${process.env.PUBLIC_URL}/images/${name}`
+    })
   }, []);
   useEffect(() => {
     setShowText(false);
@@ -61,6 +75,7 @@ const First = () => {
         src={`${process.env.PUBLIC_URL}/images/background.png`}
         alt="background"
       />
+      
       {isAnimated ? (
         <motion.img
           src={process.env.PUBLIC_URL + current.src}
@@ -68,7 +83,7 @@ const First = () => {
           style={{ position: "absolute", height: "auto" }}
           initial={
             step === 0
-              ? { left: current.x, top: current.y, width: currW } // 살짝 왼쪽+조금 작게
+              ? { left: currLeft, top: current.y, width: currW } // 살짝 왼쪽+조금 작게
               : false
           }
           animate={animateProps}
@@ -82,20 +97,44 @@ const First = () => {
             if (step === 3) setShowText(true);
           }}
         />
+      ) : step === 5 ? (
+        <div
+          style={{
+            position: "absolute",
+            left: currLeft,
+            top: current.y,
+            width: currW,
+            height: "auto",
+            display: "block"
+          }}
+        >
+          <img
+            src={`${process.env.PUBLIC_URL}/images/letter5new.svg`}
+            style={{ width: "100%", height: "auto", display: "block" }}
+          />
+          <img
+            src={`${process.env.PUBLIC_URL}/images/ribbon.svg`}
+            style={{
+              position: "absolute",
+              left: -20,
+              top: -22,
+            }}
+          />
+        </div>
       ) : (
         <img
           src={process.env.PUBLIC_URL + current.src}
           alt="letter"
           style={{
             position: "absolute",
-            left: current.x,
+            left: currLeft,
             top: current.y,
             width: current.w ?? baseW,
             height: "auto",
           }}
         />
       )}
-
+      
       <F.Text
         style={{ display: showText ? "block" : "none", marginTop: "136px" }}
       >

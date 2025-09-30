@@ -20,12 +20,10 @@ jobs:
           script_stop: true
           script: |
             set -euo pipefail
-
             echo "== 0) 경로/변수 =="
             APP_DIR="/srv/2025ARETEUM-FrontEnd/areteum_fe"
             DEPLOY_DIR="/srv/2025ARETEUM-Production-Deployment/frontend"
             BRANCH="fix/reset-main"
-
             echo "== 1) 프론트 소스 갱신 (${BRANCH}) =="
             cd "$APP_DIR"
               if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
@@ -37,13 +35,11 @@ jobs:
             # worktree로 이미 체크아웃된 브랜치이므로 강제 동기화
             git reset --hard "origin/${BRANCH}"
             git rev-parse --short HEAD
-
             echo "== 2) Node 준비 (nvm, Node 20) =="
             export NVM_DIR="$HOME/.nvm"
             [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
             nvm install 20
             nvm use 20
-
             echo "== 3) 의존성 설치 & 빌드 =="
             if [ -f package-lock.json ]; then
               npm ci || npm install
@@ -52,10 +48,8 @@ jobs:
             fi
             # CRA 기준(산출물: build/)
             npm run build
-
             echo "== 4) 산출물 동기화 → ${DEPLOY_DIR} =="
             rsync -av --delete build/ "${DEPLOY_DIR}/"
-
             echo "== 5) nginx 설정 점검 & 리로드 (prod 컨테이너) =="
             # 컨테이너 실행 보장
             if ! docker ps --format '{{.Names}}' | grep -qx 'areteum-prod-nginx'; then
@@ -66,9 +60,7 @@ jobs:
                 exit 1
               fi
             fi
-
             docker exec areteum-prod-nginx nginx -t
             docker exec areteum-prod-nginx nginx -s reload || docker restart areteum-prod-nginx
-
             echo "== 6) 상태 확인 =="
             docker ps --format '{{.Names}}\t{{.Status}}\t{{.Ports}}' | grep -E 'areteum-prod-nginx|areteum-prod-backend' || true
