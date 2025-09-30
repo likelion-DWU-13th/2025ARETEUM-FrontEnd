@@ -1,84 +1,46 @@
-name: Deploy Frontend (develop & fix/reset-main)
+name: Deploy Frontend (fix/reset-main → production)
 
 on:
   push:
-    branches: [ "develop", "fix/reset-main" ]
+    branches: [ fix/reset-main ]
 
 jobs:
-  build-and-deploy:
+  deploy-prod-frontend:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout frontend source repo
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Show tree (debug)
-        run: |
-          pwd
-          ls -al
-          ls -al areteum_fe || true
-          ls -al areteum_fe/package*.json || true
-
-      - name: Setup Node (with npm cache)
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-          # lockfile이 areteum_fe/에 있으므로 경로 지정 (존재하므로 캐시 에러 안 남)
-          cache-dependency-path: areteum_fe/package-lock.json
-
-      - name: Install deps
-        working-directory: ./areteum_fe
-        run: npm ci
-
-      - name: Build
-        working-directory: ./areteum_fe
-        run: npm run build
-
-      # 브랜치에 따라 대상 디렉터리/컴포즈 폴더 분기
-      - name: Set deploy target by branch
-        id: setvars
-        run: |
-          if [ "${GITHUB_REF_NAME}" = "main" ]; then
-            echo "TARGET_DIR=/srv/2025ARETEUM-Production-Deployment/frontend" >> $GITHUB_ENV
-            echo "COMPOSE_DIR=/srv/2025ARETEUM-Production-Deployment" >> $GITHUB_ENV
-          else
-            # develop 브랜치는 스테이징으로 배포한다고 가정
-            echo "TARGET_DIR=/srv/staging-deployment/frontend" >> $GITHUB_ENV
-            echo "COMPOSE_DIR=/srv/staging-deployment" >> $GITHUB_ENV
-          fi
-          echo "Branch=${GITHUB_REF_NAME}"
-          echo "TARGET_DIR set to ${TARGET_DIR}"
-          echo "COMPOSE_DIR set to ${COMPOSE_DIR}"
-
-      - name: Ensure target dir exists on EC2
+      - name: SSH build & deploy on EC2 (prod)
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ec2-user
           key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
+          script_stop: true
           script: |
-            mkdir -p "${TARGET_DIR}"
+            set -e
+            # 1) 운영 프론트 소스 갱신
+            cd /srv/festival-frontend
+            test -d areteum_fe || { echo "areteum_fe not found"; exit 1; }
+            cd areteum_fe
+            git fetch origin
+            git reset --hard origin/main
 
-      - name: Upload build to EC2
-        uses: appleboy/scp-action@v0.1.7
-        with:
-          host: ${{ secrets.EC2_HOST }}
-          username: ec2-user
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          # areteum_fe/build/* 를 업로드하고, 경로 두 단계(areteum_fe/build)를 제거
-          source: "areteum_fe/build/*"
-          target: "${{ env.TARGET_DIR }}/"
-          strip_components: 2
-          overwrite: true
+            # 2) Node 20 준비 (nvm 사용)
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+            nvm install 20
+            nvm use 20
 
-      - name: Test & Reload Nginx (in container)
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.EC2_HOST }}
-          username: ec2-user
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            cd "${COMPOSE_DIR}"
-            docker-compose exec -T nginx nginx -t
-            docker-compose exec -T nginx nginx -s reload || docker-compose restart nginx
+            # 3) 의존성 & 빌드 (EC2에서는 보통 CI 변수가 없어 경고때문에 죽지 않음)
+            npm ci || npm install
+            npm run build
+
+            # 4) 산출물 → 운영 정적 폴더 동기화
+            rsync -av --delete build/ /srv/2025ARETEUM-Production-Deployment/frontend/
+
+            # 5) Nginx 컨테이너 설정 테스트 & 리로드
+            docker-compose -f /srv/2025ARETEUM-Production-Deployment/docker-compose.yml exec -T nginx nginx -t
+            docker-compose -f /srv/2025ARETEUM-Production-Deployment/docker-compose.yml exec -T nginx nginx -s reload || \
+              docker-compose -f /srv/2025ARETEUM-Production-Deployment/docker-compose.yml restart nginx
