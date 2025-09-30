@@ -34,7 +34,6 @@ const Somtalk = () => {
 
     const dt = new Date(utcString);
 
-    // UTC → KST 자동 변환된 상태니까, 다시 -9시간 해서 KST를 "그대로" 출력
     const fakeKST = new Date(dt.getTime() - 9 * 60 * 60 * 1000);
 
     return fakeKST.toLocaleTimeString("ko-KR", {
