@@ -27,8 +27,9 @@ jobs:
             BRANCH="fix/reset-main"
 
             echo "== 1) 프론트 소스 갱신 (${BRANCH}) =="
-            if [ ! -d "$APP_DIR/.git" ]; then
-              echo "ERROR: $APP_DIR 에 git repo가 없습니다."
+            cd "$APP_DIR"
+              if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+                 echo "ERROR: $APP_DIR 는 git 워킹트리가 아닙니다."
               exit 1
             fi
             cd "$APP_DIR"
