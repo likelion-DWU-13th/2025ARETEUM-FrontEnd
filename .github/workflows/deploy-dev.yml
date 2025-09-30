@@ -1,0 +1,40 @@
+name: Deploy Frontend (develop → staging)
+
+on:
+  push:
+    branches: [ develop ]
+
+jobs:
+  deploy-dev-frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: SSH build & deploy on EC2
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ec2-user
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
+          script_stop: true
+          debug: true
+          script: |
+            set -e
+            cd /srv/festival-frontend-dev
+            git fetch origin
+            git reset --hard origin/develop
+
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+            nvm install 20
+            nvm use 20
+
+            cd areteum_fe
+            npm ci
+            npm run build
+
+            rsync -av --delete build/ /srv/staging-deployment/frontend/
+
+            docker-compose -p areteum-dev -f /srv/staging-deployment/docker-compose.yml exec -T nginx nginx -t
+            docker-compose -p areteum-dev -f /srv/staging-deployment/docker-compose.yml exec -T nginx nginx -s reload || true
