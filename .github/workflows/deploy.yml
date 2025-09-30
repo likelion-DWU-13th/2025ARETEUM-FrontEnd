@@ -1,29 +1,46 @@
-name: Deploy Frontend (develop)
-on: { push: { branches: [ "develop" ] } }
+name: Deploy Frontend (fix/reset-main → production)
+
+on:
+  push:
+    branches: [ fix/reset-main ]
+
 jobs:
-  build-and-deploy:
+  deploy-prod-frontend:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with: { node-version: 20 }
-      - run: npm ci
-      - run: npm run build
-      - uses: appleboy/scp-action@v0.1.7
+
+      - name: SSH build & deploy on EC2 (prod)
+        uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ec2-user
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: "build/*"
-          target: "/srv/2025ARETEUM-Production-Deployment/frontend/"
-          strip_components: 1
-          overwrite: true
-      - uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.EC2_HOST }}
-          username: ${{ secrets.EC2_USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
+          script_stop: true
           script: |
-            cd /srv/2025ARETEUM-Production-Deployment
-            docker-compose exec -T nginx nginx -t
-            docker-compose exec -T nginx nginx -s reload || docker-compose restart nginx
+            set -e
+            # 1) 운영 프론트 소스 갱신
+            cd /srv/festival-frontend
+            test -d areteum_fe || { echo "areteum_fe not found"; exit 1; }
+            cd areteum_fe
+            git fetch origin
+            git reset --hard origin/main
+
+            # 2) Node 20 준비 (nvm 사용)
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+            nvm install 20
+            nvm use 20
+
+            # 3) 의존성 & 빌드 (EC2에서는 보통 CI 변수가 없어 경고때문에 죽지 않음)
+            npm ci || npm install
+            npm run build
+
+            # 4) 산출물 → 운영 정적 폴더 동기화
+            rsync -av --delete build/ /srv/2025ARETEUM-Production-Deployment/frontend/
+
+            # 5) Nginx 컨테이너 설정 테스트 & 리로드
+            docker-compose -f /srv/2025ARETEUM-Production-Deployment/docker-compose.yml exec -T nginx nginx -t
+            docker-compose -f /srv/2025ARETEUM-Production-Deployment/docker-compose.yml exec -T nginx nginx -s reload || \
+              docker-compose -f /srv/2025ARETEUM-Production-Deployment/docker-compose.yml restart nginx
