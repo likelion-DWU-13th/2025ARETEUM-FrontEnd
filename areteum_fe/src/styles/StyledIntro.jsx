@@ -264,7 +264,7 @@ export const Explan = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-
+  margin-bottom: 54px;
   color: rgba(0, 0, 0, 0.8);
   text-align: center;
   font-family: "Pretendard";

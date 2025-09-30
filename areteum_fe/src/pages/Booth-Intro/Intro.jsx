@@ -163,15 +163,15 @@ const Intro = () => {
             ))
           )}
         </I.Content_B>
+        <I.Nav>
+          <img
+            id="footer"
+            src={`${process.env.PUBLIC_URL}/images/footer.png`}
+            alt="footer"
+          />
+          <div id="mark">DONGDUK WOMEN’S UNIVERSITY</div>
+        </I.Nav>
       </I.Content>
-      <I.Nav>
-        <img
-          id="footer"
-          src={`${process.env.PUBLIC_URL}/images/footer.png`}
-          alt="footer"
-        />
-        <div id="mark">DONGDUK WOMEN’S UNIVERSITY</div>
-      </I.Nav>
     </I.Container>
   );
 };
