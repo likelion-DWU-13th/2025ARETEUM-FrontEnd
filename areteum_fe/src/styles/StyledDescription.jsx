@@ -42,7 +42,6 @@ export const Header = styled.div`
   flex-direction: row;
   padding: 20px;
   align-items: center;
-  justify-content: space-between;
   z-index: 1000;
 
   position: fixed;
@@ -54,7 +53,7 @@ export const Header = styled.div`
 export const Title = styled.div`
   display: flex;
   align-items: center;
-
+  margin-left: 35%;
   color: #fff;
   text-align: center;
   font-family: Pretendard;
@@ -251,17 +250,14 @@ font-family: Pretendard;
 font-size: 10px;
 font-style: normal;
 font-weight: 400;
-line-height: normal;
 `
 
 export const Dote = styled.div`
-width: 5px;
-height: 5px;
-flex-shrink: 0;
-aspect-ratio: 1/1;
 color: #E37AAD;
 margin-right: 3px;
 display: flex;
+align-self: flex-start;
+padding: 0;
 `
 
 export const MenuItem = styled.div`

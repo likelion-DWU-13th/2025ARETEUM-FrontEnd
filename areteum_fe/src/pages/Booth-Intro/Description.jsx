@@ -56,7 +56,6 @@ const Description = () => {
       <D.Header>
         <img id="back" src={`${process.env.PUBLIC_URL}/images/back.png`} alt="back" onClick={() => navigate("/booth")} />
         <D.Title>{finalBoothData.category} 상세</D.Title>
-        <img id="scrap" src={`${process.env.PUBLIC_URL}/images/scrap.png`} alt="scrap" />
       </D.Header>
       <D.DetailWrapper>
         <D.BoothName>{finalBoothData.name}</D.BoothName>
@@ -104,7 +103,8 @@ const Description = () => {
           description={finalBoothData.description}
           mapImageUrl={finalBoothData.mapImageUrl}
           program={finalBoothData.program}
-          wating={finalBoothData.wating}
+          waiting={finalBoothData.waiting}
+          intro={finalBoothData.intro}
         />}
 
       </D.DetailWrapper>
