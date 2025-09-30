@@ -15,7 +15,7 @@ const Somtalk = () => {
     navigate(-1); // 직전페이지로 이동
   };
 
-  const API_BASE = "https://dev.dwu-festival2025.com:8443";
+  const API_BASE = "https://dwu-festival2025.com";
 
   // 내 아이디 저장
   const myId = useRef(
