@@ -19,28 +19,39 @@ jobs:
           port: 22
           script_stop: true
           script: |
-            set -e
-            # 1) 운영 프론트 소스 갱신
-            cd /srv/festival-frontend
-            test -d areteum_fe || { echo "areteum_fe not found"; exit 1; }
-            cd areteum_fe
-            git fetch origin
+            set -euo pipefail
+
+            echo "== 1) 운영 프론트 소스 갱신 =="
+            cd /srv/festival-frontend/areteum_fe
+            git fetch --all --prune
             git reset --hard origin/main
 
-            # 2) Node 20 준비 (nvm 사용)
+            echo "== 2) Node 20 준비 (nvm) =="
             export NVM_DIR="$HOME/.nvm"
             [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
             nvm install 20
             nvm use 20
 
-            # 3) 의존성 & 빌드 (EC2에서는 보통 CI 변수가 없어 경고때문에 죽지 않음)
+            echo "== 3) 의존성 & 빌드 =="
             npm ci || npm install
+            # CRA 경고 때문에 막히면 ↓ 한 줄로 교체
+            # CI= npm run build
             npm run build
 
-            # 4) 산출물 → 운영 정적 폴더 동기화
+            echo "== 4) 산출물 동기화 -> prod 정적 폴더 =="
             rsync -av --delete build/ /srv/2025ARETEUM-Production-Deployment/frontend/
 
-            # 5) Nginx 컨테이너 설정 테스트 & 리로드
-            docker-compose -f /srv/2025ARETEUM-Production-Deployment/docker-compose.yml exec -T nginx nginx -t
-            docker-compose -f /srv/2025ARETEUM-Production-Deployment/docker-compose.yml exec -T nginx nginx -s reload || \
-              docker-compose -f /srv/2025ARETEUM-Production-Deployment/docker-compose.yml restart nginx
+            echo "== 5) 운영 nginx(areteum-nginx) 설정 테스트 & 리로드 =="
+            if ! docker ps --format '{{.Names}}' | grep -qx 'areteum-nginx'; then
+              if docker ps -a --format '{{.Names}}' | grep -qx 'areteum-nginx'; then
+                docker start areteum-nginx
+              else
+                echo "ERROR: areteum-nginx 컨테이너가 없습니다."; exit 1
+              fi
+            fi
+
+            docker exec areteum-nginx nginx -t
+            docker exec areteum-nginx nginx -s reload || docker restart areteum-nginx
+
+            echo "== 6) 상태 확인 =="
+            docker ps --format '{{.Names}}\t{{.Status}}\t{{.Ports}}' | grep -E 'areteum-nginx|areteum-prod-backend' || true
