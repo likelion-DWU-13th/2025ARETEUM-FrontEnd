@@ -21,45 +21,53 @@ jobs:
           script: |
             set -euo pipefail
 
-            echo "== 1) 운영 프론트 소스 갱신 =="
-            cd /srv/festival-frontend
-            test -d areteum_fe || { echo "areteum_fe not found"; exit 1; }
-            cd areteum_fe
-            git fetch --all --prune
-            git reset --hard origin/main
+            echo "== 0) 경로/변수 =="
+            APP_DIR="/srv/2025ARETEUM-FrontEnd/areteum_fe"
+            DEPLOY_DIR="/srv/2025ARETEUM-Production-Deployment/frontend"
+            BRANCH="fix/reset-main"
 
-            echo "== 2) Node 20 준비 (nvm) =="
+            echo "== 1) 프론트 소스 갱신 (${BRANCH}) =="
+            if [ ! -d "$APP_DIR/.git" ]; then
+              echo "ERROR: $APP_DIR 에 git repo가 없습니다."
+              exit 1
+            fi
+            cd "$APP_DIR"
+            git fetch --all --prune
+            # worktree로 이미 체크아웃된 브랜치이므로 강제 동기화
+            git reset --hard "origin/${BRANCH}"
+            git rev-parse --short HEAD
+
+            echo "== 2) Node 준비 (nvm, Node 20) =="
             export NVM_DIR="$HOME/.nvm"
             [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
             nvm install 20
             nvm use 20
 
-            echo "== 3) 의존성 & 빌드 =="
-            npm ci || npm install
-            # 경고로 빌드가 막히지 않도록 필요시 CI= 해제 (원하면 다음 줄 주석 해제)
-            # CI= npm run build
+            echo "== 3) 의존성 설치 & 빌드 =="
+            if [ -f package-lock.json ]; then
+              npm ci || npm install
+            else
+              npm install
+            fi
+            # CRA 기준(산출물: build/)
             npm run build
 
-            echo "== 4) 산출물 동기화 -> prod 정적 폴더 =="
-            rsync -av --delete build/ /srv/2025ARETEUM-Production-Deployment/frontend/
+            echo "== 4) 산출물 동기화 → ${DEPLOY_DIR} =="
+            rsync -av --delete build/ "${DEPLOY_DIR}/"
 
-            echo "== 5) 운영 nginx(areteum-nginx) 설정 테스트 & 리로드 =="
-            # 컨테이너 있으면 기동 보장
-            if ! docker ps --format '{{.Names}}' | grep -qx 'areteum-nginx'; then
-              if docker ps -a --format '{{.Names}}' | grep -qx 'areteum-nginx'; then
-                docker start areteum-nginx
+            echo "== 5) nginx 설정 점검 & 리로드 (prod 컨테이너) =="
+            # 컨테이너 실행 보장
+            if ! docker ps --format '{{.Names}}' | grep -qx 'areteum-prod-nginx'; then
+              if docker ps -a --format '{{.Names}}' | grep -qx 'areteum-prod-nginx'; then
+                docker start areteum-prod-nginx
               else
-                echo "ERROR: areteum-nginx 컨테이너가 없습니다. 현재 운영은 areteum-nginx 기준입니다."
-                echo "       필요 시 기존 컨테이너를 유지하고 리로드 대상만 areteum-nginx로 고정하세요."
+                echo "ERROR: areteum-prod-nginx 컨테이너가 없습니다."
                 exit 1
               fi
             fi
 
-            # 설정 문법 체크
-            docker exec areteum-nginx nginx -t
-
-            # 리로드 (실패시 재시작)
-            docker exec areteum-nginx nginx -s reload || docker restart areteum-nginx
+            docker exec areteum-prod-nginx nginx -t
+            docker exec areteum-prod-nginx nginx -s reload || docker restart areteum-prod-nginx
 
             echo "== 6) 상태 확인 =="
-            docker ps --format '{{.Names}}\t{{.Status}}\t{{.Ports}}' | grep -E 'areteum-nginx|areteum-prod-backend' || true
+            docker ps --format '{{.Names}}\t{{.Status}}\t{{.Ports}}' | grep -E 'areteum-prod-nginx|areteum-prod-backend' || true
