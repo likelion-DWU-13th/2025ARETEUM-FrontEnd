@@ -4,7 +4,7 @@ export const Container = styled.div`
   position: relative;
   margin: 0 auto;
   margin-top: 0px;
-  height: 100vh;
+  height: 100dvh;
   padding: 0; /* 불필요한 패딩 제거 */
   box-sizing: border-box; /* 패딩이 width에 포함되도록 설정 */
   display: flex;
@@ -19,7 +19,12 @@ export const Container = styled.div`
   align-items: center;
   /* 여기까지 공통 복붙 */
 
-  background: linear-gradient(180deg, #4f95d1 0%, #adcbf0 41.83%, #f0e6f2 95.19%);
+  background: linear-gradient(
+    180deg,
+    #4f95d1 0%,
+    #adcbf0 41.83%,
+    #f0e6f2 95.19%
+  );
 
   #background {
     width: 393px;
@@ -66,11 +71,11 @@ export const Title = styled.div`
 
 export const Nav = styled.div`
   width: 393px;
-  height: 105px;
+  height: 45px;
   display: flex;
   position: relative;
   z-index: 100;
-  margin-top: 53px;
+  margin-top: 10px;
   align-items: center;
   justify-content: center;
 
@@ -224,9 +229,8 @@ export const MsgInputWrap = styled.div`
   background: rgba(255, 255, 255, 0.8);
   box-shadow: 0 0 1px 0 #fff;
   padding: 0 12px;
-  position: fixed;
-  bottom: 50px;
-  z-index: 10;
+  position: sticky;
+  z-index: 9999;
 `;
 export const MessgeBar = styled.input`
   flex: 1;
@@ -234,7 +238,7 @@ export const MessgeBar = styled.input`
   color: #000;
   background-color: transparent;
   font-family: "GangwonEduAll";
-  font-size: 15px;
+  font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;

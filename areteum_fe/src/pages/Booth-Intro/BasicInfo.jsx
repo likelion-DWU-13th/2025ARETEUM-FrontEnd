@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import * as D from "../../styles/StyledDescription";
 import { time } from "framer-motion";
 
-const BasicInfo = ({ schedules, detailLocation, organizer, mapImageUrl, description, timeNote }) => {
+const BasicInfo = ({ schedules, detailLocation, organizer, mapImageUrl, description, timeNote, menus }) => {
     
     const formatTime = (time) => {
       if (!time || typeof time.hour === 'undefined' || typeof time.minute === 'undefined') {
@@ -62,6 +62,14 @@ const BasicInfo = ({ schedules, detailLocation, organizer, mapImageUrl, descript
                         <D.InfoItem>
                             <img src={`${process.env.PUBLIC_URL}/images/agency.svg`} alt="agency" />
                             {organizer}
+                        </D.InfoItem>
+                    )}
+
+                    {/* 가격 */}
+                    {menus && (
+                        <D.InfoItem>
+                            <img src={`${process.env.PUBLIC_URL}/images/price.svg`} alt="price" />
+                            {menus}
                         </D.InfoItem>
                     )}
                 </D.InfoBox>

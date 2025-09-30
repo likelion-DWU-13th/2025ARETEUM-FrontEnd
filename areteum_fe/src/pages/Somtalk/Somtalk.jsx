@@ -113,14 +113,7 @@ const Somtalk = () => {
         if (!res.ok) throw new Error("Failed to fetch");
         const data = await res.json();
 
-        // 정확한 메세지 정렬을 위해 ms단위 초까지 받아오기
-        function getTimestamp(createdAt) {
-          return new Date(createdAt).getTime(); // ms 단위 숫자
-        }
-
-        // 백에서 날짜 가져오기
         const formatted = data
-          .slice()
           .sort(
             (a, b) =>
               new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
