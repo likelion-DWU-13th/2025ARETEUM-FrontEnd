@@ -120,13 +120,12 @@ const Somtalk = () => {
         const data = await res.json();
 
         const formatted = data
-          .slice() // 복사
+          .slice()
           .sort(
             (a, b) =>
-              new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime() // 최신순 정렬
+              new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime() // 과거순 정렬
           )
-          .slice(0, 100) // 최신 100개만 추출
-          .reverse()
+          .slice(-100) // 최신 100개만 남김
           .map((item) => ({
             ...item,
             time: formatTime(new Date(item.createdAt)),
