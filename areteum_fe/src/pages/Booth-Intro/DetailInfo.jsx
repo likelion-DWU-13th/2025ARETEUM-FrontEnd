@@ -3,7 +3,7 @@ import * as D from "../../styles/StyledDescription";
 
 const DetailInfo = ({ 
     category,         
-    wating,     
+    waiting,     
     menus,        
     setMenus,    
     products,         
@@ -14,7 +14,8 @@ const DetailInfo = ({
     participation,   
     prizes,         
     somsomiGuide,     
-    mapImageUrl       
+    mapImageUrl,
+    intro       
 }) => {
 
     // 1. 해당 카테고리인지 확인하는 함수
@@ -25,6 +26,7 @@ const DetailInfo = ({
     
     // 메뉴 항목 렌더링 함수
     const renderMenuItem = (item, isMenu = true) => (
+        <div key={item.name}>
         <D.MenuItem key={item.name || item}> 
             <D.MenuName>
                 <D.Dote>•</D.Dote>
@@ -33,17 +35,25 @@ const DetailInfo = ({
             
             {(item.category !== 'EVENT') && (
                 <>
-                    <D.MenuDash />
-                    {/* 0원이면 기본 안주 */}
-                    <D.MenuPrice>
-                        {item.price > 0 
-                            ? `${item.price.toLocaleString()}원` 
-                            : item.price === 0
-                            ? '기본 안주'
-                            : ''}</D.MenuPrice>
+                <D.MenuDash />
+                {/* 0원이면 기본 안주 */}
+                <D.MenuPrice>
+                    {item.price > 0 
+                        ? `${item.price.toLocaleString()}원` 
+                        : item.price === 0
+                        ? '기본 안주'
+                        : ''}</D.MenuPrice>
                 </>
             )}
+            
         </D.MenuItem>
+        {item.note && (
+            <D.Note style={{ marginTop: '5px' }}>
+                {item.note}
+            </D.Note>
+        )}
+        </div>
+        
     );
 
 
@@ -71,7 +81,7 @@ const DetailInfo = ({
               {/* 유의사항 섹션 렌더링 */}
               {title === '유의사항' && hasData(data) && (
                   data.map((note, index) => (
-                      <D.InfoItem key={index} style={{ alignItems: 'flex-start', display: "flex" }}>
+                      <D.InfoItem key={index} style={{ gap: "0" }}>
                           <D.Dote>•</D.Dote>
                           {note}
                       </D.InfoItem>
@@ -81,8 +91,17 @@ const DetailInfo = ({
               {/* 안내 섹션 렌더링 */}
               {title === '현장 대기 및 웨이팅 안내' && hasData(data) && (
                   data.map((note, index) => (
-                      <D.InfoItem key={index} style={{ alignItems: 'flex-start', display: "flex" }}>
+                      <D.InfoItem key={index} style={{ alignItems: 'flex-start', display: "flex", gap: "0" }}>
                           <D.Dote>•</D.Dote> 
+                          {note}
+                      </D.InfoItem>
+                  ))
+              )}
+
+              {/* 소개 섹션 렌더링 */}
+              {title === '소개' && hasData(data) && (
+                  data.map((note, index) => (
+                      <D.InfoItem key={index} style={{ alignItems: 'flex-start', display: "flex" }}>
                           {note}
                       </D.InfoItem>
                   ))
@@ -93,19 +112,17 @@ const DetailInfo = ({
                 data.map((event, index) => (
                     <D.InfoItem 
                         key={index} 
-                        style={{ alignItems: 'flex-start', flexDirection: 'column'  }}>
+                        style={{gap: "0"}}>
                         {event.split('\n').map((line, lineIndex) => {
                             const trimmedLine = line.trim();
-                            const showDot = !isCategory('공연') && trimmedLine.startsWith('•');
+                            const showDot = trimmedLine.startsWith('•');
                             const isDetailLine = trimmedLine.startsWith('•'); 
-                            const isTitleOrNumber = lineIndex === 0 && !isDetailLine;
-                            // 텍스트 내용: 점을 제거할지 여부 결정
                             const content = isDetailLine ? trimmedLine.substring(1).trim() : trimmedLine;
 
                             return (
                                 <div 
                                     key={lineIndex}
-                                    style={{ display: 'flex', alignItems: 'flex-start', width: '100%' }}
+                                    style={{ display: 'flex', alignItems: 'center' }}
                                 >
                                     
                                     {showDot && (
@@ -157,7 +174,7 @@ const DetailInfo = ({
     {setMenus.map((set, setIndex) => (
       <div key={setIndex} style={{ display: "flex", flexDirection: "column", marginBottom: "15px"}}>
         {/* 세트 메뉴 이름 */}
-        <D.SetName>
+        <D.SetName style={{ marginBottom: "5px"}}>
             <D.Dote>•</D.Dote>
           {set.name}
         </D.SetName>
@@ -166,7 +183,7 @@ const DetailInfo = ({
         {hasData(set.variants) && set.variants.map((variant, varIndex) => (
           <Fragment key={varIndex}>
             <D.MenuItem>
-              <D.SetMenuName>
+              <D.SetMenuName style={{ marginBottom: '5px' }}>
                 {variant.items.join(' + ')}
               </D.SetMenuName>
               <D.MenuDash />
@@ -177,7 +194,7 @@ const DetailInfo = ({
 
             {/* ✅ variant.note 있으면 메뉴 바로 아래 표시 */}
             {variant.note && (
-              <D.Note>
+              <D.Note style={{ marginBottom: '5px' }}>
                 * {variant.note}
               </D.Note>
             )}
@@ -213,7 +230,9 @@ const DetailInfo = ({
               {/* 기타 섹션 (타임라인/유의사항/메뉴가 아닐 경우의 기본 렌더링 로직) */}
               {!(title === '타임라인' || title === '유의사항' || title === '메뉴' || title === '판매 상품' 
               || title === '이벤트' || title === '참여 방법'
-              || title === '현장 대기 및 웨이팅 안내') && (
+              || title === '현장 대기 및 웨이팅 안내'
+              || title === '소개'
+            ) && (
                   <D.InfoItem style={{ display: "flex", alignItems: "flex-start", flexDirection: "column" }}>
                     {data}
                 </D.InfoItem>
@@ -232,7 +251,7 @@ const DetailInfo = ({
             
             {timeline && renderSection('타임라인', timeline)}
 
-            {wating && renderSection('현장 대기 및 웨이팅 안내', wating)}
+            {waiting && renderSection('현장 대기 및 웨이팅 안내', waiting)}
 
             {notes && renderSection('유의사항', notes)}
 
@@ -241,6 +260,8 @@ const DetailInfo = ({
             {program && renderSection('프로그램 소개', program)}
 
             {event && renderSection('이벤트', event)}
+
+            {intro && renderSection('소개', intro)}
 
             {isCategory('마켓') && products && renderSection('판매 상품', products)}
         
