@@ -56,10 +56,10 @@ jobs:
             fi
 
             # 설정 문법 체크
-            docker exec -T areteum-nginx nginx -t
+            docker exec areteum-nginx nginx -t
 
             # 리로드 (실패시 재시작)
-            docker exec -T areteum-nginx nginx -s reload || docker restart areteum-nginx
+            docker exec areteum-nginx nginx -s reload || docker restart areteum-nginx
 
             echo "== 6) 상태 확인 =="
             docker ps --format '{{.Names}}\t{{.Status}}\t{{.Ports}}' | grep -E 'areteum-nginx|areteum-prod-backend' || true
