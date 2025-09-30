@@ -60,6 +60,16 @@ const HARDCODED_DETAILS_MAP = {
       "선착순 50명의 학우 분들에게는 포토카드를 드립니다!"
     ]
   },
+  "49": {
+    "menus": [
+      {
+        "name": "1회",
+        "category": "기타",
+        "price": 2500,
+        "note": "계좌이체만 가능"
+      }
+    ]
+  },
 
   "51": {
     "notes": [

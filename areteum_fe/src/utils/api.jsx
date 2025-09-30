@@ -6,7 +6,7 @@
  */
 export const getBoothData = async (boothId) => {
 
-    const API_BASE = "https://dev.dwu-festival2025.com:8443"
+    const API_BASE = "https://dwu-festival2025.com"
 
     try {
         const res = await fetch(`${API_BASE}/api/booths/${boothId}`);

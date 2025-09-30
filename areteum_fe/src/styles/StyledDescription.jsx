@@ -84,19 +84,21 @@ export const Icons = styled.div`
 export const Nav = styled.div`
   width: 393px;
   height: 105px;
-  position: fixed;
   display: flex;
-  bottom: 0;
+  position: relative;
   z-index: 100;
+  margin-top: 53px;
+  align-items: center;
+  justify-content: center;
 
   img {
-    width: 393px;
+    width: 100%;
     height: 105px;
   }
 
   #mark {
     color: #a74063;
-    font-family: Pyeojin Gothic;
+    font-family: Pretendard;
     font-size: 10px;
     font-style: normal;
     font-weight: 700;
